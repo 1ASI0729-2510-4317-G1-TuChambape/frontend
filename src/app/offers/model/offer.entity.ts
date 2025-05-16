@@ -1,35 +1,84 @@
 export interface OfferPrimitives {
-  uid: string
-  userUid: string
-  title: string
-  description: string
-  technicalCategory: string
-  location: string
-  estimatedBudget: number
-  paymentMethod: string
-  requiredExperience: string
-  workSchedule: string
-  notificationsAccepted: boolean
-  personalDataConsent: boolean
-  createdAt?: string
-  updatedAt?: string
+  uid: string;
+  userUid: string;
+  title: string;
+  description: string;
+  technicalCategory: string;
+  location: string;
+  estimatedBudget: number;
+  paymentMethod: string;
+  requiredExperience: string;
+  workSchedule: string;
+  notificationsAccepted: boolean;
+  personalDataConsent: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export class Offer {
-  constructor(
-    public readonly uid: string,
-    public readonly userUid: string,
-    public readonly title: string,
-    public readonly description: string,
-    public readonly technicalCategory: string,
-    public readonly location: string,
-    public readonly estimatedBudget: number,
-    public readonly paymentMethod: string,
-    public readonly requiredExperience: string,
-    public readonly workSchedule: string,
-    public readonly notificationsAccepted: boolean,
-    public readonly personalDataConsent: boolean,
-    public readonly createdAt?: Date,
-    public readonly updatedAt?: Date,
-  ) {}
+  uid: string;
+  userUid: string;
+  title: string;
+  description: string;
+  technicalCategory: string;
+  location: string;
+  estimatedBudget: number;
+  paymentMethod: string;
+  requiredExperience: string;
+  workSchedule: string;
+  notificationsAccepted: boolean;
+  personalDataConsent: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+
+  constructor({
+    uid,
+    userUid,
+    title,
+    description,
+    technicalCategory,
+    location,
+    estimatedBudget,
+    paymentMethod,
+    requiredExperience,
+    workSchedule,
+    notificationsAccepted,
+    personalDataConsent,
+    createdAt,
+    updatedAt,
+  }: OfferPrimitives) {
+    this.uid = uid;
+    this.userUid = userUid;
+    this.title = title;
+    this.description = description;
+    this.technicalCategory = technicalCategory;
+    this.location = location;
+    this.estimatedBudget = estimatedBudget;
+    this.paymentMethod = paymentMethod;
+    this.requiredExperience = requiredExperience;
+    this.workSchedule = workSchedule;
+    this.notificationsAccepted = notificationsAccepted;
+    this.personalDataConsent = personalDataConsent;
+    this.createdAt = createdAt ? new Date(createdAt) : undefined;
+    this.updatedAt = updatedAt ? new Date(updatedAt) : undefined;
+  }
+
+  toPrimitives(): OfferPrimitives {
+    return {
+      uid: this.uid,
+      userUid: this.userUid,
+      title: this.title,
+      description: this.description,
+      technicalCategory: this.technicalCategory,
+      location: this.location,
+      estimatedBudget: this.estimatedBudget,
+      paymentMethod: this.paymentMethod,
+      requiredExperience: this.requiredExperience,
+      workSchedule: this.workSchedule,
+      notificationsAccepted: this.notificationsAccepted,
+      personalDataConsent: this.personalDataConsent,
+      createdAt: this.createdAt?.toISOString(),
+      updatedAt: this.updatedAt?.toISOString(),
+    };
+  }
 }
