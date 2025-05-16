@@ -1,11 +1,11 @@
-// src/app/public/components/side-navigation-bar/side-navigation-bar.component.ts
-import { Component }   from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component }           from '@angular/core';
+import { CommonModule }        from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-side-navigation-bar',
-  standalone: true,              // marca standalone
-  imports: [RouterModule],        // para poder usar routerLink
+  standalone: true,
+  imports: [ CommonModule, RouterLink, RouterLinkActive ],
   templateUrl: './side-navigation-bar.component.html',
   styleUrls: ['./side-navigation-bar.component.css']
 })

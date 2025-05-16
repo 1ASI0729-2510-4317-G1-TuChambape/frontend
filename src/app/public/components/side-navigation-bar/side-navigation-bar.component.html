@@ -2,17 +2,20 @@
   <div class="profile">
     <img src="/assets/user.png" alt="James Cooper" class="avatar" />
     <div class="name">James Cooper</div>
-    <a routerLink="/profile" class="edit-link">Personalizar Perfil</a>
+    <a class="edit-link"
+       [routerLink]="['/perfil-trabajador']"
+       routerLinkActive="active">
+      Personalizar Perfil
+    </a>
   </div>
   <nav>
     <ul>
-      <li><a routerLink="/home"><i class="pi pi-home"></i> INICIO</a></li>
-      <li><a routerLink="/search-offers"><i class="pi pi-search"></i> BUSCAR OFERTAS</a></li>
-      <li><a routerLink="/offers"><i class="pi pi-briefcase"></i> OFERTAS</a></li>
-      <li class="active">
-        <a routerLink="/reputation"><i class="pi pi-users"></i> MI REPUTACION</a>
-      </li>
-      <li><a routerLink="/settings"><i class="pi pi-cog"></i> CONFIGURACIÓN</a></li>
+      <li><a routerLink="/home">INICIO</a></li>
+      <li><a routerLink="/search-offers">BUSCAR OFERTAS</a></li>
+      <li><a routerLink="/offers">OFERTAS</a></li>
+
+      <li><a routerLink="/reputation">MI REPUTACION</a></li>
+      <li><a routerLink="/settings">CONFIGURACIÓN</a></li>
     </ul>
   </nav>
 </aside>

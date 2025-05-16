@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
-import { SettingsComponent } from './settings/settings.component';
+import { MyprofileWorkerComponent } from './myprofile-worker/myprofile-worker-component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/settings', pathMatch: 'full' },
-  { path: 'settings', component: SettingsComponent }
+  { path: '',                  redirectTo: '/perfil-trabajador', pathMatch: 'full' },
+  { path: 'perfil-trabajador', component: MyprofileWorkerComponent },
+  { path: '**',                redirectTo: '' }
 ];

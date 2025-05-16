@@ -1,0 +1,129 @@
+<app-header-bar [title]="'Mi Perfil'"></app-header-bar>
+
+<div class="myprofile-container">
+
+  <!-- pestañas y toggle -->
+  <div class="header-tabs">
+    <div class="tab-buttons">
+      <button [class.active]="activeTab==='datos'" (click)="activeTab='datos'">Datos</button>
+      <button [class.active]="activeTab==='acerca'" (click)="activeTab='acerca'">Acerca de mí</button>
+    </div>
+    <div class="user-type-toggle">
+      <button [class.active]="userType==='cliente'" (click)="setUserType('cliente')">Cliente</button>
+      <button [class.active]="userType==='trabajador'" (click)="setUserType('trabajador')">Trabajador</button>
+    </div>
+  </div>
+
+  <!-- TAB: Datos -->
+  <ng-container *ngIf="activeTab==='datos'">
+    <div class="datos-grid">
+      <div class="field">
+        <span class="label"><i class="pi pi-user"></i> Nombres</span>
+        <span class="value">{{ user.name }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-user"></i> Apellidos</span>
+        <span class="value">{{ user.lastName }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-id-card"></i> Tipo de Documento</span>
+        <span class="value">{{ user.documentType }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-hashtag"></i> Nº de Documento</span>
+        <span class="value">{{ user.documentNumber }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-calendar"></i> Fecha de Nacimiento</span>
+        <span class="value">{{ user.birthDate | date:'dd-MM-yyyy' }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-users"></i> Sexo</span>
+        <span class="value">{{ user.gender }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-phone"></i> Celular</span>
+        <span class="value">{{ user.phone }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-globe"></i> País</span>
+        <span class="value">{{ user.country }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-home"></i> Ciudad</span>
+        <span class="value">{{ user.city }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-map-marker"></i> Dirección</span>
+        <span class="value">{{ user.address }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-envelope"></i> Correo electrónico</span>
+        <span class="value">{{ user.email }}</span>
+      </div>
+      <div class="field">
+        <span class="label"><i class="pi pi-calendar-times"></i> Fecha de Registro</span>
+        <span class="value">{{ user.registrationDate | date:'dd-MM-yy' }}</span>
+      </div>
+    </div>
+    <div class="save-btn">
+      <button (click)="save()">Guardar cambios</button>
+    </div>
+  </ng-container>
+
+  <!-- TAB: Acerca de mí -->
+  <ng-container *ngIf="activeTab==='acerca'">
+    <div class="acerca-container">
+
+      <!-- Columna IZQUIERDA -->
+      <div class="acerca-section">
+        <div class="field-group">
+          <label>Sobre mí</label>
+          <textarea [(ngModel)]="user.about" rows="4" placeholder="Type here"></textarea>
+        </div>
+        <div class="field-group">
+          <label>Mis experiencias</label>
+          <textarea [(ngModel)]="user.experiences" rows="4" placeholder="Type here"></textarea>
+        </div>
+        <div class="field-group">
+          <label>Mis habilidades</label>
+          <textarea [(ngModel)]="user.skills" rows="4" placeholder="Type here"></textarea>
+        </div>
+      </div>
+
+      <!-- Columna DERECHA -->
+      <div class="acerca-section">
+        <div class="field-group">
+          <label>Grado de instrucción</label>
+          <!-- puedes cambiar a <p-dropdown> de PrimeNG si lo tienes -->
+          <select [(ngModel)]="user.educationLevel">
+            <option value="">Elige tu grado de instrucción*</option>
+            <option *ngFor="let g of educationLevels" [value]="g">{{ g }}</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Idiomas</label>
+          <textarea [(ngModel)]="user.languages" rows="2" placeholder="Type here"></textarea>
+        </div>
+        <div class="field-group file-upload">
+          <label>Certificaciones</label>
+          <input type="file" multiple />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer con checkboxes y botones -->
+    <div class="acerca-footer">
+      <div class="checkboxes">
+        <label><input type="checkbox" [(ngModel)]="user.notifyViews" /> Acepto recibir notificaciones sobre visualizaciones de mi perfil</label>
+        <label><input type="checkbox" [(ngModel)]="user.authorizeData" /> Autorizo el tratamiento de mis datos personales...*</label>
+      </div>
+      <div class="btn-group">
+        <button class="btn-publish">Publicar</button>
+        <button class="btn-save" (click)="save()">Guardar cambios</button>
+      </div>
+    </div>
+  </ng-container>
+
+</div>
