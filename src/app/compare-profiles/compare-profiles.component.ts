@@ -25,9 +25,6 @@ import { ProfileCardComponent, Profile }
     DropdownModule,   // para p-dropdown
     ButtonModule,     // para pButton
 
-    // tus shell components
-    SideNavigationBarComponent,
-    HeaderBarComponent,
 
     // el componente de card
     ProfileCardComponent
