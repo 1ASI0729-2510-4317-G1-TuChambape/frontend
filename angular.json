@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "untitled3": {
+    "configuration-worker": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/untitled3",
+            "outputPath": "dist/configuration-worker",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "untitled3:build:production"
+              "buildTarget": "configuration-worker:build:production"
             },
             "development": {
-              "buildTarget": "untitled3:build:development"
+              "buildTarget": "configuration-worker:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,10 +82,7 @@
               {
                 "glob": "**/*",
                 "input": "public"
-
-              },
-              "src/favicon.ico",
-              "src/assets"
+              }
             ],
             "styles": [
               "src/styles.css"
@@ -97,6 +94,6 @@
     }
   },
   "cli": {
-    "analytics": "416f9834-d94a-4e98-8195-fb23caf32719"
+    "analytics": "dbc2f290-30c1-4acd-9f47-aa57167b3a29"
   }
 }
