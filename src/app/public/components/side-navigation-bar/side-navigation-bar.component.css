@@ -1,0 +1,51 @@
+.side-nav {
+  width: 240px;
+  background: #0057b8;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.profile {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: .5rem;
+}
+.name {
+  font-weight: 600;
+  margin-bottom: .25rem;
+}
+.edit-link {
+  font-size: .875rem;
+  color: #ffc107;
+  text-decoration: none;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+nav li {
+  margin: .5rem 0;
+}
+nav li a {
+  display: flex;
+  align-items: center;
+  padding: .75rem 1rem;
+  color: inherit;
+  text-decoration: none;
+}
+nav li.active,
+nav li a:hover {
+  background: rgba(0,0,0,.1);
+}
+nav i {
+  margin-right: .75rem;
+  font-size: 1.1rem;
+}

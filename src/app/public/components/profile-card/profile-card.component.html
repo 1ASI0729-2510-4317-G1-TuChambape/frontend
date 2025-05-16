@@ -1,0 +1,47 @@
+<p-card class="profile-card">
+  <ng-template pTemplate="header">
+    <img
+      [src]="profile.photoUrl"
+      alt="{{ profile.name }}"
+      class="photo"
+    />
+    <div class="card-title">{{ profile.name }}</div>
+  </ng-template>
+
+  <div class="content">
+    <div class="role">{{ profile.role }}</div>
+
+    <div class="field">
+      <label>Disponibilidad</label>
+      <p-slider
+        [range]="true"
+        [min]="0"
+        [max]="24"
+        [ngModel]="profile.availability"
+        [disabled]="true">
+      </p-slider>
+      <div class="times">
+        {{ profile.availability[0] }}:00 – {{ profile.availability[1] }}:00
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Valoración mínima</label>
+      <i class="pi pi-star"></i>
+      {{ profile.rating }} ({{ profile.ratingCount }})
+    </div>
+
+    <div class="field">
+      <label>Tipo de certificación</label>
+      {{ profile.certification }}
+    </div>
+
+    <div class="field">
+      <label>Años de experiencia</label>
+      <span pBadge
+            [value]="profile.experienceYears + ' años'"
+            severity="info">
+      </span>
+    </div>
+  </div>
+</p-card>
