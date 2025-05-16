@@ -1,0 +1,76 @@
+/* src/app/components/client/my-profile/profile-datos/profile-datos.component.css */
+.profile-datos-form-container {
+  padding: 10px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 25px 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-field label {
+  margin-bottom: 8px; /* Un poco más de espacio debajo del label */
+  font-weight: bold;
+  font-size: 13px;
+  color: #555; /* Un gris un poco más oscuro para el label */
+
+}
+
+
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="tel"],
+.form-field select {
+  padding: 10px 8px; /* Ajusta el padding interno (vertical, horizontal) */
+  border: none;
+  border-bottom: 1px solid #ccc; /* Línea inferior sutil */
+  font-size: 14px;
+  background-color: transparent; /* Fondo transparente */
+  transition: border-color 0.3s ease; /* Transición suave para el foco */
+  outline: none;
+}
+
+.form-field input[type="text"]:focus,
+.form-field input[type="email"]:focus,
+.form-field input[type="tel"]:focus,
+.form-field select:focus {
+  border-bottom-color: #007bff;
+
+}
+
+
+.form-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 10px 10px;
+  padding-right: 30px; /* Espacio para la flecha */
+}
+
+
+.form-field input[disabled] {
+  background-color: #f0f0f0;
+  color: #777; /* Texto más claro para deshabilitados */
+  border-bottom: 1px solid #ddd; /* Línea inferior un poco más clara */
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 4px;
+}
+
+.error-message small {
+  color: red;
+  font-size: 12px;
+}

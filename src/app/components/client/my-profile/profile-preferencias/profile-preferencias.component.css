@@ -1,0 +1,77 @@
+/* src/app/components/client/my-profile/profile-preferencias/profile-preferencias.component.css */
+.profile-preferencias-form-container {
+  padding: 10px;
+}
+
+.form-sections-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Una columna por defecto */
+  gap: 30px; /* Espacio entre secciones si se apilan */
+}
+
+/* Para dos columnas en pantallas más grandes */
+@media (min-width: 768px) {
+  .form-sections-grid {
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+  }
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre campos dentro de una sección */
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-field input[type="text"],
+.form-field select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box; /* Para que el padding no aumente el tamaño total */
+}
+
+.radio-group, .checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Espacio entre opciones de radio/checkbox */
+}
+
+.radio-option, .checkbox-option {
+  display: flex;
+  align-items: center;
+}
+
+.radio-option input[type="radio"],
+.checkbox-option input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.radio-option label,
+.checkbox-option label {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.error-message {
+  margin-top: 4px;
+}
+
+.error-message small {
+  color: red;
+  font-size: 12px;
+}
+
+

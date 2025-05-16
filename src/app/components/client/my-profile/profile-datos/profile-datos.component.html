@@ -1,0 +1,102 @@
+<div class="profile-datos-form-container" [formGroup]="datosForm">
+  <div class="form-grid">
+    <div class="form-field">
+      <label for="nombres">Nombres</label>
+      <input type="text" id="nombres" formControlName="nombres">
+      <div *ngIf="datosForm.get('nombres')?.invalid && (datosForm.get('nombres')?.dirty || datosForm.get('nombres')?.touched)" class="error-message">
+        <small *ngIf="datosForm.get('nombres')?.errors?.['required']">Nombres es requerido.</small>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="apellidos">Apellidos</label>
+      <input type="text" id="apellidos" formControlName="apellidos">
+      <div *ngIf="datosForm.get('apellidos')?.invalid && (datosForm.get('apellidos')?.dirty || datosForm.get('apellidos')?.touched)" class="error-message">
+        <small *ngIf="datosForm.get('apellidos')?.errors?.['required']">Apellidos es requerido.</small>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="tipoDocumento">Tipo de Documento</label>
+      <select id="tipoDocumento" formControlName="tipoDocumento">
+        <option value="DNI">DNI</option>
+        <option value="Pasaporte">Pasaporte</option>
+        <option value="CE">Carnet de Extranjería</option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="numeroDocumento">Número de Documento</label>
+      <input type="text" id="numeroDocumento" formControlName="numeroDocumento">
+      <div *ngIf="datosForm.get('numeroDocumento')?.invalid && (datosForm.get('numeroDocumento')?.dirty || datosForm.get('numeroDocumento')?.touched)" class="error-message">
+        <small *ngIf="datosForm.get('numeroDocumento')?.errors?.['required']">Número de Documento es requerido.</small>
+        <small *ngIf="datosForm.get('numeroDocumento')?.errors?.['pattern']">Solo números permitidos.</small>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="fechaNacimiento">Fecha de Nacimiento</label>
+      <input type="text" id="fechaNacimiento" formControlName="fechaNacimiento" placeholder="DD-MM-YYYY">
+      <div *ngIf="datosForm.get('fechaNacimiento')?.invalid && (datosForm.get('fechaNacimiento')?.dirty || datosForm.get('fechaNacimiento')?.touched)" class="error-message">
+        <small *ngIf="datosForm.get('fechaNacimiento')?.errors?.['required']">Fecha de Nacimiento es requerida.</small>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="sexo">Sexo</label>
+      <select id="sexo" formControlName="sexo">
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Otro">Prefiero no decirlo</option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="celular">Celular</label>
+      <input type="tel" id="celular" formControlName="celular">
+      <div *ngIf="datosForm.get('celular')?.invalid && (datosForm.get('celular')?.dirty || datosForm.get('celular')?.touched)" class="error-message">
+        <small *ngIf="datosForm.get('celular')?.errors?.['required']">Celular es requerido.</small>
+        <small *ngIf="datosForm.get('celular')?.errors?.['pattern']">Solo números permitidos.</small>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="pais">País</label>
+      <input type="text" id="pais" formControlName="pais">
+      <div *ngIf="datosForm.get('pais')?.invalid && (datosForm.get('pais')?.dirty || datosForm.get('pais')?.touched)" class="error-message">
+        <small *ngIf="datosForm.get('pais')?.errors?.['required']">País es requerido.</small>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="ciudad">Ciudad</label>
+      <input type="text" id="ciudad" formControlName="ciudad">
+      <div *ngIf="datosForm.get('ciudad')?.invalid && (datosForm.get('ciudad')?.dirty || datosForm.get('ciudad')?.touched)" class="error-message">
+        <small *ngIf="datosForm.get('ciudad')?.errors?.['required']">Ciudad es requerida.</small>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="direccion">Dirección</label>
+      <input type="text" id="direccion" formControlName="direccion">
+      <div *ngIf="datosForm.get('direccion')?.invalid && (datosForm.get('direccion')?.dirty || datosForm.get('direccion')?.touched)" class="error-message">
+        <small *ngIf="datosForm.get('direccion')?.errors?.['required']">Dirección es requerida.</small>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="correoElectronico">Correo electrónico</label>
+      <input type="email" id="correoElectronico" formControlName="correoElectronico">
+      <div *ngIf="datosForm.get('correoElectronico')?.invalid && (datosForm.get('correoElectronico')?.dirty || datosForm.get('correoElectronico')?.touched)" class="error-message">
+        <small *ngIf="datosForm.get('correoElectronico')?.errors?.['required']">Correo electrónico es requerido.</small>
+        <small *ngIf="datosForm.get('correoElectronico')?.errors?.['email']">Formato de correo inválido.</small>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="fechaRegistro">Fecha de Registro</label>
+      <input type="text" id="fechaRegistro" formControlName="fechaRegistro">
+    </div>
+  </div>
+
+</div>

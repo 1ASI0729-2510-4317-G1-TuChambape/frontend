@@ -1,0 +1,71 @@
+<div class="profile-preferencias-form-container" [formGroup]="preferenciasForm" *ngIf="preferenciasForm">
+  <div class="form-sections-grid">
+    <div class="form-section">
+      <div class="form-field">
+        <label for="categoriaServicio">Categoría del Servicio</label>
+        <select id="categoriaServicio" formControlName="categoriaServicio">
+          <option [ngValue]="null" disabled>Seleccionar Categoría</option>
+          <option *ngFor="let cat of categoriasServicio" [value]="cat">{{cat}}</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="ubicacionDistrito">Ubicación / Distrito</label>
+        <select id="ubicacionDistrito" formControlName="ubicacionDistrito">
+          <option [ngValue]="null" disabled>Seleccionar Distrito</option>
+          <option *ngFor="let ubi of ubicacionesDistrito" [value]="ubi">{{ubi}}</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="tipoServicioOfrecido">Tipo de Servicio Ofrecido</label>
+        <select id="tipoServicioOfrecido" formControlName="tipoServicioOfrecido">
+          <option [ngValue]="null" disabled>Seleccionar Tipo</option>
+          <option *ngFor="let tipo of tiposServicio" [value]="tipo">{{tipo}}</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label>Años de Experiencia</label>
+        <div class="radio-group" formControlName="anosExperiencia">
+          <div *ngFor="let opcion of anosExperienciaOptions" class="radio-option">
+            <input type="radio" [id]="'exp-' + opcion" [value]="opcion" formControlName="anosExperiencia">
+            <label [for]="'exp-' + opcion">{{opcion}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-field">
+        <label for="disponibilidad">Disponibilidad</label>
+        <select id="disponibilidad" formControlName="disponibilidad">
+          <option [ngValue]="null" disabled>Seleccionar Disponibilidad</option>
+          <option *ngFor="let disp of disponibilidadOptions" [value]="disp">{{disp}}</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="valoracionMinima">Valoración Mínima</label>
+        <select id="valoracionMinima" formControlName="valoracionMinima">
+          <option [ngValue]="null" disabled>Seleccionar Valoración</option>
+          <option *ngFor="let val of valoracionMinimaOptions" [value]="val">{{val}} estrellas</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="presupuestoEstimado">Presupuesto estimado</label>
+        <input type="text" id="presupuestoEstimado" formControlName="presupuestoEstimado" placeholder="Ej: S/ 100 - S/ 500">
+      </div>
+
+      <div class="form-field" formArrayName="idiomas">
+        <label>Idiomas</label>
+        <div *ngFor="let idiomaCtrl of idiomasFormArray.controls; let i = index" class="checkbox-option">
+          <input type="checkbox" [id]="'idioma-' + idiomasDisponibles[i].id" [formControlName]="i">
+          <label [for]="'idioma-' + idiomasDisponibles[i].id">{{idiomasDisponibles[i].nombre}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,68 @@
+/* src/app/components/client/my-profile/my-profile.component.css */
+.my-profile-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-section h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+
+.tabs-navigation {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.tabs-navigation .tab-link {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  margin-right: 5px; /* Espacio entre pestañas */
+}
+
+.tabs-navigation .tab-link.active {
+  font-weight: bold;
+  color: #007bff; /* Color de la pestaña activa */
+  border-bottom: 2px solid #007bff;
+}
+
+.tabs-navigation .tab-link:hover:not(.active) {
+  color: #0056b3; /* Color al pasar el mouse */
+}
+
+.tab-content {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-top: none;
+  min-height: 200px;
+}
+
+.actions-footer {
+  margin-top: 30px;
+  text-align: right; /* Alinea el botón a la derecha */
+}
+
+.actions-footer .save-button {
+  padding: 10px 25px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.actions-footer .save-button:hover {
+  background-color: #e68a00;
+}
