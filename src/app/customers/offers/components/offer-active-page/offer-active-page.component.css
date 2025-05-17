@@ -1,0 +1,147 @@
+.offer-details {
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  color: #374151;
+}
+
+.offer-details__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.offer-details__description-box {
+  margin-bottom: 1.5rem;
+}
+
+.offer-details__label {
+  display: inline-block;
+  background-color: #f97316; /* naranja */
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.offer-details__description {
+  line-height: 1.5;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.offer-details__scroll-container {
+  background-color: #2563eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  padding-top: 4rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.offer-details__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(10rem, 1fr);
+  gap: 1.25rem;
+  padding-bottom: 0.5rem;
+}
+
+.offer-details__card {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.offer-details__photo-wrapper {
+  position: relative;
+  margin-top: -3rem;
+  display: flex;
+  width: fit-content;
+  margin-inline: auto;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.offer-details__photo {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 0.3rem #f9fafb; /* gris claro */
+  position: relative;
+  z-index: 1;
+}
+
+.offer-details__available-indicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #22c55e;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.offer-details__check-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  font-size: 0.75rem;
+  color: white;
+}
+
+.offer-details__name {
+  font-size: 0.875rem;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.offer-details__rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.offer-details__reviews {
+  font-size: 0.65rem;
+  color: #6b7280; /* gris */
+  margin-left: 0.25rem;
+}
+
+.offer-details__profession {
+  font-size: 0.75rem;
+  color: #2563eb; /* azul */
+  margin-bottom: 0.5rem;
+}
+
+.offer-details__price {
+  font-size: 0.75rem;
+  color: #f97316; /* naranja */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.offer-details__button-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.offer-details__book-button {
+  font-size: 0.75rem;
+  flex: 1 1 auto;
+}

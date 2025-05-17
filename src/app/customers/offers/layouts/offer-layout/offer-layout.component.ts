@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -54,17 +54,18 @@ export class OfferLayoutComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const offerId = this.activatedRoute.snapshot.paramMap.get('offerId');
-
-    if (offerId) {
-      this.offerService.getById(offerId).subscribe((offer) => {
-        this.offer = offer;
+    this.activatedRoute.firstChild?.params.subscribe((params) => {
+      const { id } = params;
+      if (id) {
+        this.offerService.getById(id).subscribe((offer) => {
+          this.offer = offer;
+          this.updateOfferStatus();
+        });
+      } else {
+        this.offer = undefined;
         this.updateOfferStatus();
-      });
-    } else {
-      this.offer = undefined;
-      this.updateOfferStatus();
-    }
+      }
+    });
   }
 
   private updateOfferStatus() {

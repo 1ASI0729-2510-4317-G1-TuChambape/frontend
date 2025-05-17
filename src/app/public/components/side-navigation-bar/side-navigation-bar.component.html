@@ -6,13 +6,27 @@
   </div>
   <nav>
     <ul>
-      <li><a routerLink="/home"><i class="pi pi-home"></i> INICIO</a></li>
-      <li><a routerLink="/search-tecs"><i class="pi pi-search"></i> BUSCAR TÉCNICOS</a></li>
-      <li><a routerLink="/customer/offers/create"><i class="pi pi-briefcase"></i> OFERTAS</a></li>
-      <li class="active">
-        <a routerLink="/compare"><i class="pi pi-users"></i> COMPARAR PERFILES</a>
+      <li [className]="router.url === '/home'  ?  'active' : ''">
+        <a routerLink="/home"><i class="pi pi-home"></i> INICIO</a>
       </li>
-      <li><a routerLink="/settings"><i class="pi pi-cog"></i> CONFIGURACIÓN</a></li>
+      <li [className]="router.url === '/search-tecs' ? 'active' : ''">
+        <a routerLink="/search-tecs"
+          ><i class="pi pi-search"></i> BUSCAR TÉCNICOS</a
+        >
+      </li>
+      <li [className]="router.url === '/customer/offers/list' ? 'active' : ''">
+        <a routerLink="/customer/offers/list"
+          ><i class="pi pi-briefcase"></i> OFERTAS</a
+        >
+      </li>
+      <li [className]="router.url === '/compare' ? 'active' : ''">
+        <a routerLink="/compare"
+          ><i class="pi pi-users"></i> COMPARAR PERFILES</a
+        >
+      </li>
+      <li>
+        <a routerLink="/settings"><i class="pi pi-cog"></i> CONFIGURACIÓN</a>
+      </li>
     </ul>
   </nav>
 </aside>

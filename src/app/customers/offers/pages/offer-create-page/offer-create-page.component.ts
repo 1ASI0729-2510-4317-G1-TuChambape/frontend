@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 import { OfferService } from '../../services/offer.service';
+import { Router } from '@angular/router';
+import { Offer } from '../../model/offer.entity';
 
 interface SelectItem {
   label: string;
@@ -31,6 +33,7 @@ interface SelectItem {
     MatCheckboxModule,
     MatButtonModule,
     MatSnackBarModule,
+    CommonModule,
   ],
   templateUrl: './offer-create-page.component.html',
   styleUrls: ['./offer-create-page.component.css'],
@@ -40,6 +43,7 @@ export class OfferCreatePageComponent implements OnInit {
   private readonly offerService = inject(OfferService);
   private readonly snackBar = inject(MatSnackBar);
   private readonly fb = inject(FormBuilder);
+  private readonly router = inject(Router);
 
   technicalCategories: SelectItem[] = [
     { label: 'Frontend', value: 'frontend' },
@@ -89,23 +93,24 @@ export class OfferCreatePageComponent implements OnInit {
       return;
     }
 
-    this.offerService
-      .create({
-        ...this.offerForm.value,
-        userId: '1', // TODO: Cambiar por el ID del usuario logueado
-        status: 'active',
-      })
-      .subscribe({
-        next: () => {
-          this.snackBar.open('Oferta creada con éxito', 'Cerrar', {
-            duration: 3000,
-          });
-        },
-        error: () => {
-          this.snackBar.open('Error al crear la oferta', 'Cerrar', {
-            duration: 3000,
-          });
-        },
-      });
+    const offer = new Offer({
+      ...this.offerForm.value,
+      userId: '1', // TODO: Cambiar por el ID del usuario logueado
+      status: 'active',
+    });
+
+    this.offerService.create(offer).subscribe({
+      next: () => {
+        this.snackBar.open('Oferta creada con éxito', 'Cerrar', {
+          duration: 3000,
+        });
+        this.router.navigate(['/customer/offers/list']);
+      },
+      error: () => {
+        this.snackBar.open('Error al crear la oferta', 'Cerrar', {
+          duration: 3000,
+        });
+      },
+    });
   }
 }

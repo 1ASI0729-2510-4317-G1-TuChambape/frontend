@@ -1,6 +1,6 @@
 // src/app/public/components/side-navigation-bar/side-navigation-bar.component.ts
-import { Component }   from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject }   from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-side-navigation-bar',
@@ -9,4 +9,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './side-navigation-bar.component.html',
   styleUrls: ['./side-navigation-bar.component.css']
 })
-export class SideNavigationBarComponent {}
+export class SideNavigationBarComponent {
+  protected router = inject(Router);
+
+}

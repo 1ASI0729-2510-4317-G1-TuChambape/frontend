@@ -30,7 +30,7 @@ export const routes: Route[] = [
               ).then((m) => m.OfferListPageComponent),
           },
           {
-            path: ':uid',
+            path: ':id',
             loadComponent: () =>
               import(
                 './customers/offers/pages/offer-customer-details-page/offer-customer-details-page.component'

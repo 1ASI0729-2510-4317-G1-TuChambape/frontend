@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { StarRatingComponent } from '../../../../shared/components/start-rating/start-rating.component';
+import { Offer } from '../../model/offer.entity';
 
 interface Technician {
   name: string;
@@ -16,13 +17,14 @@ interface Technician {
 }
 
 @Component({
-  selector: 'app-offer-customer-details-page',
+  selector: 'app-offer-active-page',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, StarRatingComponent],
   templateUrl: './offer-active-page.component.html',
   styleUrls: ['./offer-active-page.component.css'],
 })
-export class OfferCustomerDetailsPageComponent {
+export class OfferActivePageComponent {
+  @Input() offer!: Offer | null;
   technicians = signal<Technician[]>([
     {
       name: 'Juan González',

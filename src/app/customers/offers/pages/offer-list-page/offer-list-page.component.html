@@ -13,12 +13,13 @@
   </div>
 
   <mat-accordion multi>
-    <mat-expansion-panel *ngFor="let offer of offers" [expanded]="false">
+    @for (offer of offers; track offer.id) {
+    <mat-expansion-panel [expanded]="false">
       <mat-expansion-panel-header>
         <div class="offers__panel-header">
           <div class="offers__header-info">
             <h3 class="offers__panel-title">{{ offer.title }}</h3>
-            <p class="offers__created-at">Creado el: {{ offer.createdAt }}</p>
+            <p class="offers__created-at">Creado el: {{ offer.createdAt | date:'dd/MM/yyyy' }}</p>
           </div>
           <div class="offers__header-actions">
             <span class="offers__budget">S/ {{ offer.estimatedBudget }}</span>
@@ -47,5 +48,6 @@
         <p><strong>Horario:</strong> {{ offer.workSchedule }}</p>
       </div>
     </mat-expansion-panel>
+    }
   </mat-accordion>
 </div>

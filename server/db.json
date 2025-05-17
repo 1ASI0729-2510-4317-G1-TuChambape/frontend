@@ -14,6 +14,53 @@
       "userId": "1",
       "status": "active",
       "id": 1
+    },
+    {
+      "title": "alejo",
+      "description": "adsk",
+      "technicalCategory": "frontend",
+      "location": "asdas",
+      "requiredExperience": "junior",
+      "workSchedule": "shifts",
+      "estimatedBudget": "12321",
+      "paymentMethod": "fixed",
+      "notificationsAccepted": true,
+      "personalDataConsent": true,
+      "userId": "1",
+      "status": "active",
+      "id": 2
+    },
+    {
+      "title": "alejo",
+      "description": "12312",
+      "technicalCategory": "frontend",
+      "location": "av. los nogales 251",
+      "requiredExperience": "semi_senior",
+      "workSchedule": "9-18",
+      "estimatedBudget": "12321",
+      "paymentMethod": "fixed",
+      "notificationsAccepted": true,
+      "personalDataConsent": true,
+      "userId": "1",
+      "status": "active",
+      "id": 3
+    },
+    {
+      "userId": "1",
+      "status": "active",
+      "title": "alejo",
+      "description": "adoa",
+      "technicalCategory": "frontend",
+      "location": "123",
+      "estimatedBudget": "123",
+      "paymentMethod": "fixed",
+      "requiredExperience": "semi_senior",
+      "workSchedule": "9-18",
+      "notificationsAccepted": true,
+      "personalDataConsent": true,
+      "createdAt": "2025-05-17T19:49:06.305Z",
+      "updatedAt": "2025-05-17T19:49:06.305Z",
+      "id": 4
     }
   ]
 }
