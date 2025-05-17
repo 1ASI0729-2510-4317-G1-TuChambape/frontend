@@ -1,6 +1,5 @@
 /* 1) Deja hueco para el sidebar */
 .compare-main {
-  margin-left: 240px;
   /* 2) Deja hueco para header (64px) + filtro (56px) = 120px */
   padding-top: 120px;
   background: #f5f5f5;

@@ -1,0 +1,187 @@
+<form
+  [formGroup]="offerForm"
+  (ngSubmit)="submitForm()"
+  class="offer-create-page"
+  novalidate
+>
+  <fieldset class="offer-create-page__section">
+    <legend class="offer-create-page__legend">Información General</legend>
+
+    <mat-form-field class="offer-create-page__field">
+      <mat-label class="offer-create-page__label" for="title"
+        >Título de la Oferta</mat-label
+      >
+      <input
+        id="title"
+        matInput
+        formControlName="title"
+        placeholder="Escribe aquí"
+        class="offer-create-page__input"
+        aria-describedby="titleError"
+      />
+      @if (offerForm.controls['title'].invalid &&
+      offerForm.controls['title'].touched) {
+      <div class="offer-create-page__error" id="titleError">
+        El título es requerido
+      </div>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="offer-create-page__field">
+      <mat-label class="offer-create-page__label" for="description"
+        >Descripción</mat-label
+      >
+      <textarea
+        id="description"
+        matInput
+        formControlName="description"
+        placeholder="Escribe aquí"
+        rows="3"
+        class="offer-create-page__textarea"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="offer-create-page__field">
+      <mat-label class="offer-create-page__label" for="technicalCategory"
+        >Categoría Técnica</mat-label
+      >
+      <mat-select
+        id="technicalCategory"
+        formControlName="technicalCategory"
+        class="offer-create-page__select"
+        aria-describedby="technicalCategoryError"
+        placeholder="Seleccionar Trabajo*"
+      >
+        @for (cat of technicalCategories; track cat.value) {
+        <mat-option [value]="cat.value">{{ cat.label }}</mat-option>
+        }
+      </mat-select>
+      @if (offerForm.controls['technicalCategory'].invalid &&
+      offerForm.controls['technicalCategory'].touched) {
+      <div class="offer-create-page__error" id="technicalCategoryError">
+        La categoría es requerida
+      </div>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="offer-create-page__field">
+      <mat-label class="offer-create-page__label" for="location"
+        >Dirección</mat-label
+      >
+      <input
+        id="location"
+        matInput
+        formControlName="location"
+        placeholder="Escribe aquí"
+        class="offer-create-page__input"
+      />
+    </mat-form-field>
+  </fieldset>
+
+  <fieldset class="offer-create-page__section">
+    <legend class="offer-create-page__legend">Requisitos del técnico</legend>
+
+    <mat-form-field class="offer-create-page__field">
+      <mat-label class="offer-create-page__label" for="requiredExperience">
+        Experiencia Mínima Requerida
+      </mat-label>
+      <mat-select
+        id="requiredExperience"
+        formControlName="requiredExperience"
+        class="offer-create-page__select"
+        placeholder="Seleccionar Experiencia*"
+      >
+        @for (exp of experiences; track exp.value) {
+        <mat-option [value]="exp.value">{{ exp.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="offer-create-page__field">
+      <mat-label class="offer-create-page__label" for="workSchedule"
+        >Horario de Trabajo</mat-label
+      >
+      <mat-select
+        id="workSchedule"
+        formControlName="workSchedule"
+        class="offer-create-page__select"
+        placeholder="Elige Rango de Horas*"
+      >
+        @for (ws of workSchedules; track ws.value) {
+        <mat-option [value]="ws.value">{{ ws.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </fieldset>
+
+  <fieldset class="offer-create-page__section">
+    <legend class="offer-create-page__legend">Compensación y Beneficios</legend>
+
+    <mat-form-field class="offer-create-page__field">
+      <mat-label class="offer-create-page__label" for="estimatedBudget"
+        >Presupuesto Estimado</mat-label>
+      <input
+        id="estimatedBudget"
+        matInput
+        formControlName="estimatedBudget"
+        placeholder="Escribe aquí"
+        class="offer-create-page__input"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="offer-create-page__field">
+      <mat-label class="offer-create-page__label" for="paymentMethod"
+        >Forma de Pago</mat-label
+      >
+      <mat-select
+        id="paymentMethod"
+        formControlName="paymentMethod"
+        class="offer-create-page__select"
+        placeholder="Seleccionar Forma de Pago*"
+      >
+        @for (pm of paymentMethods; track pm.value) {
+        <mat-option [value]="pm.value">{{ pm.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </fieldset>
+
+  <fieldset
+    class="offer-create-page__section offer-create-page__section--checkboxes"
+  >
+    <mat-checkbox
+      formControlName="notificationsAccepted"
+      class="offer-create-page__checkbox"
+    >
+      Acepto recibir notificaciones sobre el estado de esta oferta
+    </mat-checkbox>
+
+    <mat-checkbox
+      formControlName="personalDataConsent"
+      class="offer-create-page__checkbox"
+      required
+      aria-describedby="consentError"
+    >
+      Autorizo el tratamiento de mis datos personales para finalidades
+      informativas y comerciales, conforme al siguiente
+      <a href="#" class="offer-create-page__link">enlace</a>. Sin mi
+      autorización, no podrán comunicarse conmigo. *
+    </mat-checkbox>
+
+    @if (offerForm.controls['personalDataConsent'].invalid &&
+    offerForm.controls['personalDataConsent'].touched) {
+    <div class="offer-create-page__error" id="consentError">
+      Debes aceptar el tratamiento de datos personales
+    </div>
+    }
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="offer-create-page__submit-button"
+    >
+      Publicar
+    </button>
+  </fieldset>
+</form>

@@ -1,6 +1,7 @@
 export interface OfferPrimitives {
   uid: string;
   userUid: string;
+  status: string;
   title: string;
   description: string;
   technicalCategory: string;
@@ -18,6 +19,7 @@ export interface OfferPrimitives {
 export class Offer {
   uid: string;
   userUid: string;
+  status: string;
   title: string;
   description: string;
   technicalCategory: string;
@@ -35,6 +37,7 @@ export class Offer {
     uid,
     userUid,
     title,
+    status,
     description,
     technicalCategory,
     location,
@@ -51,6 +54,7 @@ export class Offer {
     this.userUid = userUid;
     this.title = title;
     this.description = description;
+    this.status = status;
     this.technicalCategory = technicalCategory;
     this.location = location;
     this.estimatedBudget = estimatedBudget;
@@ -68,6 +72,7 @@ export class Offer {
       uid: this.uid,
       userUid: this.userUid,
       title: this.title,
+      status: this.status,
       description: this.description,
       technicalCategory: this.technicalCategory,
       location: this.location,
