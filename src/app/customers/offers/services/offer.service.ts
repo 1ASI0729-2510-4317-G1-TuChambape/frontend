@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from '../../shared/services/base.service';
 import { Offer } from '../model/offer.entity';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../../environments/environment';
+import { BaseService } from '../../../shared/services/base.service';
 
 const offersResourceEndpointPath = environment.offersResourceEndpointPath;
 
@@ -13,5 +13,11 @@ export class OfferService extends BaseService<Offer> {
     super();
 
     this.resourceEndpoint = offersResourceEndpointPath;
+  }
+
+  getAllByUserId(userId: string) {
+    return this.search({
+      userId: userId,
+    });
   }
 }

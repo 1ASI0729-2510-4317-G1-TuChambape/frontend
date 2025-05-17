@@ -25,9 +25,9 @@ export class OfferLayoutComponent implements OnInit, OnDestroy {
   offer?: Offer;
 
   private offerService = inject(OfferService);
+  protected router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
   private routerSubscription?: Subscription;
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.routerSubscription = this.router.events
@@ -45,7 +45,7 @@ export class OfferLayoutComponent implements OnInit, OnDestroy {
 
   private updateStateBasedOnRoute() {
     const url = this.router.url;
-    this.isNewOfferPath = url === '/offer/customer/create';
+    this.isNewOfferPath = ['/customer/offers/create'].includes(url);
 
     if (this.isNewOfferPath) {
       this.isOfferActive = false;

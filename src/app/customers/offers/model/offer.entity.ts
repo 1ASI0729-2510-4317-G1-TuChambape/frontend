@@ -1,6 +1,6 @@
 export interface OfferPrimitives {
-  uid: string;
-  userUid: string;
+  id: string;
+  userId: string;
   status: string;
   title: string;
   description: string;
@@ -17,8 +17,8 @@ export interface OfferPrimitives {
 }
 
 export class Offer {
-  uid: string;
-  userUid: string;
+  id: string;
+  userId: string;
   status: string;
   title: string;
   description: string;
@@ -34,8 +34,8 @@ export class Offer {
   updatedAt?: Date;
 
   constructor({
-    uid,
-    userUid,
+    id,
+    userId,
     title,
     status,
     description,
@@ -50,8 +50,8 @@ export class Offer {
     createdAt,
     updatedAt,
   }: OfferPrimitives) {
-    this.uid = uid;
-    this.userUid = userUid;
+    this.id = id;
+    this.userId = userId;
     this.title = title;
     this.description = description;
     this.status = status;
@@ -63,14 +63,14 @@ export class Offer {
     this.workSchedule = workSchedule;
     this.notificationsAccepted = notificationsAccepted;
     this.personalDataConsent = personalDataConsent;
-    this.createdAt = createdAt ? new Date(createdAt) : undefined;
-    this.updatedAt = updatedAt ? new Date(updatedAt) : undefined;
+    this.createdAt = createdAt ? new Date(createdAt) : new Date();
+    this.updatedAt = updatedAt ? new Date(updatedAt) : new Date();
   }
 
   toPrimitives(): OfferPrimitives {
     return {
-      uid: this.uid,
-      userUid: this.userUid,
+      id: this.id,
+      userId: this.userId,
       title: this.title,
       status: this.status,
       description: this.description,

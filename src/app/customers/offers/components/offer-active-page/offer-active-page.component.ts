@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { StarRatingComponent } from '../../../shared/components/start-rating/start-rating.component';
+import { StarRatingComponent } from '../../../../shared/components/start-rating/start-rating.component';
 
 interface Technician {
   name: string;
@@ -19,8 +19,8 @@ interface Technician {
   selector: 'app-offer-customer-details-page',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatIconModule, StarRatingComponent],
-  templateUrl: './offer-customer-details-page.component.html',
-  styleUrls: ['./offer-customer-details-page.component.css'],
+  templateUrl: './offer-active-page.component.html',
+  styleUrls: ['./offer-active-page.component.css'],
 })
 export class OfferCustomerDetailsPageComponent {
   technicians = signal<Technician[]>([
@@ -60,6 +60,5 @@ export class OfferCustomerDetailsPageComponent {
       price: 50,
       available: true,
     },
-    // Más técnicos si quieres...
   ]);
 }

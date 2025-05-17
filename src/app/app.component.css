@@ -1,10 +1,3 @@
-:host {
-  display: block;
-  height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
-  position: relative;  /* para referencias absolutas internas */
-}
 
 /* Fija el header en lo alto, junto al sidebar */
 app-side-navigation-bar {
@@ -24,6 +17,6 @@ app-header-bar {
 }
 
 .main-content {
-  padding-left: 240px;
+  padding-left: 232px;
   padding-top: 64px;
 }

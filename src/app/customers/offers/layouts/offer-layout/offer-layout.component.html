@@ -1,4 +1,5 @@
 <section class="offer-section">
+  @if (this.router.url !== '/customer/offers/list' ) {
   <header class="offer-section__header">
     <div class="offer-section__button-group">
       <button
@@ -40,6 +41,7 @@
       </button>
     </div>
   </header>
+  }
 
   <div class="offer-section__content">
     <router-outlet></router-outlet>

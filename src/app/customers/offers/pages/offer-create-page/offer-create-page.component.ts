@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -11,6 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+
+import { OfferService } from '../../services/offer.service';
 
 interface SelectItem {
   label: string;
@@ -27,12 +30,16 @@ interface SelectItem {
     MatSelectModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
   templateUrl: './offer-create-page.component.html',
   styleUrls: ['./offer-create-page.component.css'],
 })
 export class OfferCreatePageComponent implements OnInit {
   offerForm!: FormGroup;
+  private readonly offerService = inject(OfferService);
+  private readonly snackBar = inject(MatSnackBar);
+  private readonly fb = inject(FormBuilder);
 
   technicalCategories: SelectItem[] = [
     { label: 'Frontend', value: 'frontend' },
@@ -58,8 +65,6 @@ export class OfferCreatePageComponent implements OnInit {
     { label: 'Pago fijo', value: 'fixed' },
   ];
 
-  constructor(private fb: FormBuilder) {}
-
   ngOnInit(): void {
     this.offerForm = this.fb.group({
       title: ['', Validators.required],
@@ -83,7 +88,24 @@ export class OfferCreatePageComponent implements OnInit {
       this.offerForm.markAllAsTouched();
       return;
     }
-    console.log('Formulario enviado', this.offerForm.value);
-    // Aquí envías el formulario a backend o lógica adicional
+
+    this.offerService
+      .create({
+        ...this.offerForm.value,
+        userId: '1', // TODO: Cambiar por el ID del usuario logueado
+        status: 'active',
+      })
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Oferta creada con éxito', 'Cerrar', {
+            duration: 3000,
+          });
+        },
+        error: () => {
+          this.snackBar.open('Error al crear la oferta', 'Cerrar', {
+            duration: 3000,
+          });
+        },
+      });
   }
 }

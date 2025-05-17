@@ -98,6 +98,29 @@ export abstract class BaseService<T> {
   }
 
   /**
+   * Retrieves resources with search parameters
+   * @param params - Object containing search parameters as key-value pairs
+   * @returns An Observable array of matching resources
+   */
+  public search(params: Record<string, any>): Observable<Array<T>> {
+    // Create URLSearchParams from the object
+    const searchParams = new URLSearchParams();
+
+    // Add each parameter to the search params
+    Object.keys(params).forEach((key) => {
+      if (params[key] !== null && params[key] !== undefined) {
+        searchParams.append(key, params[key].toString());
+      }
+    });
+
+    // Construct URL with search parameters
+    const url = `${this.resourcePath()}?${searchParams.toString()}`;
+
+    return this.http
+      .get<Array<T>>(url, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+  /**
    * Retrieves a resource by ID
    * @param id - The ID of the resource to retrieve
    * @returns An Observable of the requested resource

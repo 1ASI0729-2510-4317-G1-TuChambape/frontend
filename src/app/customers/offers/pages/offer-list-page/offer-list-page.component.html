@@ -1,0 +1,51 @@
+<div class="offers">
+  <div class="offers__header">
+    <div class="offers__header-text">
+      <h2 class="offers__title">Mis Ofertas</h2>
+      <p class="offers__description">
+        Aquí puedes ver todas las ofertas que has creado. Haz clic en cada
+        oferta para ver más detalles.
+      </p>
+    </div>
+    <button mat-raised-button color="warn" (click)="goToNewOffer()">
+      Crear Nueva Oferta
+    </button>
+  </div>
+
+  <mat-accordion multi>
+    <mat-expansion-panel *ngFor="let offer of offers" [expanded]="false">
+      <mat-expansion-panel-header>
+        <div class="offers__panel-header">
+          <div class="offers__header-info">
+            <h3 class="offers__panel-title">{{ offer.title }}</h3>
+            <p class="offers__created-at">Creado el: {{ offer.createdAt }}</p>
+          </div>
+          <div class="offers__header-actions">
+            <span class="offers__budget">S/ {{ offer.estimatedBudget }}</span>
+            <button
+              mat-button
+              class="offers__view-proposals-btn"
+              (click)="goToOfferDetails(offer.id)"
+            >
+              Ver propuestas
+            </button>
+          </div>
+        </div>
+      </mat-expansion-panel-header>
+
+      <div class="offers__details">
+        <p><strong>Descripción:</strong> {{ offer.description }}</p>
+        <p><strong>Categoría Técnica:</strong> {{ offer.technicalCategory }}</p>
+        <p><strong>Ubicación:</strong> {{ offer.location }}</p>
+        <p>
+          <strong>Presupuesto Estimado:</strong> S/ {{ offer.estimatedBudget }}
+        </p>
+        <p><strong>Método de Pago:</strong> {{ offer.paymentMethod }}</p>
+        <p>
+          <strong>Experiencia Requerida:</strong> {{ offer.requiredExperience }}
+        </p>
+        <p><strong>Horario:</strong> {{ offer.workSchedule }}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
