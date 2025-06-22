@@ -1,0 +1,157 @@
+.active-offers-container {
+  padding: 10px 0;
+}
+
+.loading-indicator,
+.no-offers,
+.no-applicants {
+  text-align: center;
+  padding: 30px;
+  font-size: 1.1em;
+  color: #777;
+}
+
+.btn-create-first-offer {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 15px;
+}
+.btn-create-first-offer:hover {
+  background-color: #0056b3;
+}
+
+.offer-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.offer-details h3 {
+  font-size: 1.5em;
+  color: #007bff;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.offer-details .offer-description-label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.offer-details .offer-description {
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  white-space: pre-wrap; /* Para respetar saltos de línea en la descripción */
+}
+
+.applicants-section h4 {
+  font-size: 1.2em;
+  color: #444;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.applicants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.applicant-card {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.applicant-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 2px solid #ddd;
+}
+
+.applicant-name {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+.applicant-rating {
+  margin-bottom: 5px;
+  color: #ffc107; /* Color de las estrellas */
+}
+.applicant-rating .star {
+  font-size: 1.1em;
+}
+.applicant-rating .star.filled {
+  color: #ffc107;
+}
+.applicant-rating .star:not(.filled) { /* Para estrellas vacías si las llenas diferente */
+  color: #e0e0e0;
+}
+
+
+.applicant-specialty {
+  font-size: 0.85em;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.applicant-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: auto; /* Empuja los botones hacia abajo */
+}
+
+.applicant-actions .btn {
+  flex-grow: 1;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+
+.btn-view-profile {
+  background-color: #6c757d; /* Gris */
+  color: white;
+}
+.btn-view-profile:hover {
+  background-color: #5a6268;
+}
+
+.btn-select-tech {
+  background-color: #28a745; /* Verde */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-select-tech:hover {
+  background-color: #218838;
+}
+.btn-select-tech .check-icon {
+  font-size: 1.1em; /* Ajusta el tamaño del check */
+}

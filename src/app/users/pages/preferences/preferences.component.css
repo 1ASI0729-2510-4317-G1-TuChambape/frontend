@@ -1,0 +1,178 @@
+.preferences-container {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.form-title {
+  font-size: 1.3em; /* Un poco más pequeño que el título de "Datos Personales" */
+  color: #333;
+  margin-bottom: 25px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.loading-indicator {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1em;
+  color: #777;
+}
+
+.preferences-form .form-message {
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+}
+.success-message { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+.error-message.general-error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+.field-error-message { color: #dc3545; font-size: 0.8em; margin-top: 4px; display: block; }
+
+
+.form-columns-wrapper {
+  display: flex;
+  gap: 30px; /* Espacio entre las dos columnas del formulario */
+  flex-wrap: wrap; /* Para responsividad si el espacio es muy poco */
+}
+
+.form-column {
+  flex: 1;
+  min-width: 280px; /* Ancho mínimo antes de que las columnas se apilen */
+}
+
+.form-column fieldset {
+  border: 1px dashed #d0d0d0; /* Borde punteado como en la imagen */
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  height: 100%; /* Para que los fieldsets tengan alturas similares si están en la misma fila */
+  box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-group select,
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 0.95em;
+  background-color: #f8f9fa; /* Fondo ligeramente gris para los selectores */
+}
+
+.form-group select:focus,
+.form-group input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 0.1rem rgba(0,123,255,.25);
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos botones por fila */
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.segmented-control button {
+  padding: 8px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #555;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.85em;
+  text-align: center;
+}
+.segmented-control button.active {
+  background-color: #ff8c00;
+  color: white;
+  border-color: #e07b00;
+  font-weight: bold;
+}
+.segmented-control button:hover:not(.active) {
+  background-color: #e0e0e0;
+}
+
+.language-options .checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.language-options .checkbox-group input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #007bff;
+  width: auto;
+}
+.language-options .checkbox-group label {
+  font-size: 0.9em;
+  font-weight: normal;
+  color: #444;
+  margin-bottom: 0;
+}
+.other-language-input {
+  margin-top: 8px;
+}
+
+.column-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start; /* Alinea los botones de columna a la izquierda */
+}
+.column-actions .btn {
+  padding: 6px 12px;
+  font-size: 0.8em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-apply-column {
+  background-color: #ffc107; /* Amarillo/Naranja para aplicar */
+  color: #333;
+  border: 1px solid #e0a800;
+}
+.btn-clear-column {
+  background-color: #e9ecef;
+  color: #495057;
+  border: 1px solid #ced4da;
+}
+
+
+.form-actions-main {
+  text-align: right;
+  margin-top: 20px; /* Espacio antes del botón principal de guardado */
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.btn-save-changes-prefs {
+  background-color: #ff8c00; /* Naranja */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn-save-changes-prefs:hover:not(:disabled) {
+  background-color: #e07b00;
+}
+.btn-save-changes-prefs:disabled {
+  background-color: #fabc60;
+  cursor: not-allowed;
+}

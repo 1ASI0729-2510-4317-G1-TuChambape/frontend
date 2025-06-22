@@ -1,0 +1,90 @@
+<div class="login-container">
+  <div class="login-form-section">
+    <div class="logo-container">
+      <h2 class="logo-text">TuChambaPE</h2> </div>
+
+    <h1>Iniciar Sesión</h1>
+
+    <div *ngIf="successMessage && !generalError && !emailError && !passwordError" class="success-message">
+      {{ successMessage }}
+    </div>
+
+    <div *ngIf="generalError" class="error-message general-error">
+      {{ generalError }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="email">Dirección de e-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Ingresa tu e-mail"
+          [(ngModel)]="loginData.email"
+          required
+          #emailInput="ngModel"
+          [class.invalid-input]="(emailInput.invalid && emailInput.touched) || emailError"
+          [disabled]="isLoading"
+        >
+        <div *ngIf="emailError" class="error-message field-error">
+          {{ emailError }}
+        </div>
+        <div *ngIf="emailInput.invalid && emailInput.touched && !emailError" class="error-message field-error">
+          ¡El correo es obligatorio!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Ingresa tu contraseña"
+          [(ngModel)]="loginData.password"
+          required
+          #passwordInput="ngModel"
+          [class.invalid-input]="(passwordInput.invalid && passwordInput.touched) || passwordError || (generalError && generalError.toLowerCase().includes('contraseña incorrecta'))"
+          [disabled]="isLoading"
+        >
+        <div *ngIf="passwordError" class="error-message field-error">
+          {{ passwordError }}
+        </div>
+        <div *ngIf="passwordInput.invalid && passwordInput.touched && !passwordError && !(generalError && generalError.toLowerCase().includes('contraseña incorrecta'))" class="error-message field-error">
+          ¡La contraseña es obligatoria!
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Iniciar Sesión</span>
+        <span *ngIf="isLoading">Ingresando...</span>
+      </button>
+
+      <div class="extra-links">
+        <a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a>
+      </div>
+    </form>
+
+    <div class="register-link">
+      <span>¿No tienes una cuenta? </span>
+      <a routerLink="/register">Regístrate</a>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <div class="info-content">
+      <h2>Olvídate de buscar técnicos, aquí los encuentras fácil y rápido.</h2>
+      <div class="oferta-trabajo-preview">
+        <p class="oferta-titulo">OFERTA DE TRABAJO</p>
+        <p class="oferta-descripcion">Necesito un electricista para revisar el sistema de iluminación.</p>
+        <p class="postulantes">▲ 9 postulantes</p>
+        <div class="tags">
+          <span class="tag">Con Experiencia</span>
+          <span class="tag">Certificado</span>
+          <span class="tag">Herramientas Prop...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

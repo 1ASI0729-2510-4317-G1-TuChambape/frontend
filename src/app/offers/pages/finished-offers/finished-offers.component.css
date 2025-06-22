@@ -1,0 +1,176 @@
+.finished-offers-container {
+  padding: 10px 0;
+}
+
+.loading-indicator,
+.no-offers {
+  text-align: center;
+  padding: 30px;
+  font-size: 1.1em;
+  color: #777;
+}
+
+.offer-card-finished {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.offer-header h2 {
+  font-size: 1.6em;
+  color: #28a745; /* Verde para finalizado */
+  margin-bottom: 15px;
+}
+.offer-header .icon-finished {
+  margin-right: 8px;
+}
+.offer-description-label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+.offer-description {
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  white-space: pre-wrap;
+}
+
+.content-wrapper-finished {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.worker-column {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px; /* Limitar ancho de la tarjeta de trabajador */
+}
+.reviews-column {
+  flex: 2; /* Dar más espacio a las reseñas */
+  min-width: 300px;
+}
+
+.worker-column h4,
+.reviews-column h4 {
+  font-size: 1.3em;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.worker-card {
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  text-align: center;
+}
+.worker-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 3px solid #007bff; }
+.worker-name { font-size: 1.2em; font-weight: 600; color: #333; margin-bottom: 5px; }
+.worker-specialty { font-size: 0.9em; color: #777; margin-bottom: 8px; }
+.worker-rating { color: #6c757d; font-size: 0.9em; }
+.worker-rating .star { font-size: 1.1em; }
+.worker-rating .star.filled { color: #ffc107; }
+.worker-rating .star:not(.filled) { color: #e0e0e0; }
+
+
+/* Reviews Section */
+.overall-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.overall-rating-value {
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #333;
+}
+.overall-stars .star.large {
+  font-size: 1.8em;
+  color: #ffc107;
+}
+.overall-stars .star.large:not(.filled) {
+  color: #e0e0e0;
+}
+.total-reviews-text, .total-comments-text {
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 5px;
+}
+
+.aspect-ratings {
+  margin-bottom: 25px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+.aspect {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+.aspect span { color: #555; }
+.aspect .stars .star.small { font-size: 1em; }
+.aspect .stars .star.small.filled { color: #ffc107; }
+.aspect .stars .star.small:not(.filled) { color: #e0e0e0; }
+
+
+.individual-reviews .review-item {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 15px 0;
+}
+.individual-reviews .review-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative; /* Para el rating individual */
+}
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.author-details .author-name { font-weight: 600; color: #333; display: block; }
+.author-details .review-date { font-size: 0.8em; color: #888; margin-right: 5px; }
+.author-details .verified-badge {
+  font-size: 0.75em;
+  background-color: #e7f3ff;
+  color: #007bff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+.review-stars-individual {
+  margin-left: auto; /* Empuja las estrellas a la derecha */
+  color: #ffc107;
+}
+.review-stars-individual .star { font-size: 0.9em; }
+.review-stars-individual .star:not(.filled) { color: #e0e0e0; }
+
+.review-comment {
+  font-size: 0.9em;
+  color: #555;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}

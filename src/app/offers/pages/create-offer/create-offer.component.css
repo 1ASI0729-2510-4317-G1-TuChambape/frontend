@@ -1,0 +1,157 @@
+/* src/app/client/offers-main/create-offer/create-offer.component.css */
+.create-offer-container {
+  padding: 20px;
+  background-color: #fff; /* Fondo blanco para el contenedor del formulario */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.create-offer-container h2 {
+  font-size: 1.6em;
+  color: #333;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.offer-form .form-message {
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+}
+.success-message { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+.error-message.general-error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+.field-error-message { color: #dc3545; font-size: 0.8em; margin-top: 4px; display: block; }
+
+
+.form-sections-wrapper {
+  display: flex;
+  gap: 30px; /* Espacio entre las dos columnas del formulario */
+}
+
+.form-section {
+  flex: 1; /* Ambas secciones ocupan el mismo espacio */
+  min-width: 0; /* Ayuda con flexbox y overflow */
+}
+
+fieldset {
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+fieldset legend {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #333;
+  padding: 0 10px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"], /* Si tuvieras emails */
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 0.95em;
+  transition: border-color 0.2s ease;
+}
+
+.form-group textarea {
+  resize: vertical; /* Permitir redimensionar verticalmente */
+  min-height: 80px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 0.1rem rgba(0,123,255,.25);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start; /* Alinear checkbox con el inicio del label */
+  margin-bottom: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+  margin-top: 3px; /* Ajuste vertical ligero */
+  width: auto; /* Para que no ocupe todo el ancho */
+  accent-color: #007bff; /* Color del check */
+}
+
+.checkbox-group label {
+  font-size: 0.85em;
+  color: #444;
+  font-weight: normal;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+.checkbox-group label a {
+  color: #007bff;
+  text-decoration: none;
+}
+.checkbox-group label a:hover {
+  text-decoration: underline;
+}
+
+
+.form-actions {
+  text-align: right; /* Alinea el botón a la derecha */
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.btn-publish {
+  background-color: #007bff; /* Azul como en la imagen */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-publish:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.btn-publish:disabled {
+  background-color: #a0c7e4;
+  cursor: not-allowed;
+}
+
+/* Para inputs inválidos, si quieres un estilo de borde rojo (opcional) */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}
+input.ng-invalid.ng-touched:focus,
+textarea.ng-invalid.ng-touched:focus,
+select.ng-invalid.ng-touched:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}

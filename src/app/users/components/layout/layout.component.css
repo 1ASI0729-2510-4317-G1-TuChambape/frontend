@@ -1,0 +1,135 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.client-layout-container {
+  display: flex;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+}
+
+.sidebar {
+  width: 260px;
+  background-color: #007bff; /* Azul de la imagen */
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; /* Evita que se encoja */
+}
+
+.user-profile {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-profile .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid white;
+}
+
+.user-profile .user-name {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+.user-profile .user-email {
+  font-size: 0.8em;
+  opacity: 0.8;
+  word-break: break-all;
+}
+
+
+.user-profile .customize-profile-link {
+  font-size: 0.8em;
+  color: #e0e0e0;
+  text-decoration: none;
+}
+.user-profile .customize-profile-link:hover {
+  text-decoration: underline;
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation li a {
+  display: block;
+  padding: 12px 15px;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  transition: background-color 0.2s ease;
+  font-weight: 500;
+}
+
+.navigation li a:hover,
+.navigation li a.active-link { /* Estilo para el enlace activo */
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-logout {
+  margin-top: auto; /* Empuja el botón de logout hacia abajo */
+}
+
+.logout-button {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: rgba(255,255,255,0.15);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+.logout-button:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+}
+
+.top-bar {
+  background-color: #fff;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.top-bar span {
+  font-size: 1.1em;
+  color: #333;
+  font-weight: 500;
+}
+
+.top-bar-icons .icon {
+  font-size: 1.5em;
+  margin-left: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.content-area {
+  padding: 25px;
+  background-color: #f4f7f6; /* Un fondo suave para el área de contenido */
+  flex-grow: 1;
+}

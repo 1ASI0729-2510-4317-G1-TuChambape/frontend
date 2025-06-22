@@ -1,0 +1,195 @@
+.compare-profiles-page {
+  padding: 10px 0;
+}
+
+.compare-filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-end; /* Alinear items con el fondo de los botones */
+  padding: 15px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+}
+.filter-item.checkbox-filter {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px; /* Para alinear con otros labels */
+}
+
+.filter-item label {
+  font-size: 0.85em;
+  color: #555;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.filter-item.checkbox-filter label {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+
+.filter-item select,
+.filter-item input[type="checkbox"] {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.filter-item input[type="checkbox"] {
+  accent-color: #007bff;
+  width: auto;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: auto; /* Empuja los botones a la derecha */
+}
+
+.btn-primary-orange {
+  background-color: #ff8c00;
+  color: white;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.btn-primary-orange:hover { background-color: #e07b00; }
+
+.btn-link-blue {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.85em;
+  padding: 8px 0; /* Ajustar padding */
+}
+.btn-link-blue:hover { color: #0056b3; }
+
+.comparison-area {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Hasta 3 columnas, responsivo */
+  gap: 20px;
+}
+
+.technician-compare-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.tech-header {
+  text-align: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.tech-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 2px solid #007bff;
+}
+.tech-header h3 {
+  font-size: 1.3em;
+  color: #333;
+  margin: 5px 0;
+  font-weight: 600;
+}
+.tech-specialty {
+  font-size: 0.95em;
+  color: #007bff; /* Azul para la especialidad */
+  font-weight: 500;
+}
+
+.tech-detail-section {
+  margin-bottom: 15px;
+}
+.detail-title {
+  display: block;
+  font-size: 0.8em;
+  color: #777;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.tech-detail-section p,
+.tech-detail-section .rating-display {
+  font-size: 0.95em;
+  color: #444;
+  margin: 0;
+}
+.rating-display .star { font-size: 1.1em; }
+.rating-display .star.filled { color: #ffc107; }
+.rating-display .star:not(.filled) { color: #e0e0e0; }
+.rating-text { margin-left: 5px; font-size: 0.9em; color: #666; }
+
+.experience-badge {
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.85em;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.availability-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 días */
+  gap: 4px;
+  margin-top: 5px;
+  text-align: center;
+}
+.availability-slot {
+  background-color: #f0f0f0; /* Gris para no disponible */
+  color: #aaa;
+  padding: 8px 0;
+  font-size: 0.8em;
+  border-radius: 3px;
+  font-weight: bold;
+  height: 30px; /* Para alinear */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.availability-slot.available {
+  background-color: #d1e7dd; /* Verde claro para disponible */
+  color: #0f5132;
+}
+.availability-slot[title]:hover::after { /* Tooltip simple para ver el horario */
+  content: attr(title);
+  position: absolute;
+  background: #333;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  white-space: nowrap;
+  transform: translateY(-120%);
+}
+
+
+.no-results-message {
+  text-align: center;
+  font-size: 1.1em;
+  color: #777;
+  margin-top: 50px;
+  padding: 20px;
+}

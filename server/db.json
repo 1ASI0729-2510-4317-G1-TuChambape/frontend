@@ -1,0 +1,385 @@
+{
+  "offers": [
+    {
+      "id": 1,
+      "title": "Necesito un electricista para revisar el sistema de iluminación",
+      "description": "Busco un electricista certificado para revisar y reparar el sistema de iluminación de mi casa. El problema es que algunas luces no funcionan correctamente.",
+      "customerId": 1,
+      "status": "ACTIVE",
+      "category": "Electricidad",
+      "location": "Lima, Perú",
+      "budget": {
+        "min": 150,
+        "max": 300,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "Certificado",
+        "Con experiencia",
+        "Herramientas propias"
+      ],
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z",
+      "startAt": "2024-01-15T00:00:00.000Z",
+      "deadline": "2024-02-15T00:00:00.000Z",
+      "proposalsCount": 2,
+      "paymentId": 1,
+      "selectedProposalId": 2
+    },
+    {
+      "id": 2,
+      "title": "Plomero para fuga de agua",
+      "description": "Se requiere plomero urgente para reparar una fuga en el baño principal.",
+      "customerId": 2,
+      "status": "PENDING",
+      "category": "Plomería",
+      "location": "Arequipa, Perú",
+      "budget": {
+        "min": 100,
+        "max": 200,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "Experiencia comprobable"
+      ],
+      "createdAt": "2024-01-20T00:00:00.000Z",
+      "updatedAt": "2024-01-21T00:00:00.000Z",
+      "startAt": "2024-01-20T00:00:00.000Z",
+      "deadline": "2024-02-10T00:00:00.000Z",
+      "proposalsCount": 1,
+      "paymentId": null,
+      "selectedProposalId": null
+    },
+    {
+      "id": 3,
+      "title": "Técnico en refrigeración para mantenimiento de aire acondicionado",
+      "description": "Mantenimiento preventivo de dos equipos de aire acondicionado en oficina.",
+      "customerId": 3,
+      "status": "FINISHED",
+      "category": "Refrigeración",
+      "location": "Cusco, Perú",
+      "budget": {
+        "min": 200,
+        "max": 400,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "Certificado",
+        "Herramientas propias"
+      ],
+      "createdAt": "2023-12-10T00:00:00.000Z",
+      "updatedAt": "2023-12-15T00:00:00.000Z",
+      "startAt": "2023-12-10T00:00:00.000Z",
+      "deadline": "2023-12-20T00:00:00.000Z",
+      "proposalsCount": 0,
+      "paymentId": 2
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "name": "Carlos Perez",
+      "email": "cliente@example.com",
+      "passwordHashed": "",
+      "role": "client",
+      "createdAt": "2023-11-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Maria Lopez",
+      "email": "maria@example.com",
+      "role": "client",
+      "passwordHashed": "",
+      "createdAt": "2023-12-10T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Empresa Negocio SAC",
+      "email": "empresa@negocio.com",
+      "role": "client",
+      "passwordHashed": "",
+      "createdAt": "2023-10-05T00:00:00.000Z"
+    }
+  ],
+  "workers": [
+    {
+      "id": 1,
+      "email": "tecnico1@example.com",
+      "firstName": "Carlos",
+      "lastName": "Pérez",
+      "phone": "+51 999 111 222",
+      "avatar": "assets/img/Carlos Perez.png",
+      "role": "technician",
+      "profileType": "INDIVIDUAL",
+      "location": "Lima, Perú",
+      "bio": "Electricista certificado con 5 años de experiencia en instalaciones residenciales y comerciales.",
+      "skills": ["Electricidad", "Instalaciones", "Mantenimiento"],
+      "experience": 5,
+      "certifications": ["Certificado de Electricista", "Seguridad Industrial"],
+      "rating": 4.8,
+      "reviewCount": 25,
+      "isVerified": true,
+      "availability": {
+        "lunes": "08:00-17:00",
+        "martes": "08:00-17:00",
+        "miercoles": "08:00-17:00",
+        "jueves": "08:00-17:00",
+        "viernes": "08:00-17:00",
+        "sabado": "09:00-13:00",
+        "domingo": ""
+      },
+      "preferences": {
+        "notifications": { "email": true, "push": true, "sms": true },
+        "privacy": { "showPhone": true, "showEmail": false, "showLocation": true },
+        "language": "es",
+        "timezone": "America/Lima",
+        "preferredCategory": "Electricista",
+        "preferredLocation": "Lima, Perú",
+        "preferredServiceType": "A domicilio",
+        "preferredExperienceYears": 5,
+        "preferredAvailability": "Mañanas",
+        "minAcceptableRating": 4,
+        "estimatedBudgetRange": "S/100 - S/200",
+        "languages": {
+          "spanish": true,
+          "english": false,
+          "portuguese": false,
+          "other": false,
+          "otherLanguageName": ""
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "email": "tecnico2@example.com",
+      "firstName": "Ana",
+      "lastName": "García",
+      "phone": "+51 999 222 333",
+      "avatar": "assets/img/Claudio Rivera.png",
+      "role": "technician",
+      "profileType": "INDIVIDUAL",
+      "location": "Arequipa, Perú",
+      "bio": "Plomera con experiencia en instalaciones y reparaciones domésticas.",
+      "skills": ["Plomería", "Reparaciones", "Instalaciones"],
+      "experience": 3,
+      "certifications": ["Certificado de Plomería"],
+      "rating": 4.6,
+      "reviewCount": 18,
+      "isVerified": true,
+      "availability": {
+        "lunes": "08:00-17:00",
+        "martes": "08:00-17:00",
+        "miercoles": "08:00-17:00",
+        "jueves": "08:00-17:00",
+        "viernes": "08:00-17:00",
+        "sabado": "09:00-13:00",
+        "domingo": ""
+      },
+      "preferences": {
+        "notifications": { "email": true, "push": false, "sms": true },
+        "privacy": { "showPhone": true, "showEmail": false, "showLocation": true },
+        "language": "es",
+        "timezone": "America/Lima",
+        "preferredCategory": "Plomería",
+        "preferredLocation": "Arequipa, Perú",
+        "preferredServiceType": "A domicilio",
+        "preferredExperienceYears": 3,
+        "preferredAvailability": "Tardes",
+        "minAcceptableRating": 3,
+        "estimatedBudgetRange": "S/50 - S/100",
+        "languages": {
+          "spanish": true,
+          "english": false,
+          "portuguese": false,
+          "other": false,
+          "otherLanguageName": ""
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "email": "cliente@example.com",
+      "firstName": "Juan",
+      "lastName": "Pérez",
+      "phone": "+51 999 888 777",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "location": "Lima, Perú",
+      "bio": "Cliente que busca servicios de calidad",
+      "isVerified": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "email": "maria@example.com",
+      "firstName": "Maria",
+      "lastName": "Lopez",
+      "phone": "+51 999 333 444",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "location": "Arequipa, Perú",
+      "bio": "Cliente frecuente de servicios de plomería.",
+      "isVerified": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "email": "empresa@negocio.com",
+      "firstName": "Empresa",
+      "lastName": "Negocio SAC",
+      "phone": "+51 999 444 555",
+      "role": "client",
+      "profileType": "COMPANY",
+      "location": "Cusco, Perú",
+      "bio": "Empresa que requiere servicios de refrigeración.",
+      "isVerified": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    }
+  ],
+  "preferences": [
+    {
+      "userId": 1,
+      "notifications": { "email": true, "push": true, "sms": false },
+      "privacy": { "showPhone": false, "showEmail": false, "showLocation": true },
+      "language": "es",
+      "timezone": "America/Lima",
+      "preferredCategory": "Plomería",
+      "preferredLocation": "Arequipa, Perú",
+      "preferredServiceType": "A domicilio",
+      "preferredExperienceYears": 3,
+      "preferredAvailability": "Tardes",
+      "minAcceptableRating": 3,
+      "estimatedBudgetRange": { "min": 50, "max": 100 },
+      "languages": ["spanish"],
+      "availability": ["monday", "tuesday", "wednesday", "thursday", "friday"]
+    },
+    {
+      "userId": 2,
+      "notifications": { "email": true, "push": false, "sms": false },
+      "privacy": { "showPhone": false, "showEmail": false, "showLocation": true },
+      "language": "es",
+      "timezone": "America/Lima",
+      "preferredCategory": "Plomería",
+      "preferredLocation": "Arequipa, Perú",
+      "preferredServiceType": "A domicilio",
+      "preferredExperienceYears": 3,
+      "preferredAvailability": "Tardes",
+      "minAcceptableRating": 3,
+      "estimatedBudgetRange": { "min": 50, "max": 100 },
+      "languages": ["spanish"],
+      "availability": ["monday", "tuesday", "wednesday", "thursday", "friday"]
+    },
+    {
+      "userId": 3,
+      "notifications": { "email": true, "push": true, "sms": true },
+      "privacy": { "showPhone": false, "showEmail": true, "showLocation": true },
+      "language": "es",
+      "timezone": "America/Lima",
+      "preferredCategory": "Refrigeración",
+      "preferredLocation": "Cusco, Perú",
+      "preferredServiceType": "A domicilio",
+      "preferredExperienceYears": 5,
+      "preferredAvailability": "Mañanas",
+      "minAcceptableRating": 4,
+      "estimatedBudgetRange": "S/200 - S/400",
+      "languages": ["spanish"],
+      "availability": ["monday", "tuesday", "wednesday", "thursday", "friday"]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "workerId": 1
+    },
+    {
+      "id": 2,
+      "accountId": 2,
+      "customerId": 1
+    },
+    {
+      "id": 3,
+      "accountId": 3,
+      "workerId": 2
+    }
+  ],
+  "proposals": [
+    {
+      "id": 1,
+      "offerId": 1,
+      "workerId": 1,
+      "message": "Puedo hacerlo en 2 días.",
+      "price": 250,
+      "createdAt": "2024-01-16T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "offerId": 1,
+      "workerId": 2,
+      "message": "Tengo experiencia en este tipo de trabajos.",
+      "price": 280,
+      "createdAt": "2024-01-16T12:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "offerId": 2,
+      "workerId": 1,
+      "message": "Disponible para hoy mismo.",
+      "price": 150,
+      "createdAt": "2024-01-21T09:00:00.000Z"
+    }
+  ],
+  "payments": [
+    {
+      "id": 1,
+      "offerId": 1,
+      "amount": 250,
+      "currency": "PEN",
+      "status": "PAID",
+      "createdAt": "2024-01-17T10:00:00.000Z",
+      "updatedAt": "2024-01-17T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "offerId": 3,
+      "amount": 400,
+      "currency": "PEN",
+      "status": "PENDING",
+      "createdAt": "2024-01-18T12:00:00.000Z",
+      "updatedAt": "2024-01-18T12:00:00.000Z"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "userId": 1,
+      "offerId": 1,
+      "authorName": "Carlos Perez",
+      "authorImageUrl": "assets/img/Carlos Perez.png",
+      "date": "2024-01-20T10:00:00.000Z",
+      "isVerifiedAuthor": true,
+      "rating": 5,
+      "comment": "Excelente trabajo, muy profesional y puntual."
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "offerId": 2,
+      "authorName": "Maria Lopez",
+      "authorImageUrl": "assets/img/Claudio Rivera.png",
+      "date": "2024-01-22T15:30:00.000Z",
+      "isVerifiedAuthor": true,
+      "rating": 4,
+      "comment": "Buen servicio, aunque llegó un poco tarde."
+    }
+  ]
+}

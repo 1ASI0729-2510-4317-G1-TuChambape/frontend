@@ -1,0 +1,44 @@
+<div class="active-offers-container">
+  <div *ngIf="isLoading && activeOffers.length === 0" class="loading-indicator">
+    Cargando ofertas activas...
+  </div>
+
+  <div *ngIf="!isLoading && activeOffers.length === 0" class="no-offers">
+    <p>Actualmente no tienes ofertas activas.</p>
+    <button routerLink="../crear" class="btn-create-first-offer">Crea tu primera oferta</button>
+  </div>
+
+  <div *ngFor="let offer of activeOffers" class="offer-card">
+    <div class="offer-details">
+      <h3>{{ offer.title }}</h3>
+      <p class="offer-description-label">Descripción:</p>
+      <p class="offer-description">{{ offer.description }}</p>
+    </div>
+
+    <div class="applicants-section" *ngIf="(applicantsByOffer[offer.id] || []).length > 0">
+      <h4>Técnicos Interesados / Sugeridos:</h4>
+      <div class="applicants-grid">
+        <div *ngFor="let applicant of applicantsByOffer[offer.id] || []" class="applicant-card">
+          <img
+            [src]="applicant.workerAvatar"
+            [alt]="applicant.workerName"
+            class="applicant-photo"
+            (error)="handleImageError($event, applicant.workerName)"
+          >
+          <p class="applicant-name">{{ applicant.workerName }}</p>
+          <p class="applicant-message">{{ applicant.message }}</p>
+          <p class="applicant-price">S/ {{ applicant.price }}</p>
+          <div class="applicant-actions">
+            <button class="btn btn-view-profile" (click)="viewTechnicianProfile(applicant.workerId)">Ver Perfil</button>
+            <button class="btn btn-select-tech" (click)="selectTechnician(offer.id.toString(), applicant.workerId)">
+              <span class="check-icon">✔</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!isLoading && (!applicantsByOffer[offer.id] || applicantsByOffer[offer.id].length === 0)" class="no-applicants">
+      <p>Aún no hay técnicos interesados en esta oferta.</p>
+    </div>
+  </div>
+</div>

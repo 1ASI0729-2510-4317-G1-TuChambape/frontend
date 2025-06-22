@@ -1,0 +1,58 @@
+<div class="pending-offers-container">
+  <div *ngIf="isLoading && !offer" class="loading-indicator">Cargando...</div>
+
+  <div *ngIf="!isLoading && !offer && currentStep === 'details'" class="no-offer-message">
+    <p>No tienes ofertas pendientes en este momento.</p>
+  </div>
+
+  <div *ngIf="!isLoading && offer && currentStep === 'details'" class="offer-in-progress">
+    <div class="offer-header">
+      <h2><span class="icon-progress">🛠️</span> {{ offer.title }} ({{ offer.status }})</h2>
+    </div>
+    <p class="offer-description-label">Descripción:</p>
+    <p class="offer-description">{{ offer.description }}</p>
+
+    <div class="content-wrapper">
+      <div class="worker-details-column" *ngIf="selectedProposalByOfferId[offer.id] as selectedProposal">
+        <h4>Trabajador Encargado (Propuesta Seleccionada):</h4>
+        <div class="worker-card">
+          <img
+            [src]="selectedProposal.workerAvatar"
+            [alt]="selectedProposal.workerName"
+            class="worker-photo"
+            (error)="handleImageError($event, selectedProposal.workerName)"
+          >
+          <div class="worker-info">
+            <p class="worker-name">{{ selectedProposal.workerName }}</p>
+            <p class="worker-message">{{ selectedProposal.message }}</p>
+            <p class="worker-price">Presupuesto: S/ {{ selectedProposal.price }}</p>
+          </div>
+        </div>
+        <button class="btn btn-action btn-orange" (click)="proceedToPayment()">Proceder al Pago / Finalizar Etapa</button>
+      </div>
+
+      <div class="project-details-column">
+        <h4>Detalles del Proyecto:</h4>
+        <div class="project-details-card">
+          <div class="detail-item">
+            <span class="detail-label">Horario de Trabajo:</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" [style.width.%]="workScheduleProgress">
+                {{ workScheduleProgress }}%
+              </div>
+            </div>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Dirección:</span>
+            <span class="detail-value">{{ offer.location }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Presupuesto:</span>
+            <span class="detail-value">{{ offer.budget.min }} - {{ offer.budget.max }} {{ offer.budget.currency }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

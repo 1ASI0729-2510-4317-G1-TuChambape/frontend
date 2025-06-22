@@ -1,0 +1,74 @@
+<div class="dashboard-container">
+  <h2>Mi Actividad</h2>
+  <section class="activity-section">
+    <div class="card profile-status-card">
+      <h4>Estado de tu Perfil</h4>
+      <div class="chart-placeholder circular-chart">
+        <div class="percentage">{{ profileCompletion }}%</div>
+        <span>Completado</span>
+      </div>
+    </div>
+    <div class="card suggested-technicians-card">
+      <h4>Técnicos sugeridos</h4>
+      <div class="main-number">{{ suggestedTechnicians }}</div>
+      <div class="sub-numbers">
+        <div>
+          <span>Técnicos nuevos esta semana</span>
+          <strong>{{ newTechniciansThisWeek }}</strong>
+        </div>
+        <div>
+          <span>Técnicos según tus búsquedas</span>
+          <strong>{{ techniciansByYourSearches }}</strong>
+        </div>
+      </div>
+    </div>
+    <div class="card searches-card">
+      <h4>Búsquedas realizadas por ti</h4>
+      <span>Última Semana</span>
+      <div class="chart-placeholder bar-chart">
+        <div class="bars-container">
+          <div *ngFor="let item of searchData" class="bar-item">
+            <div class="bar" [style.height.%]="(item.value / maxSearchValue) * 100"></div>
+            <span class="bar-label">{{ item.day }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2>Interacciones reciente</h2>
+  <section class="interactions-section">
+    <div class="card contacted-technicians-card">
+      <h4>Técnicos Contactados</h4>
+      <div class="chart-placeholder gauge-chart">
+        <span>{{ contactedTechniciansResponded }} respondieron / {{ contactedTechniciansTotal }} contactados</span>
+      </div>
+    </div>
+    <div class="card saved-technicians-card">
+      <h4>Técnicos Guardados</h4>
+      <div class="saved-items">
+        <div>
+          <span class="icon-placeholder">👥</span> <span>Favoritos</span>
+          <strong>{{ favoriteTechnicians }}</strong>
+        </div>
+        <div>
+          <span class="icon-placeholder">🔄</span> <span>Comparados</span>
+          <strong>{{ comparedTechnicians }}</strong>
+        </div>
+      </div>
+    </div>
+    <div class="card recommendations-card">
+      <h4>Recomendaciones y valoraciones</h4>
+      <div class="recommendation-items">
+        <div>
+          <span>Reseñas que dejaste</span>
+          <strong>{{ reviewsLeft }}</strong>
+        </div>
+        <div>
+          <span>Valoraciones por completar</span>
+          <strong>{{ pendingReviews }}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

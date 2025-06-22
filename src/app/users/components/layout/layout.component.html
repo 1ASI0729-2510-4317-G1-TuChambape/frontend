@@ -1,0 +1,30 @@
+<div class="client-layout-container">
+  <aside class="sidebar">
+    <div class="user-profile">
+      <img src="assets/img/default-avatar.png" alt="Avatar" class="avatar"> <h3 class="user-name">{{ userName }}</h3>
+      <p class="user-email">{{ userEmail }}</p>
+    </div>
+    <nav class="navigation">
+      <ul>
+        <li><a routerLink="inicio" routerLinkActive="active-link">INICIO</a></li>
+        <li><a routerLink="buscar-tecnicos" routerLinkActive="active-link">BUSCAR TÉCNICOS</a></li>
+        <li><a routerLink="ofertas" routerLinkActive="active-link">OFERTAS</a></li>
+        <li><a routerLink="comparar-perfiles" routerLinkActive="active-link">COMPARAR PERFILES</a></li>
+        <li><a routerLink="configuracion" routerLinkActive="active-link">CONFIGURACIÓN</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-logout">
+      <button (click)="logout()" class="logout-button">Cerrar Sesión</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-bar">
+      <span>Bienvenido a JobConnect</span>
+      <div class="top-bar-icons">
+        <span class="icon">🔔</span> <span class="icon" (click)="logout()">👤</span> </div>
+    </header>
+    <div class="content-area">
+      <router-outlet></router-outlet> </div>
+  </main>
+</div>

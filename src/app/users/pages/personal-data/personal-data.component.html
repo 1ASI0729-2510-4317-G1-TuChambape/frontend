@@ -1,0 +1,124 @@
+<div class="personal-data-container">
+  <h3 class="form-title">Mi Perfil - Datos Personales</h3>
+
+  <form (ngSubmit)="saveChanges()" #profileForm="ngForm" class="profile-form">
+    <div *ngIf="isLoading" class="loading-indicator">Cargando datos...</div>
+
+    <div *ngIf="!isLoading">
+      <div *ngIf="successMessage && !generalError" class="form-message success-message">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="generalError" class="form-message error-message general-error">
+        {{ generalError }}
+      </div>
+
+      <div class="form-grid">
+        <div class="form-column">
+          <div class="form-group">
+            <label for="firstName">Nombres <span class="required-asterisk">*</span></label>
+            <input type="text" id="firstName" name="firstName" [(ngModel)]="userProfile.firstName" required #firstNameInput="ngModel">
+            <div *ngIf="firstNameInput.invalid && firstNameInput.touched" class="field-error-message">
+              Los nombres son requeridos.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="documentType">Tipo de Documento <span class="required-asterisk">*</span></label>
+            <select id="documentType" name="documentType" [(ngModel)]="userProfile.documentType" required #docTypeInput="ngModel">
+              <option *ngFor="let type of documentTypes" [value]="type">{{type}}</option>
+            </select>
+            <div *ngIf="docTypeInput.invalid && docTypeInput.touched" class="field-error-message">
+              El tipo de documento es requerido.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="birthDate">Fecha de Nacimiento <span class="required-asterisk">*</span></label>
+            <input type="date" id="birthDate" name="birthDate" [(ngModel)]="userProfile.birthDate" required #birthDateInput="ngModel">
+            <div *ngIf="birthDateInput.invalid && birthDateInput.touched" class="field-error-message">
+              La fecha de nacimiento es requerida.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Celular <span class="required-asterisk">*</span></label>
+            <input type="tel" id="phone" name="phone" [(ngModel)]="userProfile.phone" required #phoneInput="ngModel" pattern="[0-9]{9,15}">
+            <div *ngIf="phoneInput.invalid && phoneInput.touched" class="field-error-message">
+              <span *ngIf="phoneInput.errors?.['required']">El celular es requerido.</span>
+              <span *ngIf="phoneInput.errors?.['pattern']">Formato de celular inválido.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="country">País <span class="required-asterisk">*</span></label>
+            <select id="country" name="country" [(ngModel)]="userProfile.country" (change)="onCountryChange($any($event.target).value)" required #countryInput="ngModel">
+              <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+            </select>
+            <div *ngIf="countryInput.invalid && countryInput.touched" class="field-error-message">
+              El país es requerido.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" [(ngModel)]="userProfile.email" readonly disabled>
+          </div>
+        </div>
+
+        <div class="form-column">
+          <div class="form-group">
+            <label for="lastName">Apellidos <span class="required-asterisk">*</span></label>
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="userProfile.lastName" required #lastNameInput="ngModel">
+            <div *ngIf="lastNameInput.invalid && lastNameInput.touched" class="field-error-message">
+              Los apellidos son requeridos.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="documentNumber">Número de Documento <span class="required-asterisk">*</span></label>
+            <input type="text" id="documentNumber" name="documentNumber" [(ngModel)]="userProfile.documentNumber" required #docNumInput="ngModel">
+            <div *ngIf="docNumInput.invalid && docNumInput.touched" class="field-error-message">
+              El número de documento es requerido.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Sexo <span class="required-asterisk">*</span></label>
+            <select id="gender" name="gender" [(ngModel)]="userProfile.gender" required #genderInput="ngModel">
+              <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+            </select>
+            <div *ngIf="genderInput.invalid && genderInput.touched" class="field-error-message">
+              El sexo es requerido.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="city">Ciudad <span class="required-asterisk">*</span></label>
+            <select id="city" name="city" [(ngModel)]="userProfile.city" required #cityInput="ngModel" [disabled]="availableCities.length === 0">
+              <option value="" disabled selected>Selecciona una ciudad</option> <option *ngFor="let city of availableCities" [value]="city">{{city}}</option>
+            </select>
+            <div *ngIf="cityInput.invalid && cityInput.touched" class="field-error-message">
+              La ciudad es requerida.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Dirección</label>
+            <input type="text" id="address" name="address" [(ngModel)]="userProfile.address">
+          </div>
+
+          <div class="form-group">
+            <label for="registrationDate">Fecha de Registro</label>
+            <input type="text" id="registrationDate" name="registrationDate" [(ngModel)]="userProfile.registrationDate" readonly disabled>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-save-changes" [disabled]="isLoading || !profileForm.form.valid"> <span *ngIf="!isLoading">Guardar cambios</span>
+          <span *ngIf="isLoading">Guardando...</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

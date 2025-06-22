@@ -1,0 +1,163 @@
+.dashboard-container {
+  padding: 0px;
+}
+
+.dashboard-container h2 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.activity-section,
+.interactions-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+  gap: 20px; /* Espacio entre cards */
+  margin-bottom: 30px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.card h4 {
+  font-size: 1.1em;
+  color: #555;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+/* Profile Status Card */
+.profile-status-card .chart-placeholder.circular-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px; /* Altura para el placeholder */
+  border: 5px solid #007bff;
+  border-radius: 50%;
+  width: 150px;
+  margin: 0 auto;
+  font-size: 1em;
+  color: #555;
+}
+.profile-status-card .percentage {
+  font-size: 2em;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Suggested Technicians Card */
+.suggested-technicians-card .main-number {
+  font-size: 3.5em;
+  font-weight: bold;
+  color: #007bff;
+  text-align: center;
+  margin: 10px 0;
+}
+.suggested-technicians-card .sub-numbers {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 10px;
+}
+.suggested-technicians-card .sub-numbers strong {
+  display: block;
+  font-size: 1.4em;
+  color: #333;
+  margin-top: 5px;
+}
+
+/* Searches Card */
+.searches-card > span {
+  font-size: 0.8em;
+  color: #888;
+  margin-bottom: 10px;
+}
+.searches-card .chart-placeholder.bar-chart {
+  height: 150px; /* Altura para el placeholder */
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  border: 1px solid #eee; /* Borde ligero */
+  padding: 10px 5px 0 5px; /* Padding para que las barras no toquen el borde */
+}
+.bars-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+}
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1; /* Para que ocupen espacio disponible */
+  max-width: 30px; /* Ancho máximo de barra + label */
+}
+.bar {
+  background-color: #007bff;
+  width: 70%; /* Ancho de la barra dentro de su contenedor */
+  border-radius: 3px 3px 0 0;
+  transition: height 0.5s ease-out;
+}
+.bar-label {
+  font-size: 0.8em;
+  color: #777;
+  margin-top: 5px;
+}
+
+
+/* Contacted Technicians Card */
+.contacted-technicians-card .chart-placeholder.gauge-chart {
+  text-align: center;
+  font-size: 1.2em;
+  color: #333;
+  padding: 20px 0;
+  /* Placeholder muy simple */
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+/* Saved Technicians Card */
+.saved-technicians-card .saved-items,
+.recommendations-card .recommendation-items {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 15px;
+}
+.saved-technicians-card .saved-items > div,
+.recommendations-card .recommendation-items > div {
+  flex: 1;
+}
+.saved-technicians-card .icon-placeholder {
+  font-size: 2.5em; /* Tamaño para los íconos emoji */
+  display: block;
+  margin-bottom: 5px;
+  color: #007bff;
+}
+.saved-technicians-card span,
+.recommendations-card span {
+  font-size: 0.9em;
+  color: #666;
+  display: block;
+  margin-bottom: 5px;
+}
+.saved-technicians-card strong,
+.recommendations-card strong {
+  font-size: 1.8em;
+  color: #333;
+  font-weight: bold;
+}

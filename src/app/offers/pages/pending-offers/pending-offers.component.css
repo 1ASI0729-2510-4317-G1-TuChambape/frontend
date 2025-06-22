@@ -1,0 +1,207 @@
+.pending-offers-container {
+  padding: 10px 0;
+}
+
+.loading-indicator,
+.no-offer-message {
+  text-align: center;
+  padding: 30px;
+  font-size: 1.1em;
+  color: #777;
+}
+
+/* Estilos para la vista "En Progreso" */
+.offer-in-progress .offer-header h2 {
+  font-size: 1.6em;
+  color: #007bff; /* Azul distintivo */
+  margin-bottom: 15px;
+}
+.offer-in-progress .offer-header .icon-progress {
+  margin-right: 8px;
+}
+.offer-in-progress .offer-description-label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+.offer-in-progress .offer-description {
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  white-space: pre-wrap;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 30px; /* Espacio entre columnas */
+  flex-wrap: wrap; /* Para responsividad */
+}
+
+.worker-details-column,
+.project-details-column {
+  flex: 1;
+  min-width: 300px; /* Ancho mínimo antes de envolver */
+}
+
+.worker-details-column h4,
+.project-details-column h4 {
+  font-size: 1.3em;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.worker-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  text-align: center;
+  margin-bottom: 20px;
+}
+.worker-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 3px solid #007bff;
+}
+.worker-name { font-size: 1.2em; font-weight: 600; color: #333; margin-bottom: 5px; }
+.worker-specialty { font-size: 0.9em; color: #777; margin-bottom: 8px; }
+.worker-rating { color: #ffc107; }
+.worker-rating .star { font-size: 1.1em; }
+.worker-rating .star.filled { color: #ffc107; }
+.worker-rating .star:not(.filled) { color: #e0e0e0; }
+
+.project-details-card {
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.detail-item {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.detail-item:last-child { margin-bottom: 0; }
+.detail-label { font-size: 0.9em; opacity: 0.8; margin-bottom: 5px; }
+.detail-value { font-size: 1em; font-weight: 500; }
+
+.progress-bar-container {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  height: 20px;
+  overflow: hidden;
+}
+.progress-bar {
+  background-color: #ffc107; /* Amarillo para la barra de progreso */
+  height: 100%;
+  line-height: 20px; /* Centrar texto verticalmente */
+  text-align: center;
+  font-size: 0.8em;
+  color: #333;
+  font-weight: bold;
+  border-radius: 10px 0 0 10px; /* Redondear solo si no es 100% */
+  transition: width 0.5s ease-in-out;
+}
+.map-placeholder { width: 100%; max-width: 200px; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.5); margin-top: 5px; }
+
+.btn-action { padding: 10px 20px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer; font-weight: 500; }
+.btn-orange { background-color: #ff8c00; color: white; }
+.btn-orange:hover { background-color: #e07b00; }
+.worker-card .btn-action { margin-top: 15px; width: 100%; }
+
+
+/* Estilos para la Sección de Pago */
+.payment-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinear arriba si el contenido es menos alto */
+  padding: 20px 0;
+}
+.payment-form-box {
+  background-color: #fff;
+  padding: 25px 35px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 700px; /* Un poco más ancho para el layout de dos columnas de pago */
+  display: flex;
+  gap: 30px;
+}
+.payment-header { flex-basis: 35%; text-align: left; }
+.payment-header h3 { font-size: 1.8em; color: #333; margin-top: 0; margin-bottom: 5px; }
+.payment-header .payment-client-name { font-size: 1.1em; color: #007bff; font-weight: 500; }
+
+.payment-review { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+.payment-review h4 { font-size: 1em; color: #555; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;}
+.payment-review .payment-instruction { font-size: 0.9em; color: #777; background-color: #f8f9fa; padding: 10px; border-radius: 4px;}
+
+.payment-summary { flex-basis: 60%; }
+.amount-display { text-align: right; margin-bottom: 20px; }
+.amount-display .currency { font-size: 1.2em; color: #555; margin-right: 5px; }
+.amount-display .amount { font-size: 2.5em; color: #333; font-weight: bold; }
+
+.recipient-info { margin-bottom: 20px; font-size: 0.9em; }
+.recipient-info p { margin: 4px 0; color: #666; }
+.recipient-info .account-number { color: #888; }
+.recipient-info .recipient-name { font-weight: 500; color: #333; }
+
+.terms-agreement { margin-bottom: 20px; font-size: 0.8em; color: #777; display: flex; align-items: flex-start;}
+.terms-agreement input[type="checkbox"] { margin-right: 8px; margin-top: 2px; accent-color: #007bff; }
+.terms-agreement label a { color: #007bff; text-decoration: none; }
+.terms-agreement label a:hover { text-decoration: underline; }
+
+.btn-pay { width: 100%; margin-top: 10px; }
+.btn-pay:disabled { background-color: #e0a800; cursor: not-allowed; }
+
+/* Estilos para el Modal de Pago Exitoso */
+.payment-success-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Asegura que esté por encima de otros contenidos */
+}
+.payment-success-modal {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+  width: 100%;
+  max-width: 380px;
+}
+.success-icon-container {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #007bff; /* Azul para el círculo del check */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+  font-size: 2.5em; /* Tamaño del check */
+  font-weight: bold;
+}
+.payment-success-modal h4 { font-size: 1.3em; color: #333; margin-bottom: 10px; }
+.payment-amount-modal { font-size: 1.6em; font-weight: bold; color: #333; margin-bottom: 5px; }
+.technician-name-modal { font-size: 1.1em; color: #555; margin-bottom: 2px; }
+.technician-specialty-modal { font-size: 0.9em; color: #777; margin-bottom: 20px; }
+.payment-success-modal .btn-action { width: 100%; }
