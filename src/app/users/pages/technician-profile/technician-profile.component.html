@@ -1,0 +1,37 @@
+<div class="technician-profile-container">
+  <div *ngIf="isLoading" class="loading-state">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Cargando perfil del técnico...</p>
+  </div>
+  <div *ngIf="error && !isLoading" class="error-state">
+    <mat-card>
+      <mat-card-content>
+        <mat-icon color="warn">error</mat-icon>
+        <h3>Error</h3>
+        <p>{{ error }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <mat-card *ngIf="worker && !isLoading" class="profile-card">
+    <mat-card-header>
+      <img mat-card-avatar [src]="worker.avatar || 'assets/img/default-avatar.png'" alt="Avatar" class="profile-avatar">
+      <mat-card-title>{{ worker.firstName }} {{ worker.lastName }}</mat-card-title>
+      <mat-card-subtitle>{{ worker.skills.join(', ') }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="profile-rating">
+        <mat-icon *ngFor="let star of [1,2,3,4,5]" [ngClass]="{'filled': star <= (worker.rating || 0)}">star</mat-icon>
+        <span class="rating-value">{{ worker.rating || 0 | number:'1.1-1' }}</span>
+      </div>
+      <div class="profile-info">
+        <div><mat-icon>email</mat-icon> {{ worker.email }}</div>
+        <div><mat-icon>phone</mat-icon> {{ worker.phone }}</div>
+        <div><mat-icon>location_on</mat-icon> {{ worker.location }}</div>
+      </div>
+      <div class="profile-bio" *ngIf="worker.bio">
+        <strong>About me:</strong>
+        <p>{{ worker.bio }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> 

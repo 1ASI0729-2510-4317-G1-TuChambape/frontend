@@ -45,7 +45,6 @@ export class OfferService extends BaseService<Offer> {
       ...offerData,
       clientId,
       clientEmail,
-      status: OfferStatus.DRAFT,
       createdAt: new Date(),
       updatedAt: new Date(),
       proposalsCount: 0
@@ -74,5 +73,9 @@ export class OfferService extends BaseService<Offer> {
 
   deleteOffer(id: string): Observable<boolean> {
     return this.delete(id);
+  }
+
+  selectProposal(offer: Offer, proposalId: number): Observable<Offer> {
+    return this.update(offer.id, { ...offer, status: OfferStatus.PENDING, selectedProposalId: proposalId });
   }
 } 

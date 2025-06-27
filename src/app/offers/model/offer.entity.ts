@@ -13,7 +13,7 @@ export class Offer {
   requirements: string[];
   createdAt: Date;
   updatedAt: Date;
-  deadline: string;
+  deadline: Date |string;
   proposalsCount: number;
   selectedProposalId?: number | null;
   startAt?: Date | string;

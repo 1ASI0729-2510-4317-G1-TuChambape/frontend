@@ -1,0 +1,66 @@
+<div class="review-customer">
+  <div class="review-customer__header-row">
+    <mat-icon class="review-customer__icon">engineering</mat-icon>
+    <span class="review-customer__title">Se busca {{ offer.title }} <span class="review-customer__status">(Finalizado)</span></span>
+  </div>
+  <div class="review-customer__description-row">
+    <div class="review-customer__desc-label">Descripción:</div>
+    <div class="review-customer__desc-content">{{ offer.description }}</div>
+  </div>
+  <div class="review-customer__main-row">
+    <div class="review-customer__worker-section">
+      <div class="review-customer__section-title">Trabajador Encargado:</div>
+      <mat-card class="review-customer__worker-card">
+        <img mat-card-image [src]="worker.workerAvatar" [alt]="worker.workerName" class="review-customer__worker-avatar">
+        <mat-card-content>
+          <div class="review-customer__worker-name">{{ worker.workerName }}</div>
+          <div class="review-customer__worker-specialty">Técnico Profesional</div>
+          <div class="review-customer__worker-rating">
+            <mat-icon class="review-customer__star">star</mat-icon>
+            {{ worker.rating || 0 | number:'1.1-1' }} <span class="review-customer__reviews">(+{{ worker.reviewCount || 0 }} calificaciones)</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="review-customer__reviews-section">
+      <div class="review-customer__section-title">Reseñas y comentarios</div>
+      <div class="review-customer__score-block">
+        <div class="review-customer__score">{{ getAverageRating() | number:'1.1-1' }}</div>
+        <div class="review-customer__score-label">{{ reviews.length }} Reseñas</div>
+        <div class="review-customer__score-label">{{ reviews.length > 0 ? reviews.length + ' Comentarios' : '' }}</div>
+        <div class="review-customer__stars">
+          <ng-container *ngFor="let s of [1,2,3,4,5]">
+            <mat-icon class="review-customer__star" [ngClass]="{'review-customer__star--filled': s <= getAverageRating()}">star</mat-icon>
+          </ng-container>
+        </div>
+      </div>
+      <div class="review-customer__reviews-list">
+        <div *ngFor="let review of reviews" class="review-customer__review-item">
+          <div class="review-customer__review-header">
+            <span class="review-customer__review-author">{{ review.authorName }}</span>
+            <span class="review-customer__review-date">{{ review.createdAt| date:'dd MMM' }}</span>
+            <span *ngIf="review.isVerifiedAuthor" class="review-customer__review-verified">Verificado</span>
+          </div>
+          <div class="review-customer__review-rating">
+            <ng-container *ngFor="let s of [1,2,3,4,5]">
+              <mat-icon class="review-customer__star" [ngClass]="{'review-customer__star--filled': s <= review.rating}">star</mat-icon>
+            </ng-container>
+          </div>
+          <div class="review-customer__review-comment">{{ review.comment }}</div>
+        </div>
+      </div>
+      <div *ngIf="canReview" class="review-customer__add-review">
+        <div class="review-customer__add-title">Deja tu reseña</div>
+        <form (ngSubmit)="submitReview()" #reviewForm="ngForm">
+          <div class="review-customer__add-rating">
+            <ng-container *ngFor="let s of [1,2,3,4,5]">
+              <mat-icon class="review-customer__star" [ngClass]="{'review-customer__star--filled': s <= newReviewRating}" (click)="setNewReviewRating(s)">star</mat-icon>
+            </ng-container>
+          </div>
+          <textarea class="review-customer__add-comment" [(ngModel)]="newReviewComment" name="comment" placeholder="Escribe tu comentario..." required></textarea>
+          <button mat-raised-button color="primary" class="review-customer__add-btn" type="submit" [disabled]="!newReviewRating || !newReviewComment">Enviar Reseña</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

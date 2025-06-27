@@ -1,44 +1,88 @@
 <div class="active-offers-container">
+  <!-- Vista de tabla (vista principal) -->
+  <div class="table-header">
+    <h2>Ofertas Activas</h2>
+    <button mat-raised-button color="primary" routerLink="../crear" class="btn-create-offer">
+      <mat-icon>add</mat-icon>
+      Crear Nueva Oferta
+    </button>
+  </div>
+
   <div *ngIf="isLoading && activeOffers.length === 0" class="loading-indicator">
-    Cargando ofertas activas...
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Cargando ofertas activas...</p>
   </div>
 
   <div *ngIf="!isLoading && activeOffers.length === 0" class="no-offers">
-    <p>Actualmente no tienes ofertas activas.</p>
-    <button routerLink="../crear" class="btn-create-first-offer">Crea tu primera oferta</button>
+    <mat-card>
+      <mat-card-content>
+        <mat-icon class="no-offers-icon">work_off</mat-icon>
+        <h3>No tienes ofertas activas</h3>
+        <p>Comienza creando tu primera oferta para encontrar técnicos calificados.</p>
+        <button mat-raised-button color="primary" routerLink="../crear" class="btn-create-first-offer">
+          <mat-icon>add</mat-icon>
+          Crea tu primera oferta
+        </button>
+      </mat-card-content>
+    </mat-card>
   </div>
 
-  <div *ngFor="let offer of activeOffers" class="offer-card">
-    <div class="offer-details">
-      <h3>{{ offer.title }}</h3>
-      <p class="offer-description-label">Descripción:</p>
-      <p class="offer-description">{{ offer.description }}</p>
-    </div>
-
-    <div class="applicants-section" *ngIf="(applicantsByOffer[offer.id] || []).length > 0">
-      <h4>Técnicos Interesados / Sugeridos:</h4>
-      <div class="applicants-grid">
-        <div *ngFor="let applicant of applicantsByOffer[offer.id] || []" class="applicant-card">
-          <img
-            [src]="applicant.workerAvatar"
-            [alt]="applicant.workerName"
-            class="applicant-photo"
-            (error)="handleImageError($event, applicant.workerName)"
-          >
-          <p class="applicant-name">{{ applicant.workerName }}</p>
-          <p class="applicant-message">{{ applicant.message }}</p>
-          <p class="applicant-price">S/ {{ applicant.price }}</p>
-          <div class="applicant-actions">
-            <button class="btn btn-view-profile" (click)="viewTechnicianProfile(applicant.workerId)">Ver Perfil</button>
-            <button class="btn btn-select-tech" (click)="selectTechnician(offer.id.toString(), applicant.workerId)">
-              <span class="check-icon">✔</span>
-            </button>
+  <div *ngIf="!isLoading && activeOffers.length > 0" class="table-container">
+    <table mat-table [dataSource]="activeOffers" class="offers-table">
+      <!-- Columna Título -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <td mat-cell *matCellDef="let offer">
+          <div class="offer-title-cell">
+            <strong>{{ offer.title }}</strong>
           </div>
-        </div>
-      </div>
-    </div>
-    <div *ngIf="!isLoading && (!applicantsByOffer[offer.id] || applicantsByOffer[offer.id].length === 0)" class="no-applicants">
-      <p>Aún no hay técnicos interesados en esta oferta.</p>
-    </div>
+        </td>
+      </ng-container>
+
+      <!-- Columna Descripción -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Descripción</th>
+        <td mat-cell *matCellDef="let offer">
+          <div class="offer-description-cell">
+            {{ getShortDescription(offer.description) }}
+          </div>
+        </td>
+      </ng-container>
+
+
+      <!-- Columna Presupuesto -->
+      <ng-container matColumnDef="budget">
+        <th mat-header-cell *matHeaderCellDef>Presupuesto</th>
+        <td mat-cell *matCellDef="let offer">
+          <mat-chip-set>
+            <mat-chip color="primary" variant="outlined">
+              {{ getBudgetRange(offer) }}
+            </mat-chip>
+          </mat-chip-set>
+        </td>
+      </ng-container>
+
+      <!-- Columna Fecha de Creación -->
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Creación</th>
+        <td mat-cell *matCellDef="let offer">
+          {{ getFormattedDate(offer.createdAt.toString()) }}
+        </td>
+      </ng-container>
+
+      <!-- Columna Acciones -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let offer">
+          <button mat-raised-button color="primary" (click)="viewOfferDetails(offer)" class="btn-view-details">
+            <mat-icon>visibility</mat-icon>
+            Ver
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </div>
 </div>

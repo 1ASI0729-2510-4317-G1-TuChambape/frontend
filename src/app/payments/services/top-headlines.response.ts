@@ -11,6 +11,8 @@ export interface PaymentResource {
   amount: number;
   currency: string;
   status: PaymentStatus;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  workerVerified: boolean;
+  customerVerified: boolean;
 } 

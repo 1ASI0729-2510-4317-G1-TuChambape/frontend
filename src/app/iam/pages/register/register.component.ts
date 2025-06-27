@@ -3,7 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { AccountCredentials } from '../../services/top-headlines.response';
+
+interface AccountCredentials {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+}
 
 @Component({
   selector: 'app-register',
@@ -18,14 +24,18 @@ import { AccountCredentials } from '../../services/top-headlines.response';
 })
 export class RegisterComponent {
   registerData: AccountCredentials = {
+    name: '',
     email: '',
-    password: ''
+    password: '',
+    role: ''
   };
   confirmPasswordValue: string = ''; // Propiedad separada para confirmPassword
 
+  nameError: string | null = null;
   emailError: string | null = null;
   passwordError: string | null = null;
   confirmPasswordError: string | null = null;
+  roleError: string | null = null;
   generalError: string | null = null;
   successMessage: string | null = null; // Para mensajes de éxito
 
@@ -35,15 +45,21 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   onSubmit() {
+    this.nameError = null;
     this.emailError = null;
     this.passwordError = null;
     this.confirmPasswordError = null;
+    this.roleError = null;
     this.generalError = null;
     this.successMessage = null;
     this.isLoading = true; // Inicia la carga
 
     let isValid = true;
 
+    if (!this.registerData.name) {
+      this.nameError = '¡Dato Obligatorio!';
+      isValid = false;
+    }
     if (!this.registerData.email) {
       this.emailError = '¡Dato Obligatorio!';
       isValid = false;
@@ -54,6 +70,10 @@ export class RegisterComponent {
     }
     if (!this.confirmPasswordValue) { // Usa la propiedad separada
       this.confirmPasswordError = '¡Dato Obligatorio!';
+      isValid = false;
+    }
+    if (!this.registerData.role) {
+      this.roleError = '¡Dato Obligatorio!';
       isValid = false;
     }
 
@@ -71,20 +91,45 @@ export class RegisterComponent {
     if (isValid) {
       // Prepara los datos para enviar al servicio (sin confirmPassword)
       const credentialsToRegister: AccountCredentials = {
+        name: this.registerData.name,
         email: this.registerData.email,
-        password: this.registerData.password
+        password: this.registerData.password,
+        role: this.registerData.role
       };
 
       this.authService.register(credentialsToRegister).subscribe({
         next: (account) => {
           this.isLoading = false;
           if (account) {
-            this.successMessage = '¡Registro completado con éxito!';
-            this.registerData = { email: '', password: '' };
-            this.confirmPasswordValue = '';
-            setTimeout(() => {
-              this.router.navigate(['/login']);
-            }, 2000);
+            this.successMessage = '¡Registro completado con éxito! Iniciando sesión...';
+            
+            // Hacer login automático después del registro
+            this.authService.login({
+              email: this.registerData.email,
+              password: this.registerData.password
+            }).subscribe({
+              next: (loggedInAccount) => {
+                if (loggedInAccount) {
+                  this.successMessage = '¡Registro completado con éxito! Redirigiendo...';
+                  // Lógica de redirección después del login exitoso
+                  if (account.role === 'customer') {
+                    this.router.navigate(['/onboarding-customer']);
+                  } else if (account.role === 'worker') {
+                    this.router.navigate(['/onboarding-worker']);
+                  } else {
+                    this.router.navigate(['/login']); // Fallback por si acaso
+                  }
+                } else {
+                  this.generalError = 'Error al iniciar sesión automáticamente. Por favor, inicie sesión manualmente.';
+                  this.router.navigate(['/login']);
+                }
+              },
+              error: (loginError) => {
+                console.error('Error en login automático:', loginError);
+                this.generalError = 'Error al iniciar sesión automáticamente. Por favor, inicie sesión manualmente.';
+                this.router.navigate(['/login']);
+              }
+            });
           } else {
             this.generalError = 'El correo electrónico ya está registrado.';
           }

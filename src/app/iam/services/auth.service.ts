@@ -6,6 +6,8 @@ import { Account } from '../model/account.entity';
 import { AccountAssembler } from './account.assembler';
 import { AccountCredentials, AccountResource } from './top-headlines.response';
 import { environment } from '../../../environments/environment';
+import { EventBusService } from '../../shared/services/event-bus.service';
+import { AccountRegisteredEvent } from '../../shared/events/account-registered.event';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +23,15 @@ export class AuthService extends BaseService<Account> {
   // Propiedad para simular el usuario actualmente logueado
   private currentAccount: Account | null = null;
 
-  constructor() {
+  // Claves para localStorage
+  private readonly SESSION_KEY = 'jobconnect_session';
+  private readonly SESSION_EXPIRY_KEY = 'jobconnect_session_expiry';
+
+  constructor(private eventBus: EventBusService) {
     super();
     this.resourceEndpoint = environment.accountsResourceEndpointPath;
+    // Intentar restaurar la sesión al inicializar el servicio
+    this.restoreSession();
   }
 
   // --- Métodos de Autenticación Principal ---
@@ -36,20 +44,27 @@ export class AuthService extends BaseService<Account> {
         }
         const newAccount: AccountResource = {
           id: 0,
-          name: userData.email.split('@')[0],
+          name: userData.name,
           email: userData.email,
           passwordHashed: userData.password,
-          role: 'client',
+          role: userData.role,
           createdAt: new Date().toISOString()
         };
         return this.create(newAccount).pipe(
-          map(account => AccountAssembler.toEntityFromResource(account))
+          map(account => {
+            const entity = AccountAssembler.toEntityFromResource(account);
+            this.eventBus.dispatch('AccountRegistered', {
+              accountId: entity.id,
+              role: entity.role
+            } as AccountRegisteredEvent);
+            return entity;
+          })
         );
       })
     );
   }
 
-  login(credentials: AccountCredentials): Observable<Account | null> {
+  login(credentials: Partial<AccountCredentials>): Observable<Account | null> {
     return this.search({ email: credentials.email }).pipe(
       map(accounts => accounts.length > 0 ? accounts[0] : null),
       map(account => {
@@ -59,8 +74,11 @@ export class AuthService extends BaseService<Account> {
         if (account.passwordHashed !== credentials.password) {
           return null;
         }
-        this.setCurrentUser(AccountAssembler.toEntityFromResource(account));
-        return AccountAssembler.toEntityFromResource(account);
+        
+        const entity = AccountAssembler.toEntityFromResource(account);
+        this.setCurrentUser(entity);
+        this.saveSessionToLocalStorage(entity);
+        return entity;
       })
     );
   }
@@ -74,6 +92,7 @@ export class AuthService extends BaseService<Account> {
 
   clearCurrentUser(): void {
     this.currentAccount = null;
+    this.clearSessionFromLocalStorage();
     console.log('AUTH_SERVICE: Sesión de usuario cerrada.');
   }
 
@@ -83,6 +102,120 @@ export class AuthService extends BaseService<Account> {
 
   getCurrentAccount(): Account | null {
     return this.currentAccount;
+  }
+
+  // --- Métodos de localStorage ---
+
+  private saveSessionToLocalStorage(account: Account): void {
+    try {
+      const sessionData = {
+        account: account,
+        timestamp: Date.now()
+      };
+      
+      // Guardar la sesión por 24 horas
+      const expiryTime = Date.now() + (24 * 60 * 60 * 1000); // 24 horas
+      
+      localStorage.setItem(this.SESSION_KEY, JSON.stringify(sessionData));
+      localStorage.setItem(this.SESSION_EXPIRY_KEY, expiryTime.toString());
+      
+      console.log('AUTH_SERVICE: Sesión guardada en localStorage');
+    } catch (error) {
+      console.error('AUTH_SERVICE: Error guardando sesión en localStorage:', error);
+    }
+  }
+
+  private restoreSession(): void {
+    try {
+      const sessionData = localStorage.getItem(this.SESSION_KEY);
+      const expiryTime = localStorage.getItem(this.SESSION_EXPIRY_KEY);
+      
+      if (!sessionData || !expiryTime) {
+        console.log('AUTH_SERVICE: No hay sesión guardada en localStorage');
+        return;
+      }
+      
+      const currentTime = Date.now();
+      const sessionExpiry = parseInt(expiryTime);
+      
+      // Verificar si la sesión ha expirado
+      if (currentTime > sessionExpiry) {
+        console.log('AUTH_SERVICE: Sesión expirada, limpiando localStorage');
+        this.clearSessionFromLocalStorage();
+        return;
+      }
+      
+      const parsedSession = JSON.parse(sessionData);
+      const account = parsedSession.account as Account;
+      
+      if (account && account.id && account.email) {
+        this.currentAccount = account;
+        console.log('AUTH_SERVICE: Sesión restaurada desde localStorage:', account.email);
+      } else {
+        console.log('AUTH_SERVICE: Datos de sesión inválidos, limpiando localStorage');
+        this.clearSessionFromLocalStorage();
+      }
+    } catch (error) {
+      console.error('AUTH_SERVICE: Error restaurando sesión desde localStorage:', error);
+      this.clearSessionFromLocalStorage();
+    }
+  }
+
+  private clearSessionFromLocalStorage(): void {
+    try {
+      localStorage.removeItem(this.SESSION_KEY);
+      localStorage.removeItem(this.SESSION_EXPIRY_KEY);
+      console.log('AUTH_SERVICE: Sesión eliminada de localStorage');
+    } catch (error) {
+      console.error('AUTH_SERVICE: Error limpiando sesión de localStorage:', error);
+    }
+  }
+
+  // Método público para verificar si hay una sesión válida en localStorage
+  hasValidSession(): boolean {
+    try {
+      const sessionData = localStorage.getItem(this.SESSION_KEY);
+      const expiryTime = localStorage.getItem(this.SESSION_EXPIRY_KEY);
+      
+      if (!sessionData || !expiryTime) {
+        return false;
+      }
+      
+      const currentTime = Date.now();
+      const sessionExpiry = parseInt(expiryTime);
+      
+      return currentTime <= sessionExpiry;
+    } catch (error) {
+      console.error('AUTH_SERVICE: Error verificando sesión válida:', error);
+      return false;
+    }
+  }
+
+  // Método para renovar la sesión (extender el tiempo de expiración)
+  renewSession(): void {
+    if (this.currentAccount) {
+      this.saveSessionToLocalStorage(this.currentAccount);
+      console.log('AUTH_SERVICE: Sesión renovada');
+    }
+  }
+
+  // Método para obtener el tiempo restante de la sesión en minutos
+  getSessionTimeRemaining(): number {
+    try {
+      const expiryTime = localStorage.getItem(this.SESSION_EXPIRY_KEY);
+      if (!expiryTime) {
+        return 0;
+      }
+      
+      const currentTime = Date.now();
+      const sessionExpiry = parseInt(expiryTime);
+      const timeRemaining = sessionExpiry - currentTime;
+      
+      return Math.max(0, Math.floor(timeRemaining / (1000 * 60))); // Convertir a minutos
+    } catch (error) {
+      console.error('AUTH_SERVICE: Error obteniendo tiempo restante de sesión:', error);
+      return 0;
+    }
   }
 
   // --- Métodos para Recuperación de Contraseña ---

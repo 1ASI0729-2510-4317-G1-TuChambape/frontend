@@ -8,4 +8,5 @@ export const environment = {
   customersResourceEndpointPath: '/customers',
   usersResourceEndpointPath: '/users',
   paymentsResourceEndpointPath: '/payments',
+  reviewsResourceEndpointPath: '/reviews',
 };

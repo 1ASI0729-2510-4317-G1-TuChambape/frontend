@@ -24,7 +24,19 @@ export interface OfferResource {
   requirements: string[];
   createdAt: Date;
   updatedAt: Date;
-  deadline: string;
+  deadline: Date |string;
   startAt?: string | Date;
   proposalsCount: number;
+}
+
+export interface ReviewResource {
+  id: number;
+  offerId: number;
+  authorUserId: number;
+  authorName: string;
+  authorImageUrl: string;
+  createdAt: string | Date;
+  isVerifiedAuthor: boolean;
+  rating: number;
+  comment: string;
 }

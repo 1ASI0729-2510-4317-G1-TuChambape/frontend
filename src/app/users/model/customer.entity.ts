@@ -1,3 +1,5 @@
+import { CustomerResource } from "../services/top-headlines.response";
+
 export class Customer {
   id!: number;
   email!: string;
@@ -18,7 +20,7 @@ export class Customer {
   createdAt!: string;
   updatedAt!: string;
 
-  constructor(params: Customer) {
+  constructor(params: CustomerResource) {
     this.id = params.id;
     this.email = params.email;
     this.firstName = params.firstName;

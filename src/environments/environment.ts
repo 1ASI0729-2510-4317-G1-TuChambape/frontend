@@ -9,4 +9,5 @@ export const environment = {
   usersResourceEndpointPath: '/users',
   paymentsResourceEndpointPath: '/payments',
   preferencesResourceEndpointPath: '/preferences',
+  reviewsResourceEndpointPath: '/reviews',
 };

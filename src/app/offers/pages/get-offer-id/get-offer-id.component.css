@@ -1,0 +1,340 @@
+.offer-details-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* Loading state */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loading-state p {
+  margin-top: 16px;
+  color: #666;
+  font-size: 1.1em;
+}
+
+/* Error state */
+.error-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.error-icon {
+  font-size: 4em;
+  color: #f44336;
+  margin-bottom: 20px;
+}
+
+.error-state h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.error-state p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Offer content */
+.offer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Header */
+.offer-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.offer-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.btn-back {
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.btn-back:hover {
+  color: #333;
+}
+
+/* Offer info card */
+.offer-info-card {
+  margin-bottom: 20px;
+}
+
+.offer-info-card mat-card-title {
+  color: #2196f3;
+  font-size: 1.8em;
+  margin-bottom: 8px;
+}
+
+.offer-info-card mat-card-subtitle {
+  color: #666;
+  font-size: 1em;
+}
+
+.offer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detail-section h3 {
+  color: #333;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 4px;
+}
+
+.detail-section p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1em;
+}
+
+.detail-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.detail-section li {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+/* Applicants section */
+.applicants-section {
+  margin-top: 20px;
+}
+
+.applicants-section h2 {
+  color: #333;
+  font-size: 1.6em;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Loading applicants */
+.loading-applicants {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.loading-applicants p {
+  margin-top: 12px;
+  color: #666;
+}
+
+/* Applicants grid */
+.applicants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.applicant-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.applicant-card:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.applicant-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.applicant-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e0e0e0;
+  transition: border-color 0.2s ease;
+}
+
+.applicant-card:hover .applicant-photo {
+  border-color: #2196f3;
+}
+
+.applicant-info h4 {
+  margin: 0 0 6px 0;
+  color: #333;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.applicant-price {
+  margin: 0;
+  color: #2196f3;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.applicant-message {
+  margin-bottom: 20px;
+}
+
+.applicant-message p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95em;
+  font-style: italic;
+}
+
+.applicant-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.applicant-actions .btn-view-profile {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-color: #666;
+  color: #666;
+}
+
+.applicant-actions .btn-view-profile:hover {
+  border-color: #333;
+  color: #333;
+}
+
+.applicant-actions .btn-select-tech {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: #2196f3;
+  color: white;
+}
+
+.applicant-actions .btn-select-tech:hover {
+  background-color: #1976d2;
+}
+
+/* No applicants */
+.no-applicants {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.no-applicants-icon {
+  font-size: 4em;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.no-applicants h3 {
+  color: #666;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+}
+
+.no-applicants p {
+  color: #888;
+  font-size: 1.1em;
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .offer-details-container {
+    padding: 15px;
+  }
+  
+  .offer-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .offer-header h1 {
+    font-size: 1.6em;
+  }
+  
+  .offer-info-card mat-card-title {
+    font-size: 1.5em;
+  }
+  
+  .applicants-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .applicant-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .applicant-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .offer-details-container {
+    padding: 10px;
+  }
+  
+  .offer-header h1 {
+    font-size: 1.4em;
+  }
+  
+  .applicants-section h2 {
+    font-size: 1.4em;
+  }
+  
+  .applicant-photo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .applicant-info h4 {
+    font-size: 1.2em;
+  }
+} 

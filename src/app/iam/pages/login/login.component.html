@@ -1,7 +1,8 @@
 <div class="login-container">
   <div class="login-form-section">
     <div class="logo-container">
-      <h2 class="logo-text">TuChambaPE</h2> </div>
+      <h2 class="logo-text">TuChambaPE</h2>
+    </div>
 
     <h1>Iniciar Sesión</h1>
 
@@ -16,17 +17,9 @@
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <div class="form-group">
         <label for="email">Dirección de e-mail</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Ingresa tu e-mail"
-          [(ngModel)]="loginData.email"
-          required
-          #emailInput="ngModel"
-          [class.invalid-input]="(emailInput.invalid && emailInput.touched) || emailError"
-          [disabled]="isLoading"
-        >
+        <input type="email" id="email" name="email" placeholder="Ingresa tu e-mail" [(ngModel)]="loginData.email"
+          required #emailInput="ngModel"
+          [class.invalid-input]="(emailInput.invalid && emailInput.touched) || emailError" [disabled]="isLoading">
         <div *ngIf="emailError" class="error-message field-error">
           {{ emailError }}
         </div>
@@ -37,21 +30,16 @@
 
       <div class="form-group">
         <label for="password">Contraseña</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Ingresa tu contraseña"
-          [(ngModel)]="loginData.password"
-          required
-          #passwordInput="ngModel"
+        <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña"
+          [(ngModel)]="loginData.password" required #passwordInput="ngModel"
           [class.invalid-input]="(passwordInput.invalid && passwordInput.touched) || passwordError || (generalError && generalError.toLowerCase().includes('contraseña incorrecta'))"
-          [disabled]="isLoading"
-        >
+          [disabled]="isLoading">
         <div *ngIf="passwordError" class="error-message field-error">
           {{ passwordError }}
         </div>
-        <div *ngIf="passwordInput.invalid && passwordInput.touched && !passwordError && !(generalError && generalError.toLowerCase().includes('contraseña incorrecta'))" class="error-message field-error">
+        <div
+          *ngIf="passwordInput.invalid && passwordInput.touched && !passwordError && !(generalError && generalError.toLowerCase().includes('contraseña incorrecta'))"
+          class="error-message field-error">
           ¡La contraseña es obligatoria!
         </div>
       </div>

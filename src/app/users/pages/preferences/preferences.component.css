@@ -176,3 +176,293 @@
   background-color: #fabc60;
   cursor: not-allowed;
 }
+
+/* Estilos para multiselect dropdowns */
+.multiselect-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.multiselect-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.multiselect-trigger:hover {
+  border-color: #007bff;
+}
+
+.multiselect-trigger .selected-text {
+  flex: 1;
+  text-align: left;
+}
+
+.multiselect-trigger .dropdown-arrow {
+  font-size: 0.8em;
+  color: #666;
+  transition: transform 0.2s ease;
+}
+
+.multiselect-dropdown.show .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.multiselect-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+}
+
+.multiselect-options.show {
+  display: block;
+}
+
+.multiselect-options .checkbox-group {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.multiselect-options .checkbox-group:last-child {
+  border-bottom: none;
+}
+
+.multiselect-options .checkbox-group:hover {
+  background-color: #f8f9fa;
+}
+
+.multiselect-options .checkbox-group input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #007bff;
+  width: auto;
+}
+
+.multiselect-options .checkbox-group label {
+  font-size: 0.9em;
+  font-weight: normal;
+  color: #444;
+  margin-bottom: 0;
+  cursor: pointer;
+  flex: 1;
+}
+
+/* Estilos para el componente de presupuesto */
+.budget-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.budget-inputs {
+  display: flex;
+  gap: 15px;
+}
+
+.budget-input {
+  flex: 1;
+}
+
+/* Estilos para Angular Material en la sección de presupuesto */
+::ng-deep .budget-input .mat-form-field-appearance-outline .mat-form-field-outline {
+  border-radius: 8px;
+  border-width: 2px;
+}
+
+::ng-deep .budget-input .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #007bff;
+}
+
+::ng-deep .budget-input .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+  color: #007bff;
+}
+
+::ng-deep .budget-input .mat-form-field-appearance-outline .mat-form-field-suffix {
+  color: #007bff;
+}
+
+::ng-deep .budget-input .mat-form-field-appearance-outline .mat-form-field-suffix .currency-symbol {
+  color: #666;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.budget-input-group {
+  flex: 1;
+  position: relative;
+}
+
+.budget-input-group label {
+  display: block;
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.budget-input-group input[type="number"] {
+  width: 100%;
+  padding: 8px 30px 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  background-color: #f8f9fa;
+  box-sizing: border-box;
+  height: 36px;
+}
+
+.budget-input-group input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 0.1rem rgba(0,123,255,.25);
+}
+
+.budget-input-group input[type="number"]:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.currency-symbol {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 0.9em;
+  font-weight: 500;
+  pointer-events: none;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+
+.budget-slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.budget-input-container {
+  position: relative;
+}
+
+.budget-range-display {
+  text-align: center;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+.range-text {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: #495057;
+}
+
+.budget-sliders {
+  position: relative;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.budget-slider {
+  position: absolute;
+  width: calc(100% - 20px);
+  height: 6px;
+  background: transparent;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+  left: 10px;
+}
+
+.budget-slider::-webkit-slider-track {
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  border-radius: 3px;
+  border: none;
+}
+
+.budget-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: background-color 0.2s;
+  border: 2px solid white;
+}
+
+.budget-slider::-webkit-slider-thumb:hover {
+  background: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Responsive para la sección de presupuesto */
+@media (max-width: 768px) {
+  .budget-inputs {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .budget-input {
+    width: 100%;
+  }
+}
+
+/* Estilos adicionales para mejorar el slider */
+.budget-slider:focus {
+  outline: none;
+}
+
+.budget-slider:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+
+.budget-slider:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+
+/* Asegurar que los thumbs tengan el z-index correcto */
+.min-slider::-webkit-slider-thumb {
+  z-index: 3;
+}
+
+.max-slider::-webkit-slider-thumb {
+  z-index: 2;
+}
+
+.min-slider::-moz-range-thumb {
+  z-index: 3;
+}
+
+.max-slider::-moz-range-thumb {
+  z-index: 2;
+}

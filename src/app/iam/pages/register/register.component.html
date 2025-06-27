@@ -1,5 +1,9 @@
 <div class="register-container">
   <div class="register-form-section">
+    <div class="logo-container">
+      <h2 class="logo-text">TuChambaPE</h2>
+    </div>
+    
     <div *ngIf="successMessage && !generalError" class="success-message">
       {{ successMessage }}
     </div>
@@ -9,6 +13,30 @@
     </div>
 
     <form (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+      <div class="form-group">
+        <label for="name">Nombre completo</label>
+        <input type="text" id="name" name="name" placeholder="Ingresa tu nombre completo"
+               [(ngModel)]="registerData.name" required #nameInput="ngModel"
+               [class.invalid-input]="(nameInput.invalid && nameInput.touched) || nameError"
+               [disabled]="isLoading">
+        <div *ngIf="nameError" class="error-message field-error">{{ nameError }}</div>
+        <div *ngIf="nameInput.invalid && nameInput.touched && !nameError" class="error-message field-error">¡Dato Obligatorio!</div>
+      </div>
+
+      <div class="form-group">
+        <label for="role">¿Qué tipo de usuario eres?</label>
+        <select id="role" name="role" [(ngModel)]="registerData.role" required #roleInput="ngModel"
+                [class.invalid-input]="(roleInput.invalid && roleInput.touched) || roleError"
+                [disabled]="isLoading">
+                
+          <option value="">Selecciona tu tipo de usuario</option>
+          <option value="customer">Cliente</option>
+          <option value="worker">Trabajador</option>
+        </select>
+        <div *ngIf="roleError" class="error-message field-error">{{ roleError }}</div>
+        <div *ngIf="roleInput.invalid && roleInput.touched && !roleError" class="error-message field-error">¡Dato Obligatorio!</div>
+      </div>
+
       <div class="form-group">
         <label for="email">Dirección de e-mail</label>
         <input type="email" id="email" name="email" placeholder="Ingresa tu e-mail"

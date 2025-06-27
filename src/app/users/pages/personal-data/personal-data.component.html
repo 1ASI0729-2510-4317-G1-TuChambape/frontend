@@ -33,8 +33,8 @@
           </div>
 
           <div class="form-group">
-            <label for="birthDate">Fecha de Nacimiento <span class="required-asterisk">*</span></label>
-            <input type="date" id="birthDate" name="birthDate" [(ngModel)]="userProfile.birthDate" required #birthDateInput="ngModel">
+            <label for="birthDate">Fecha de Nacimiento</label>
+            <input type="date" id="birthDate" name="birthDate" [(ngModel)]="userProfile.birthDate" #birthDateInput="ngModel">
             <div *ngIf="birthDateInput.invalid && birthDateInput.touched" class="field-error-message">
               La fecha de nacimiento es requerida.
             </div>
@@ -75,8 +75,8 @@
           </div>
 
           <div class="form-group">
-            <label for="documentNumber">Número de Documento <span class="required-asterisk">*</span></label>
-            <input type="text" id="documentNumber" name="documentNumber" [(ngModel)]="userProfile.documentNumber" required #docNumInput="ngModel">
+            <label for="documentNumber">Número de Documento</label>
+            <input type="text" id="documentNumber" name="documentNumber" [(ngModel)]="userProfile.documentNumber" #docNumInput="ngModel">
             <div *ngIf="docNumInput.invalid && docNumInput.touched" class="field-error-message">
               El número de documento es requerido.
             </div>

@@ -12,6 +12,11 @@ export class OfferProposalAssembler {
       message: resource.message,
       price: resource.price,
       createdAt: new Date(resource.createdAt),
+      bankAccountNumber: worker?.bankAccountNumber,
+      yapeNumber: worker?.yapeNumber,
+      plinNumber: worker?.plinNumber,
+      rating: worker?.rating,
+      reviewCount: worker?.reviewCount
     };
   }
 } 

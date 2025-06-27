@@ -1,0 +1,131 @@
+.payment-customer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  padding: 18px 8px;
+  max-width: 900px;
+  margin: 24px auto;
+}
+
+.payment-customer__main {
+  flex: 2;
+  padding: 0 0 12px 0;
+}
+.payment-customer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+.payment-customer__title {
+  font-size: 1.1em;
+  color: #222;
+}
+.payment-customer__user {
+  color: #888;
+  font-size: 1em;
+}
+.payment-customer__section {
+  margin-top: 10px;
+}
+.payment-customer__subtitle {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
+}
+.payment-customer__info-box {
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 14px 12px;
+  color: #444;
+  font-size: 1em;
+}
+
+.payment-customer__side {
+  flex: 1;
+  background: #f7f7f7;
+  border-radius: 12px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+.payment-customer__amount {
+  font-size: 2em;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+.payment-customer__account {
+  color: #888;
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+.payment-customer__worker-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+.payment-customer__worker-name {
+  font-weight: 600;
+  color: #2563eb;
+  font-size: 1.1em;
+}
+.payment-customer__worker-specialty {
+  color: #888;
+  font-size: 0.98em;
+}
+.payment-customer__accept {
+  margin: 10px 0 0 0;
+  font-size: 0.95em;
+  color: #444;
+}
+.payment-customer__checkbox {
+  font-size: 0.95em;
+  color: #444;
+}
+.payment-customer__btn {
+  background: #ff9800;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1em;
+  border-radius: 8px;
+  padding: 10px 32px;
+  margin-top: 10px;
+  width: 100%;
+}
+.payment-customer__btn[disabled] {
+  background: #ffe0b2;
+  color: #aaa;
+}
+
+@media (min-width: 700px) {
+  .payment-customer {
+    flex-direction: row;
+    gap: 32px;
+    padding: 32px 24px;
+  }
+  .payment-customer__main {
+    border-right: 2px solid #f0f0f0;
+    padding-right: 32px;
+    margin-right: 12px;
+  }
+  .payment-customer__side {
+    min-width: 320px;
+    max-width: 340px;
+    align-items: flex-start;
+  }
+  .payment-customer__btn {
+    width: auto;
+  }
+}

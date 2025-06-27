@@ -1,0 +1,43 @@
+<div class="payment-customer">
+  <div class="payment-customer__main">
+    <div class="payment-customer__header">
+      <span class="payment-customer__title">Pago</span>
+      <span class="payment-customer__user">{{ worker.workerName }}</span>
+    </div>
+    <div class="payment-customer__section">
+      <div class="payment-customer__subtitle">Revisar y Confirmar</div>
+      <div class="payment-customer__info-box">
+        Verifica tu información y haz clic en Confirmar
+      </div>
+    </div>
+  </div>
+  <div class="payment-customer__side">
+    <div class="payment-customer__amount">PEN {{ amount | number:'1.2-2' }}</div>
+    
+    <!-- Información de pago -->
+    <div class="payment-customer__payment-info">
+      <div *ngIf="worker.bankAccountNumber" class="payment-customer__account">
+        Número de cuenta: <span>{{ worker.bankAccountNumber }}</span>
+      </div>
+      <div *ngIf="worker.yapeNumber" class="payment-customer__account">
+        Yape: <span>{{ worker.yapeNumber }}</span>
+      </div>
+      <div *ngIf="worker.plinNumber" class="payment-customer__account">
+        Plin: <span>{{ worker.plinNumber }}</span>
+      </div>
+      <div *ngIf="!worker.bankAccountNumber && !worker.yapeNumber && !worker.plinNumber" class="payment-customer__account">
+        <span class="payment-customer__no-payment">No hay información de pago disponible</span>
+      </div>
+    </div>
+    
+    <div class="payment-customer__worker-card">
+      <div class="payment-customer__worker-name">{{ worker.workerName }}</div>
+    </div>
+    <div class="payment-customer__accept">
+      <mat-checkbox [(ngModel)]="accepted" class="payment-customer__checkbox">
+        Haz clic aquí para aceptar compartir tu correo electrónico con JobConnect. Usará tu dirección de correo electrónico para marketing y otros fines de acuerdo con su <a href="#" target="_blank">política de privacidad</a>.
+      </mat-checkbox>
+    </div>
+    <button mat-raised-button color="primary" class="payment-customer__btn" [disabled]="!accepted" (click)="onConfirmPayment()">Confirmar</button>
+  </div>
+</div>

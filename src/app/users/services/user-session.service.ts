@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../../iam/model/account.entity';
 import { AuthService } from '../../iam/services/auth.service';
+import { User } from '../model/user.entity';
 
 // Interfaz para máxima independencia
 export interface IUserSessionService {
   getCurrentAccount(): Account | null;
   isLoggedIn(): boolean;
   logout(): void;
+  hasValidSession(): boolean;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -24,6 +26,8 @@ export class UserSessionService implements IUserSessionService {
   logout(): void {
     this.authService.clearCurrentUser();
   }
-}
 
-// Nota: Ahora la sesión puede acceder a los nuevos campos de preferences y availability a través del perfil de usuario. 
+  hasValidSession(): boolean {
+    return this.authService.hasValidSession();
+  }
+}

@@ -5,26 +5,40 @@ import { OfferService } from '../../services/offer.service';
 import { Offer } from '../../model/offer.entity';
 import { OffersSessionService } from '../../services/session.service';
 import { OfferStatus } from '../../services/top-headlines.response';
-import { OffersProposalsService } from '../../services/offers-proposals.service';
-import { OfferProposalDto } from '../../model/offer-proposal.dto';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-active-offers',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule, 
+    RouterModule, 
+    MatTableModule, 
+    MatButtonModule, 
+    MatIconModule, 
+    MatCardModule,
+    MatChipsModule,
+    MatProgressSpinnerModule
+  ],
   templateUrl: './active-offers.component.html',
   styleUrls: ['./active-offers.component.css']
 })
 export class ActiveOffersComponent implements OnInit {
   activeOffers: Offer[] = [];
   isLoading: boolean = false;
-  applicantsByOffer: { [offerId: number]: OfferProposalDto[] } = {};
+  
+  // Columnas para la tabla de Material
+  displayedColumns: string[] = ['title', 'description', 'budget', 'createdDate', 'actions'];
 
   constructor(
     private offerService: OfferService,
     private session: OffersSessionService,
-    private router: Router,
-    private offersProposalsService: OffersProposalsService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,16 +52,11 @@ export class ActiveOffersComponent implements OnInit {
       this.isLoading = false;
       return;
     }
+    
     this.offerService.getOffersByStatus(currentAccount.id.toString(), OfferStatus.ACTIVE).subscribe({
       next: (offers) => {
         this.activeOffers = offers;
         this.isLoading = false;
-        // Cargar applicants para cada oferta
-        offers.forEach(offer => {
-          this.offersProposalsService.getProposalsForOffer(offer.id).subscribe(proposals => {
-            this.applicantsByOffer[offer.id] = proposals;
-          });
-        });
       },
       error: () => {
         this.isLoading = false;
@@ -55,18 +64,33 @@ export class ActiveOffersComponent implements OnInit {
     });
   }
 
-  viewTechnicianProfile(technicianId: number): void {
-    // Implementar navegación o lógica real
+  viewOfferDetails(offer: Offer): void {
+    this.router.navigate(['/dashboard', 'ofertas', offer.id]);
   }
 
-  selectTechnician(offerId: string, technicianId: number): void {
-    // Implementar lógica real
+  // Método para formatear la descripción en la tabla
+  getShortDescription(description: string): string {
+    return description.length > 100 ? description.substring(0, 100) + '...' : description;
   }
 
-  handleImageError(event: Event, applicantName: string): void {
-    const target = event.target as HTMLImageElement;
-    if (target) {
-      target.src = 'assets/img/default-tech.png';
+  // Método para formatear el presupuesto
+  getBudgetRange(offer: Offer): string {
+    if (offer.budget.min && offer.budget.max) {
+      return `S/ ${offer.budget.min} - S/ ${offer.budget.max}`;
+    } else if (offer.budget.min) {
+      return `S/ ${offer.budget.min}+`;
+    } else if (offer.budget.max) {
+      return `Hasta S/ ${offer.budget.max}`;
     }
+    return 'No especificado';
+  }
+
+  // Método para formatear la fecha
+  getFormattedDate(date: string): string {
+    return new Date(date).toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
   }
 }

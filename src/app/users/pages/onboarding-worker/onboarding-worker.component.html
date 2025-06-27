@@ -1,0 +1,55 @@
+<div class="form-container">
+  <div class="form-box">
+    <div class="logo-container">
+      <h2 class="logo-text">JobConnect</h2>
+    </div>
+    <h3>Onboarding de Técnico</h3>
+    <p class="instructions">Completa tu perfil para que los clientes puedan encontrarte.</p>
+
+    <div *ngIf="success" class="success-message">
+      ¡Perfil creado con éxito! Redirigiendo...
+    </div>
+    <div *ngIf="error" class="error-message general-error">
+      {{ error }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="firstName">Nombre</label>
+        <input id="firstName" formControlName="firstName" placeholder="Ingresa tu nombre">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Apellido</label>
+        <input id="lastName" formControlName="lastName" placeholder="Ingresa tu apellido">
+      </div>
+      <div class="form-group">
+        <label for="phone">Teléfono</label>
+        <input id="phone" formControlName="phone" placeholder="Ingresa tu teléfono">
+      </div>
+      <div class="form-group">
+        <label for="location">Ubicación</label>
+        <input id="location" formControlName="location" placeholder="Ingresa tu ubicación">
+      </div>
+      <div class="form-group">
+        <label for="bio">Biografía</label>
+        <textarea id="bio" formControlName="bio" placeholder="Una breve descripción de tu experiencia y servicios"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="skills">Habilidades (separadas por coma)</label>
+        <input id="skills" formControlName="skills" placeholder="Ej: Plomería, Electricidad, Carpintería">
+      </div>
+      <div class="form-group">
+        <label for="experience">Años de Experiencia</label>
+        <input id="experience" type="number" formControlName="experience" placeholder="Ej: 5">
+      </div>
+      <div class="form-group">
+        <label for="certifications">Certificaciones (separadas por coma)</label>
+        <input id="certifications" formControlName="certifications" placeholder="Ej: Certificado SEC, Certificado de Gasfitería">
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        <span>Guardar Perfil</span>
+      </button>
+    </form>
+  </div>
+</div>

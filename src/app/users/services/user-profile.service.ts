@@ -30,6 +30,15 @@ export class UserProfileService {
     );
   }
 
+  getUserByAccountId(accountId: number): Observable<Worker | Customer | null> {
+    return this.userService.search({ accountId }).pipe(
+      switchMap((users: User[]) => {
+        if (users.length === 0) return of(null);
+        return this.getUserProfile(users[0].id);
+      })
+    );
+  }
+
   getUserProfileByEmail(email: string): Observable<Worker | Customer | null> {
     // Busca en workers y customers por email
     return forkJoin([

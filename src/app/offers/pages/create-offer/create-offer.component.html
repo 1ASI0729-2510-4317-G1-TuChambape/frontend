@@ -1,7 +1,7 @@
 <div class="create-offer-container">
   <h2>Crear Oferta</h2>
 
-  <form (ngSubmit)="onSubmit()" #offerForm="ngForm" class="offer-form">
+  <form [formGroup]="offerForm" (ngSubmit)="onSubmit()" class="offer-form">
     <div *ngIf="successMessage && !generalError" class="form-message success-message">
       {{ successMessage }}
     </div>
@@ -15,36 +15,36 @@
           <legend>Información General</legend>
           <div class="form-group">
             <label for="title">Título de la Oferta</label>
-            <input type="text" id="title" name="title" [(ngModel)]="newOffer.title" placeholder="Ej: Se busca electricista para instalación" required #titleInput="ngModel">
-            <div *ngIf="formErrors.title || (titleInput.invalid && titleInput.touched)" class="field-error-message">
-              {{ formErrors.title || 'El título es requerido.' }}
+            <input type="text" id="title" formControlName="title" placeholder="Ej: Se busca electricista para instalación">
+            <div *ngIf="isFieldInvalid('title')" class="field-error-message">
+              {{ getErrorMessage('title') }}
             </div>
           </div>
 
           <div class="form-group">
             <label for="description">Descripción</label>
-            <textarea id="description" name="description" [(ngModel)]="newOffer.description" placeholder="Detalla el trabajo a realizar..." rows="4" required #descInput="ngModel"></textarea>
-            <div *ngIf="formErrors.description || (descInput.invalid && descInput.touched)" class="field-error-message">
-              {{ formErrors.description || 'La descripción es requerida.' }}
+            <textarea id="description" formControlName="description" placeholder="Detalla el trabajo a realizar..." rows="4"></textarea>
+            <div *ngIf="isFieldInvalid('description')" class="field-error-message">
+              {{ getErrorMessage('description') }}
             </div>
           </div>
 
           <div class="form-group">
             <label for="category">Categoría Técnica</label>
-            <select id="category" name="category" [(ngModel)]="newOffer.category" required #catInput="ngModel">
+            <select id="category" formControlName="category">
               <option value="" disabled>Seleccionar Trabajo*</option>
               <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
             </select>
-            <div *ngIf="formErrors.category || (catInput.invalid && catInput.touched)" class="field-error-message">
-              {{ formErrors.category || 'La categoría es requerida.' }}
+            <div *ngIf="isFieldInvalid('category')" class="field-error-message">
+              {{ getErrorMessage('category') }}
             </div>
           </div>
 
           <div class="form-group">
             <label for="address">Dirección</label>
-            <input type="text" id="address" name="address" [(ngModel)]="newOffer.address" placeholder="Ej: Av. Siempreviva 742, Lima" required #addressInput="ngModel">
-            <div *ngIf="formErrors.address || (addressInput.invalid && addressInput.touched)" class="field-error-message">
-              {{ formErrors.address || 'La dirección es requerida.' }}
+            <input type="text" id="address" formControlName="address" placeholder="Ej: Av. Siempreviva 742, Lima">
+            <div *ngIf="isFieldInvalid('address')" class="field-error-message">
+              {{ getErrorMessage('address') }}
             </div>
           </div>
         </fieldset>
@@ -53,27 +53,69 @@
           <legend>Compensación y Beneficios</legend>
           <div class="form-group">
             <label>Presupuesto Estimado</label>
-            <div class="budget-inputs">
-              <input type="number" id="estimatedBudgetMin" name="estimatedBudgetMin" [(ngModel)]="newOffer.estimatedBudgetMin" placeholder="Mínimo" required #budgetMinInput="ngModel">
-              <input type="number" id="estimatedBudgetMax" name="estimatedBudgetMax" [(ngModel)]="newOffer.estimatedBudgetMax" placeholder="Máximo" required #budgetMaxInput="ngModel">
-              <select id="estimatedBudgetCurrency" name="estimatedBudgetCurrency" [(ngModel)]="newOffer.estimatedBudgetCurrency" required>
-                <option value="PEN">PEN</option>
-                <option value="USD">USD</option>
-              </select>
-            </div>
-            <div *ngIf="formErrors.estimatedBudget || (budgetMinInput.invalid && budgetMinInput.touched) || (budgetMaxInput.invalid && budgetMaxInput.touched)" class="field-error-message">
-              {{ formErrors.estimatedBudget || 'El presupuesto es requerido.' }}
+            <div class="budget-container">
+              <div class="budget-inputs">
+                <div class="form-group budget-input">
+                  <label for="estimatedBudgetMin">Mínimo*</label>
+                  <div class="input-icon-currency">
+                    <input type="number" id="estimatedBudgetMin" formControlName="estimatedBudgetMin" placeholder="0" min="0" max="10000">
+                    <span class="input-icon"><svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align:middle"><path fill="#2196f3" d="M2 17l4.24-4.24a3 3 0 0 1 4.24 0l2.12 2.12a1 1 0 0 0 1.41 0l4.24-4.24" stroke="#2196f3" stroke-width="2" fill="none"/></svg></span>
+                    <span class="currency-symbol">{{ offerForm.get('estimatedBudgetCurrency')?.value || 'PEN' }}</span>
+                  </div>
+                  <div *ngIf="isFieldInvalid('estimatedBudgetMin')" class="field-error-message">
+                    {{ getErrorMessage('estimatedBudgetMin') }}
+                  </div>
+                </div>
+                <div class="form-group budget-input">
+                  <label for="estimatedBudgetMax">Máximo*</label>
+                  <div class="input-icon-currency">
+                    <input type="number" id="estimatedBudgetMax" formControlName="estimatedBudgetMax" placeholder="1000" min="0" max="10000">
+                    <span class="input-icon"><svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align:middle"><path fill="#2196f3" d="M2 17l4.24-4.24a3 3 0 0 1 4.24 0l2.12 2.12a1 1 0 0 0 1.41 0l4.24-4.24" stroke="#2196f3" stroke-width="2" fill="none"/></svg></span>
+                    <span class="currency-symbol">{{ offerForm.get('estimatedBudgetCurrency')?.value || 'PEN' }}</span>
+                  </div>
+                  <div *ngIf="isFieldInvalid('estimatedBudgetMax')" class="field-error-message">
+                    {{ getErrorMessage('estimatedBudgetMax') }}
+                  </div>
+                </div>
+                <div class="form-group currency-input">
+                  <label for="estimatedBudgetCurrency">Moneda*</label>
+                  <div class="input-icon-currency">
+                    <select id="estimatedBudgetCurrency" formControlName="estimatedBudgetCurrency">
+                      <option value="PEN">PEN</option>
+                      <option value="USD">USD</option>
+                    </select>
+                    <span class="input-icon"><svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align:middle"><circle cx="12" cy="12" r="10" stroke="#2196f3" stroke-width="2" fill="none"/><text x="12" y="16" text-anchor="middle" font-size="12" fill="#2196f3" font-family="Arial">$</text></svg></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="budget-values-row">
+                <span class="budget-value-label" [style.left.%]="(offerForm.get('estimatedBudgetMin')?.value || 0) / 10000 * 100">
+                  {{ offerForm.get('estimatedBudgetMin')?.value || 0 | number:'1.0-0' }}
+                </span>
+                <span class="budget-value-label" [style.left.%]="(offerForm.get('estimatedBudgetMax')?.value || 1000) / 10000 * 100">
+                  {{ offerForm.get('estimatedBudgetMax')?.value || 1000 | number:'1.0-0' }}
+                </span>
+              </div>
+              <div class="budget-slider-container">
+                <div class="budget-sliders" [ngStyle]="getBudgetRangeStyles()">
+                  <input type="range" id="budgetSliderMin" class="budget-slider min-slider" [min]="0" [max]="10000"
+                    [value]="offerForm.get('estimatedBudgetMin')?.value || 0" (input)="onBudgetSliderChange($event)">
+                  <input type="range" id="budgetSliderMax" class="budget-slider max-slider" [min]="0" [max]="10000"
+                    [value]="offerForm.get('estimatedBudgetMax')?.value || 1000" (input)="onBudgetSliderChange($event)">
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <label for="paymentMethod">Forma de Pago</label>
-            <select id="paymentMethod" name="paymentMethod" [(ngModel)]="newOffer.paymentMethod" required #paymentInput="ngModel">
+            <select id="paymentMethod" formControlName="paymentMethod">
               <option value="" disabled>Seleccionar Forma de Pago*</option>
               <option *ngFor="let method of paymentMethods" [value]="method">{{method}}</option>
             </select>
-            <div *ngIf="formErrors.paymentMethod || (paymentInput.invalid && paymentInput.touched)" class="field-error-message">
-              {{ formErrors.paymentMethod || 'La forma de pago es requerida.' }}
+            <div *ngIf="isFieldInvalid('paymentMethod')" class="field-error-message">
+              {{ getErrorMessage('paymentMethod') }}
             </div>
           </div>
         </fieldset>
@@ -84,46 +126,55 @@
           <legend>Requisitos del técnico</legend>
           <div class="form-group">
             <label for="languagesRequired">Idiomas Requeridos</label>
-            <input type="text" id="languagesRequired" name="languagesRequired" [(ngModel)]="newOffer.languagesRequired" placeholder="Ej: Español (Nativo), Inglés (Básico)">
+            <input type="text" id="languagesRequired" formControlName="languagesRequired" placeholder="Ej: Español (Nativo), Inglés (Básico)">
           </div>
 
           <div class="form-group">
             <label for="minExperience">Experiencia Mínima Requerida</label>
-            <select id="minExperience" name="minExperience" [(ngModel)]="newOffer.minExperience" required #expInput="ngModel">
+            <select id="minExperience" formControlName="minExperience">
               <option value="" disabled>Seleccionar Experiencia*</option>
               <option *ngFor="let level of experienceLevels" [value]="level">{{level}}</option>
             </select>
-            <div *ngIf="formErrors.minExperience || (expInput.invalid && expInput.touched)" class="field-error-message">
-              {{ formErrors.minExperience || 'La experiencia mínima es requerida.' }}
+            <div *ngIf="isFieldInvalid('minExperience')" class="field-error-message">
+              {{ getErrorMessage('minExperience') }}
             </div>
           </div>
 
           <div class="form-group">
             <label for="certificationsNeeded">Certificaciones Necesarias</label>
-            <input type="text" id="certificationsNeeded" name="certificationsNeeded" [(ngModel)]="newOffer.certificationsNeeded" placeholder="Ej: Certificado de Instalaciones Eléctricas">
+            <input type="text" id="certificationsNeeded" formControlName="certificationsNeeded" placeholder="Ej: Certificado de Instalaciones Eléctricas">
           </div>
 
           <div class="form-group">
             <label for="workHours">Horario de Trabajo</label>
-            <select id="workHours" name="workHours" [(ngModel)]="newOffer.workHours">
+            <select id="workHours" formControlName="workHours">
               <option value="" disabled>Elige Rango de Horas</option>
               <option *ngFor="let hours of workHourOptions" [value]="hours">{{hours}}</option>
             </select>
+          </div>
+
+          <div class="form-group">
+            <label for="deadline">Fecha Límite</label>
+            <input type="datetime-local" id="deadline" formControlName="deadline" 
+                   [min]="getCurrentDateTime()" placeholder="Selecciona fecha y hora límite">
+            <div *ngIf="isFieldInvalid('deadline')" class="field-error-message">
+              {{ getErrorMessage('deadline') }}
+            </div>
           </div>
         </fieldset>
 
         <div class="acceptance-section">
           <div class="form-group checkbox-group">
-            <input type="checkbox" id="acceptNotifications" name="acceptNotifications" [(ngModel)]="newOffer.acceptNotifications">
+            <input type="checkbox" id="acceptNotifications" formControlName="acceptNotifications">
             <label for="acceptNotifications">Acepto recibir notificaciones sobre el estado de esta oferta.</label>
           </div>
           <div class="form-group checkbox-group">
-            <input type="checkbox" id="authorizeDataProcessing" name="authorizeDataProcessing" [(ngModel)]="newOffer.authorizeDataProcessing" required #authDataInput="ngModel">
+            <input type="checkbox" id="authorizeDataProcessing" formControlName="authorizeDataProcessing">
             <label for="authorizeDataProcessing">
               Autorizo el tratamiento de mis datos personales para finalidades informativas y comerciales, conforme al siguiente <a href="#" target="_blank">enlace</a>. Sin mi autorización, no podrán comunicarse conmigo.*
             </label>
-            <div *ngIf="formErrors.authorizeDataProcessing || (authDataInput.invalid && authDataInput.touched && !newOffer.authorizeDataProcessing)" class="field-error-message">
-              {{ formErrors.authorizeDataProcessing || 'Debe autorizar el tratamiento de datos.' }}
+            <div *ngIf="isFieldInvalid('authorizeDataProcessing')" class="field-error-message">
+              {{ getErrorMessage('authorizeDataProcessing') }}
             </div>
           </div>
         </div>

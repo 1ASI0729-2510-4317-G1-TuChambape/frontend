@@ -1,18 +1,43 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './iam/pages/login/login.component';
-import { RegisterComponent } from './iam/pages/register/register.component';
-import { ForgotPasswordComponent } from './iam/pages/forgot-password/forgot-password.component';
-import { VerifyCodeComponent } from './iam/pages/verify-code/verify-code.component';
-import { ResetPasswordComponent } from './iam/pages/reset-password/reset-password.component';
 import { AuthGuard } from './iam/services/auth.guard';
 
 export const routes: Routes = [
   // Rutas de Autenticación (Públicas)
-  { path: 'login', component: LoginComponent, title: 'Iniciar Sesión - JobConnect' },
-  { path: 'register', component: RegisterComponent, title: 'Crear Cuenta - JobConnect' },
-  { path: 'forgot-password', component: ForgotPasswordComponent, title: 'Recuperar Contraseña - JobConnect' },
-  { path: 'verify-code', component: VerifyCodeComponent, title: 'Verificar Código - JobConnect' },
-  { path: 'reset-password', component: ResetPasswordComponent, title: 'Reestablecer Contraseña - JobConnect' },
+  {
+    path: 'login',
+    loadComponent: () => import('./iam/pages/login/login.component').then(m => m.LoginComponent),
+    title: 'Iniciar Sesión - JobConnect'
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./iam/pages/register/register.component').then(m => m.RegisterComponent),
+    title: 'Crear Cuenta - JobConnect'
+  },
+  {
+    path: 'forgot-password',
+    loadComponent: () => import('./iam/pages/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent),
+    title: 'Recuperar Contraseña - JobConnect'
+  },
+  {
+    path: 'verify-code',
+    loadComponent: () => import('./iam/pages/verify-code/verify-code.component').then(m => m.VerifyCodeComponent),
+    title: 'Verificar Código - JobConnect'
+  },
+  {
+    path: 'reset-password',
+    loadComponent: () => import('./iam/pages/reset-password/reset-password.component').then(m => m.ResetPasswordComponent),
+    title: 'Reestablecer Contraseña - JobConnect'
+  },
+  {
+    path: 'onboarding-customer',
+    loadComponent: () => import('./users/pages/onboarding-customer/onboarding-customer.component').then(m => m.OnboardingCustomerComponent),
+    title: 'Completar Perfil - JobConnect'
+  },
+  {
+    path: 'onboarding-worker',
+    loadComponent: () => import('./users/pages/onboarding-worker/onboarding-worker.component').then(m => m.OnboardingWorkerComponent),
+    title: 'Completar Perfil - JobConnect'
+  },
 
   // Rutas del Cliente (Protegidas)
   {
@@ -56,6 +81,11 @@ export const routes: Routes = [
             path: 'finalizadas',
             loadComponent: () => import('./offers/pages/finished-offers/finished-offers.component').then(m => m.FinishedOffersComponent),
             title: 'Ofertas Finalizadas - JobConnect'
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./offers/pages/get-offer-id/get-offer-id.component').then(m => m.GetOfferIdComponent),
+            title: 'Detalles de Oferta - JobConnect'
           }
         ]
       },
@@ -65,9 +95,9 @@ export const routes: Routes = [
         title: 'Comparar Perfiles - JobConnect'
       },
       {
-        path: 'configuracion',
+        path: 'perfil',
         loadComponent: () => import('./users/components/settings-profile/settings-profile.component').then(m => m.SettingsProfileComponent),
-        title: 'Configuración - JobConnect',
+        title: 'Perfil - JobConnect',
         children: [
           { path: '', redirectTo: 'datos-personales', pathMatch: 'full' },
           {
@@ -83,6 +113,11 @@ export const routes: Routes = [
         ]
       }
     ]
+  },
+  {
+    path: 'perfil-tecnico/:id',
+    loadComponent: () => import('./users/pages/technician-profile/technician-profile.component').then(m => m.TechnicianProfileComponent),
+    title: 'Perfil del Técnico - JobConnect'
   },
 
   // Rutas por defecto y comodín

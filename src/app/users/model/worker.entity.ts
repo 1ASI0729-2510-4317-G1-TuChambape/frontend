@@ -1,3 +1,5 @@
+import { WorkerResource } from "../services/top-headlines.response";
+
 export class Worker {
   id!: number;
   email!: string;
@@ -15,12 +17,6 @@ export class Worker {
   rating!: number;
   reviewCount!: number;
   isVerified!: boolean;
-  preferences!: {
-    notifications: { email: boolean; push: boolean; sms: boolean };
-    privacy: { showPhone: boolean; showEmail: boolean; showLocation: boolean };
-    language: string;
-    timezone: string;
-  };
   createdAt!: string;
   updatedAt!: string;
   availability!: {
@@ -32,8 +28,11 @@ export class Worker {
     sabado?: string;
     domingo?: string;
   };
+  yapeNumber?: string;
+  plinNumber?: string;
+  bankAccountNumber?: string;
 
-  constructor(params: Worker) {
+  constructor(params: WorkerResource) {
     this.id = params.id;
     this.email = params.email;
     this.firstName = params.firstName;
@@ -50,9 +49,11 @@ export class Worker {
     this.rating = params.rating;
     this.reviewCount = params.reviewCount;
     this.isVerified = params.isVerified;
-    this.preferences = params.preferences;
     this.createdAt = params.createdAt;
     this.updatedAt = params.updatedAt;
     this.availability = params.availability;
+    this.yapeNumber = params.yapeNumber;
+    this.plinNumber = params.plinNumber;
+    this.bankAccountNumber = params.bankAccountNumber;
   }
 } 

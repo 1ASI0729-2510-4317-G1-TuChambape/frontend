@@ -10,6 +10,8 @@ export interface AccountResource {
 } 
 
 export interface AccountCredentials {
+  name: string;
   email: string;
   password: string;
-}
+  role: string;
+} 

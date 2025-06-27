@@ -1,0 +1,60 @@
+<div class="offer-details-container">
+  <!-- Loading state -->
+  <div *ngIf="isLoading" class="loading-state">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Cargando detalles de la oferta...</p>
+  </div>
+
+  <!-- Error state -->
+  <div *ngIf="error && !isLoading" class="error-state">
+    <mat-card>
+      <mat-card-content>
+        <mat-icon class="error-icon">error</mat-icon>
+        <h3>Error</h3>
+        <p>{{ error }}</p>
+        <button mat-raised-button color="primary" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Volver
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Sin propuesta aceptada -->
+  <app-active-offer-no-proposal
+    *ngIf="offer && offer.status === 'ACTIVE' && !offer.selectedProposalId && !isLoading"
+    [offer]="offer">
+  </app-active-offer-no-proposal>
+
+  <!-- CUSTOMER FLOW -->
+  <ng-container *ngIf="offer && assignedWorker && !isLoading">
+    <!-- Paso 1: Detalles del proyecto (pendiente) -->
+    <app-project-details-customer
+      *ngIf="uiStep === 'details'"
+      [offer]="offer"
+      [worker]="assignedWorker"
+      [location]="offer.location"
+      (finalize)="onFinalize()"
+      (chat)="goBack()"
+    ></app-project-details-customer>
+
+    <!-- Paso 2: Pantalla de pago -->
+    <app-project-payment-customer
+      *ngIf="uiStep === 'payment'"
+      [amount]="paymentAmount"
+      [worker]="assignedWorker"
+      [offerId]="offer.id"
+      (confirmPayment)="onConfirmPayment()"
+    ></app-project-payment-customer>
+
+    <!-- Paso 4: Reseñas y comentarios (finalizada) -->
+    <app-project-review-customer
+      *ngIf="uiStep === 'review'"
+      [offer]="offer"
+      [worker]="assignedWorker"
+      [reviews]="reviews"
+      [canReview]="canReview"
+      (addReview)="onAddReview($event)"
+    ></app-project-review-customer>
+  </ng-container>
+</div> 

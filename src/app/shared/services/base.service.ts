@@ -54,7 +54,7 @@ export abstract class BaseService<T> {
    * @param resource - The resource to create
    * @returns An Observable of the created resource
    */
-  public create(resource: T): Observable<T> {
+  public create(resource: T | Partial<T>): Observable<T> {
     return this.http
       .post<T>(this.resourcePath(), JSON.stringify(resource), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
@@ -119,6 +119,7 @@ export abstract class BaseService<T> {
       .get<Array<T>>(url, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
+
   /**
    * Retrieves a resource by ID
    * @param id - The ID of the resource to retrieve
