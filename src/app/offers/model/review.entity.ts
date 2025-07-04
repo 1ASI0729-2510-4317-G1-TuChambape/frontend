@@ -10,6 +10,8 @@ export class Review {
   isVerifiedAuthor: boolean;
   rating: number;
   comment: string;
+  reviewerName?: string;
+  reviewerLocation?: string;
 
   constructor(params: ReviewResource) {
     this.id = params.id;
@@ -21,5 +23,7 @@ export class Review {
     this.isVerifiedAuthor = params.isVerifiedAuthor;
     this.rating = params.rating;
     this.comment = params.comment;
+    this.reviewerName = params.authorName;
+    this.reviewerLocation = (params as any).reviewerLocation;
   }
 }

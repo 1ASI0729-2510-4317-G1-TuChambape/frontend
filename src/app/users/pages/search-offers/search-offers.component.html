@@ -1,0 +1,118 @@
+<div class="search-offers-container">
+  <h2>Buscar Ofertas</h2>
+  
+  <!-- Filtros -->
+  <div class="filters-section">
+    <div class="filters-card">
+      <h3>Filtros de Búsqueda</h3>
+      
+      <div class="filter-group">
+        <label for="searchTerm">Buscar por título o descripción:</label>
+        <input 
+          type="text" 
+          id="searchTerm"
+          [(ngModel)]="searchTerm" 
+          placeholder="Ej: plomería, electricidad..."
+          (input)="applyFilters()"
+        >
+      </div>
+
+      <div class="filter-row">
+        <div class="filter-group">
+          <label for="category">Categoría:</label>
+          <select id="category" [(ngModel)]="selectedCategory" (change)="applyFilters()">
+            <option value="">Todas las categorías</option>
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="location">Ubicación:</label>
+          <select id="location" [(ngModel)]="selectedLocation" (change)="applyFilters()">
+            <option value="">Todas las ubicaciones</option>
+            <option *ngFor="let location of locations" [value]="location">
+              {{ location }}
+            </option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="budgetRange">Rango de presupuesto:</label>
+          <select id="budgetRange" [(ngModel)]="selectedBudgetRange" (change)="applyFilters()">
+            <option *ngFor="let range of budgetRanges" [value]="range.value">
+              {{ range.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-actions">
+        <button class="clear-filters-btn" (click)="clearFilters()">
+          Limpiar Filtros
+        </button>
+        <span class="results-count">
+          {{ filteredOffers.length }} ofertas encontradas
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de Ofertas -->
+  <div class="offers-section">
+    <div *ngIf="isLoading" class="loading">
+      <p>Cargando ofertas...</p>
+    </div>
+
+    <div *ngIf="error" class="error-message">
+      <p>{{ error }}</p>
+    </div>
+
+    <div *ngIf="!isLoading && !error && filteredOffers.length === 0" class="no-results">
+      <p>No se encontraron ofertas con los filtros aplicados.</p>
+      <button class="clear-filters-btn" (click)="clearFilters()">
+        Ver todas las ofertas
+      </button>
+    </div>
+
+    <div *ngIf="!isLoading && !error && filteredOffers.length > 0" class="offers-grid">
+      <div *ngFor="let offer of filteredOffers" class="offer-card">
+        <div class="offer-header">
+          <h3 class="offer-title">{{ offer.title }}</h3>
+          <span class="offer-budget">{{ getBudgetDisplay(offer.budget) }}</span>
+        </div>
+
+        <div class="offer-meta">
+          <span class="offer-location">📍 {{ offer.location }}</span>
+          <span class="offer-category">🏷️ {{ offer.category }}</span>
+        </div>
+
+        <p class="offer-description">
+          {{ offer.description | slice:0:150 }}{{ offer.description.length > 150 ? '...' : '' }}
+        </p>
+
+        <div class="offer-requirements" *ngIf="offer.requirements && offer.requirements.length > 0">
+          <h4>Requisitos:</h4>
+          <ul>
+            <li *ngFor="let requirement of offer.requirements.slice(0, 3)">
+              {{ requirement }}
+            </li>
+            <li *ngIf="offer.requirements.length > 3" class="more-requirements">
+              +{{ offer.requirements.length - 3 }} más...
+            </li>
+          </ul>
+        </div>
+
+        <div class="offer-footer">
+          <div class="offer-date">
+            <span>Publicada: {{ offer.createdAt | date:'short' }}</span>
+          </div>
+          <button class="apply-btn" (click)="applyToOffer(offer)">
+            Aplicar Ahora
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -114,6 +114,50 @@ export const routes: Routes = [
       }
     ]
   },
+
+  // Rutas del Worker (Protegidas)
+  {
+    path: 'worker-dashboard',
+    loadComponent: () => import('./users/components/worker-layout/worker-layout.component').then(m => m.WorkerLayoutComponent),
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+      {
+        path: 'inicio',
+        loadComponent: () => import('./users/pages/worker-dashboard/worker-dashboard.component').then(m => m.WorkerDashboardComponent),
+        title: 'Inicio - JobConnect Worker'
+      },
+      {
+        path: 'buscar-ofertas',
+        loadComponent: () => import('./users/pages/search-offers/search-offers.component').then(m => m.SearchOffersComponent),
+        title: 'Buscar Ofertas - JobConnect Worker'
+      },
+      {
+        path: 'reputacion',
+        loadComponent: () => import('./users/pages/worker-reputation/worker-reputation.component').then(m => m.WorkerReputationComponent),
+        title: 'Mi Reputación - JobConnect Worker'
+      },
+      {
+        path: 'perfil',
+        loadComponent: () => import('./users/components/settings-profile/settings-profile.component').then(m => m.SettingsProfileComponent),
+        title: 'Mi Perfil - JobConnect Worker',
+        children: [
+          { path: '', redirectTo: 'datos-personales', pathMatch: 'full' },
+          {
+            path: 'datos-personales',
+            loadComponent: () => import('./users/pages/personal-data/personal-data.component').then(m => m.PersonalDataComponent),
+            title: 'Datos Personales - JobConnect Worker'
+          },
+          {
+            path: 'preferencias',
+            loadComponent: () => import('./users/pages/preferences/preferences.component').then(m => m.PreferencesComponent),
+            title: 'Preferencias - JobConnect Worker'
+          }
+        ]
+      }
+    ]
+  },
+
   {
     path: 'perfil-tecnico/:id',
     loadComponent: () => import('./users/pages/technician-profile/technician-profile.component').then(m => m.TechnicianProfileComponent),

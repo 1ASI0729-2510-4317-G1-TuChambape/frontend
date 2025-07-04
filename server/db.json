@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Carlos Perez",
       "email": "cliente@example.com",
-      "passwordHashed": "",
+      "passwordHashed": "1234",
       "role": "customer",
       "createdAt": "2023-11-01T00:00:00.000Z"
     },
@@ -105,7 +105,8 @@
     },
     {
       "accountId": 9,
-      "id": 6
+      "id": 6,
+      "workerId": 3
     }
   ],
   "customers": [
@@ -179,6 +180,231 @@
       "createdAt": "2025-06-23T12:16:19.226Z",
       "updatedAt": "2025-06-23T12:16:19.226Z",
       "id": 5
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "345435345435",
+      "location": "lima",
+      "bio": "fdgdfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:44:05.517Z",
+      "updatedAt": "2025-07-04T01:44:05.517Z",
+      "id": 6
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:46.252Z",
+      "updatedAt": "2025-07-04T01:49:46.252Z",
+      "id": 7
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:47.045Z",
+      "updatedAt": "2025-07-04T01:49:47.045Z",
+      "id": 8
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:47.710Z",
+      "updatedAt": "2025-07-04T01:49:47.710Z",
+      "id": 9
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:47.944Z",
+      "updatedAt": "2025-07-04T01:49:47.944Z",
+      "id": 10
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:48.152Z",
+      "updatedAt": "2025-07-04T01:49:48.152Z",
+      "id": 11
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "456454545",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:51.620Z",
+      "updatedAt": "2025-07-04T01:49:51.620Z",
+      "id": 12
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "456454545",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:51.801Z",
+      "updatedAt": "2025-07-04T01:49:51.801Z",
+      "id": 13
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "456454545",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:51.994Z",
+      "updatedAt": "2025-07-04T01:49:51.994Z",
+      "id": 14
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "dsfsdfsdfsd",
+      "location": "fsdf",
+      "bio": "sdf",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:54:18.460Z",
+      "updatedAt": "2025-07-04T01:54:18.460Z",
+      "id": 15
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:55:59.014Z",
+      "updatedAt": "2025-07-04T01:55:59.014Z",
+      "id": 16
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:55:59.653Z",
+      "updatedAt": "2025-07-04T01:55:59.653Z",
+      "id": 17
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:55:59.838Z",
+      "updatedAt": "2025-07-04T01:55:59.838Z",
+      "id": 18
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:56:00.018Z",
+      "updatedAt": "2025-07-04T01:56:00.018Z",
+      "id": 19
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:56:00.190Z",
+      "updatedAt": "2025-07-04T01:56:00.190Z",
+      "id": 20
     }
   ],
   "workers": [
@@ -258,6 +484,28 @@
       "bankAccountNumber": "123-456-789",
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "firstName": "CHUPETIN",
+      "lastName": "TRUJILLO",
+      "phone": "34343434",
+      "location": "LIMA",
+      "bio": "DFGDGD",
+      "skills": [
+        "Carpinteria"
+      ],
+      "experience": 4,
+      "certifications": [
+        "nada"
+      ],
+      "accountId": 9,
+      "email": "chupetin@trujillo.com",
+      "role": "technician",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:27:53.027Z",
+      "updatedAt": "2025-07-04T01:27:53.027Z",
+      "id": 3
     }
   ],
   "preferences": [
@@ -315,6 +563,291 @@
       "languages": [
         "spanish",
         "english"
+      ]
+    },
+    {
+      "id": 4,
+      "customerId": 6,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 5,
+      "customerId": 7,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 6,
+      "customerId": 8,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 7,
+      "customerId": 9,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 8,
+      "customerId": 10,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 9,
+      "customerId": 11,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 10,
+      "customerId": 12,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 11,
+      "customerId": 13,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 12,
+      "customerId": 14,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 13,
+      "customerId": 15,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 14,
+      "customerId": 16,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 15,
+      "customerId": 17,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 16,
+      "customerId": 18,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 17,
+      "customerId": 19,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 18,
+      "customerId": 20,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
       ]
     }
   ],

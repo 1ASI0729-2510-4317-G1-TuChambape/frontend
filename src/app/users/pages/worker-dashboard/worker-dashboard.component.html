@@ -1,0 +1,130 @@
+<div class="dashboard-container">
+  <h2>Mi Actividad como Técnico</h2>
+  
+  <section class="activity-section">
+    <div class="card profile-status-card">
+      <h4>Estado de tu Perfil</h4>
+      <div class="chart-placeholder circular-chart">
+        <div class="percentage">{{ profileCompletion }}%</div>
+        <span>Completado</span>
+      </div>
+    </div>
+    
+    <div class="card earnings-card">
+      <h4>Ingresos Totales</h4>
+      <div class="main-number">S/ {{ totalEarnings }}</div>
+      <div class="sub-numbers">
+        <div>
+          <span>Este mes</span>
+          <strong>S/ {{ earningsThisMonth }}</strong>
+        </div>
+        <div>
+          <span>Calificación promedio</span>
+          <strong>{{ averageRating }}/5</strong>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card applications-card">
+      <h4>Ofertas aplicadas esta semana</h4>
+      <span>Última Semana</span>
+      <div class="chart-placeholder bar-chart">
+        <div class="bars-container">
+          <div *ngFor="let item of applicationsData" class="bar-item">
+            <div class="bar" [style.height.%]="(item.value / maxApplicationValue) * 100"></div>
+            <span class="bar-label">{{ item.day }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2>Resumen de Ofertas</h2>
+  <section class="offers-section">
+    <div class="card offers-stats-card">
+      <h4>Estadísticas de Ofertas</h4>
+      <div class="offers-stats">
+        <div>
+          <span class="icon-placeholder">📝</span>
+          <span>Total aplicadas</span>
+          <strong>{{ totalOffersApplied }}</strong>
+        </div>
+        <div>
+          <span class="icon-placeholder">✅</span>
+          <span>Ganadas</span>
+          <strong>{{ offersWon }}</strong>
+        </div>
+        <div>
+          <span class="icon-placeholder">🔄</span>
+          <span>En progreso</span>
+          <strong>{{ offersInProgress }}</strong>
+        </div>
+        <div>
+          <span class="icon-placeholder">⏳</span>
+          <span>Pendientes</span>
+          <strong>{{ pendingOffers }}</strong>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card reviews-card">
+      <h4>Reseñas y Valoraciones</h4>
+      <div class="reviews-summary">
+        <div>
+          <span>Total de reseñas</span>
+          <strong>{{ totalReviews }}</strong>
+        </div>
+        <div>
+          <span>Calificación promedio</span>
+          <strong>{{ averageRating }}/5 ⭐</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2>Ofertas Disponibles</h2>
+  <section class="available-offers-section">
+    <div class="card available-offers-card">
+      <h4>Ofertas Activas para Aplicar</h4>
+      <div class="offers-list" *ngIf="availableOffers.length > 0; else noOffers">
+        <div *ngFor="let offer of availableOffers" class="offer-item">
+          <div class="offer-header">
+            <h5>{{ offer.title }}</h5>
+            <span class="offer-budget">S/ {{ offer.budget }}</span>
+          </div>
+          <p class="offer-description">{{ offer.description | slice:0:100 }}...</p>
+          <div class="offer-details">
+            <span class="offer-location">📍 {{ offer.location }}</span>
+            <span class="offer-category">🏷️ {{ offer.category }}</span>
+          </div>
+          <button class="apply-button">Aplicar</button>
+        </div>
+      </div>
+      <ng-template #noOffers>
+        <p class="no-offers">No hay ofertas disponibles en este momento.</p>
+      </ng-template>
+    </div>
+  </section>
+
+  <h2>Últimas Reseñas</h2>
+  <section class="reviews-section">
+    <div class="card recent-reviews-card">
+      <h4>Reseñas Recientes de Clientes</h4>
+      <div class="reviews-list" *ngIf="recentReviews.length > 0; else noReviews">
+        <div *ngFor="let review of recentReviews" class="review-item">
+          <div class="review-header">
+            <div class="review-rating">
+              <span *ngFor="let star of [1,2,3,4,5]" 
+                    [class.filled]="star <= review.rating">⭐</span>
+            </div>
+            <span class="review-date">{{ review.createdAt | date:'short' }}</span>
+          </div>
+          <p class="review-comment">{{ review.comment }}</p>
+        </div>
+      </div>
+      <ng-template #noReviews>
+        <p class="no-reviews">Aún no tienes reseñas de clientes.</p>
+      </ng-template>
+    </div>
+  </section>
+</div> 

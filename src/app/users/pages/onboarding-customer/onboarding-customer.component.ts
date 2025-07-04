@@ -78,11 +78,13 @@ export class OnboardingCustomerComponent implements OnInit {
           const user = users[0];
           if (user) {
             this.userService.update(user.id, { ...user, customerId: createdCustomer.id }).subscribe(() => {
+              // Guardar el user actualizado en localStorage
+              localStorage.setItem('jobconnect_user', JSON.stringify({ ...user, customerId: createdCustomer.id }));
+              this.success = true;
               this.router.navigate(['/dashboard']);
             });
           }
         });
-        this.success = true;
       },
       error: () => this.error = 'Error creating customer.'
     });

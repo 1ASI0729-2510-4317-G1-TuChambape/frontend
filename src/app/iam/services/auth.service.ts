@@ -149,6 +149,17 @@ export class AuthService extends BaseService<Account> {
       const account = parsedSession.account as Account;
       
       if (account && account.id && account.email) {
+        // Validar si el usuario tiene perfil completo (customerId o workerId)
+        // Si no, limpiar sesión para evitar loops de onboarding
+        const userData = localStorage.getItem('jobconnect_user');
+        if (userData) {
+          const user = JSON.parse(userData);
+          if ((account.role === 'customer' && !user.customerId) || (account.role === 'worker' && !user.workerId)) {
+            console.log('AUTH_SERVICE: Usuario sin perfil completo, limpiando sesión.');
+            this.clearSessionFromLocalStorage();
+            return;
+          }
+        }
         this.currentAccount = account;
         console.log('AUTH_SERVICE: Sesión restaurada desde localStorage:', account.email);
       } else {

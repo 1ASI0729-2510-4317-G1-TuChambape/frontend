@@ -141,6 +141,8 @@ export class LoginComponent implements OnInit {
         }
 
         const user = users[0];
+        // Guardar el user en localStorage para restauración robusta
+        localStorage.setItem('jobconnect_user', JSON.stringify(user));
         
         // Verificar si tiene customerId o workerId
         if (account.role === 'customer') {
@@ -168,8 +170,8 @@ export class LoginComponent implements OnInit {
             return this.workerService.search({ id: user.workerId }).pipe(
               map((workers: Worker[]) => {
                 if (workers.length > 0) {
-                  // Tiene perfil completo, redirigir al dashboard
-                  this.router.navigate(['/dashboard/inicio']);
+                  // Tiene perfil completo, redirigir al worker dashboard
+                  this.router.navigate(['/worker-dashboard']);
                   return null;
                 } else {
                   // No tiene perfil de worker, redirigir al onboarding
