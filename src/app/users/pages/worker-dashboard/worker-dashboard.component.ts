@@ -9,6 +9,9 @@ import { Offer } from '../../../offers/model/offer.entity';
 import { Review } from '../../../offers/model/review.entity';
 import { UserService } from '../../services/user.service';
 import { ProposalService } from '../../../proposals/services/proposal.service';
+import { OfferStatus } from '../../../offers/services/top-headlines.response';
+import { PaymentService } from '../../../payments/services/payment.service';
+import { PaymentStatus } from '../../../payments/services/top-headlines.response';
 
 @Component({
   selector: 'app-worker-dashboard',
@@ -46,6 +49,7 @@ export class WorkerDashboardComponent implements OnInit {
   // Ofertas disponibles
   availableOffers: Offer[] = [];
   recentReviews: Review[] = [];
+  finishedOffers: Offer[] = [];
 
   constructor(
     private userSessionService: UserSessionService,
@@ -53,12 +57,13 @@ export class WorkerDashboardComponent implements OnInit {
     private reviewService: ReviewService,
     private userService: UserService,
     private proposalService: ProposalService,
-    private workerService: WorkerService
+    private workerService: WorkerService,
+    private paymentService: PaymentService
   ) { }
 
   ngOnInit(): void {
     this.loadWorkerProfile();
-    this.loadAvailableOffers();
+    this.loadFinishedOffers();
   }
 
   loadProposals(): void {
@@ -157,5 +162,38 @@ export class WorkerDashboardComponent implements OnInit {
         }
       });
     }
+  }
+
+  loadFinishedOffers(): void {
+    // Cargar todas las ofertas finalizadas asociadas al worker
+    const currentAccount = this.userSessionService.getCurrentAccount();
+    if (!currentAccount) return;
+    this.userService.search({ accountId: currentAccount.id }).subscribe({
+      next: (users) => {
+        if (users.length > 0 && users[0].workerId) {
+          const workerId = users[0].workerId;
+          this.proposalService.getProposalsByWorker(workerId).subscribe({
+            next: (proposals) => {
+              const finishedOfferIds = proposals.map(p => p.offerId);
+              if (finishedOfferIds.length === 0) {
+                this.finishedOffers = [];
+                this.totalEarnings = 0;
+                return;
+              }
+              // Obtener todas las ofertas y filtrar las finalizadas
+              Promise.all(finishedOfferIds.map(id => this.offerService.getOfferById(id.toString()).toPromise()))
+                .then(offers => {
+                  this.finishedOffers = offers.filter(o => o && o.status === OfferStatus.FINISHED) as Offer[];
+                  // Calcular ingresos solo de ofertas finalizadas y pagadas
+                  Promise.all(this.finishedOffers.map(offer => this.paymentService.getPaymentsByOffer(offer.id).toPromise()))
+                    .then(paymentsArr => {
+                      this.totalEarnings = paymentsArr.flat().filter((p): p is any => !!p && typeof p.amount === 'number' && p.status === PaymentStatus.PAID).reduce((sum, p) => sum + p.amount, 0);
+                    });
+                });
+            }
+          });
+        }
+      }
+    });
   }
 } 

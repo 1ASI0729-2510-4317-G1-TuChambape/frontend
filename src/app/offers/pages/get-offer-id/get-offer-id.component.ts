@@ -17,6 +17,8 @@ import { ProjectPaymentCustomerComponent } from '../../components/project-paymen
 import { ProjectReviewCustomerComponent } from '../../components/project-review-customer/project-review-customer.component';
 import { ActiveOfferNoProposalComponent } from '../../components/active-offer-no-proposal/active-offer-no-proposal.component';
 import { ReviewService } from '../../services/review.service';
+import { PaymentService } from '../../../payments/services/payment.service';
+import { PaymentStatus } from '../../../payments/services/top-headlines.response';
 
 @Component({
   selector: 'app-get-offer-id',
@@ -57,7 +59,8 @@ export class GetOfferIdComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private offersProposalsService: OffersProposalsService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private paymentService: PaymentService
   ) { }
 
   ngOnInit(): void {
@@ -153,6 +156,19 @@ export class GetOfferIdComponent implements OnInit {
   }
 
   onConfirmPayment() {
+    // Actualizar el estado del pago a PAID
+    if (!this.offer) return;
+    this.paymentService.getPaymentsByOffer(this.offer.id).subscribe(payments => {
+      if (payments.length > 0) {
+        const payment = payments[0];
+        this.paymentService.updatePayment(payment.id, { status: PaymentStatus.PAID }).subscribe(() => {
+          // Refrescar el pago y loguear para depuración
+          this.paymentService.getPaymentById(payment.id).subscribe(updated => {
+            console.log('DEBUG pago actualizado:', updated);
+          });
+        });
+      }
+    });
     // Simular actualización de estado de la oferta a 'finalizada' y permitir reseña
     this.canReview = true;
   }

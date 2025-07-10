@@ -32,7 +32,7 @@ export class PaymentService extends BaseService<Payment> {
   }
 
   updatePayment(id: number, updateData: Partial<Payment>): Observable<Payment | null> {
-    return this.update(id, updateData).pipe(
+    return this.patch(id, updateData).pipe(
       map((resource) => resource ? PaymentAssembler.toEntityFromResource(resource) : null)
     );
   }

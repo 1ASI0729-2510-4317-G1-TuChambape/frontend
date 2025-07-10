@@ -82,12 +82,12 @@
     </div>
   </section>
 
-  <h2>Ofertas Disponibles</h2>
+  <h2>Ofertas Finalizadas</h2>
   <section class="available-offers-section">
     <div class="card available-offers-card">
-      <h4>Ofertas Activas para Aplicar</h4>
-      <div class="offers-list" *ngIf="availableOffers.length > 0; else noOffers">
-        <div *ngFor="let offer of availableOffers" class="offer-item">
+      <h4>Ofertas Finalizadas</h4>
+      <div class="offers-list" *ngIf="finishedOffers.length > 0; else noFinishedOffers">
+        <div *ngFor="let offer of finishedOffers" class="offer-item">
           <div class="offer-header">
             <h5>{{ offer.title }}</h5>
             <span class="offer-budget">S/ {{ offer.budget.min }} - S/ {{ offer.budget.max }} ({{ offer.budget.currency }})</span>
@@ -97,11 +97,11 @@
             <span class="offer-location">📍 {{ offer.location }}</span>
             <span class="offer-category">🏷️ {{ offer.category }}</span>
           </div>
-          <button class="apply-button">Aplicar</button>
+          <span class="offer-status finished">Finalizada</span>
         </div>
       </div>
-      <ng-template #noOffers>
-        <p class="no-offers">No hay ofertas disponibles en este momento.</p>
+      <ng-template #noFinishedOffers>
+        <p class="no-offers">No tienes ofertas finalizadas aún.</p>
       </ng-template>
     </div>
   </section>

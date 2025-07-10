@@ -87,6 +87,21 @@ export abstract class BaseService<T> {
       .pipe(retry(2), catchError(this.handleError));
   }
   /**
+   * Partially updates an existing resource (PATCH)
+   * @param id - The ID of the resource to update
+   * @param resource - The partial resource data
+   * @returns An Observable of the updated resource
+   */
+  public patch(id: any, resource: Partial<T>): Observable<T> {
+    return this.http
+      .patch<T>(
+        `${this.resourcePath()}/${id}`,
+        JSON.stringify(resource),
+        this.httpOptions
+      )
+      .pipe(retry(2), catchError(this.handleError));
+  }
+  /**
    * Retrieves all resources
    * @returns An Observable array of all resources
    */

@@ -107,7 +107,7 @@
           @if (proposalsMap.has(offer.id)) {
           <div>
             @if(proposalsMap.get(offer.id)?.status === 'PENDING') {
-            <button class="apply-btn apply-btn-pending" (click)="viewProposal(offer.id)">
+            <button class="apply-btn apply-btn-pending" (click)="viewProposal(offer.id, false)">
               Ver Propuesta
             </button>
             } @else if(proposalsMap.get(offer.id)?.status === 'ACCEPTED') {

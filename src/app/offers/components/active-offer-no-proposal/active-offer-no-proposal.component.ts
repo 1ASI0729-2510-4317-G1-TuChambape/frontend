@@ -9,11 +9,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { OfferService } from '../../services/offer.service';
 import { EventBusService } from '../../../shared/services/event-bus.service';
 import { PaymentCreatedEvent } from '../../../shared/events/payment-confirmed.event';
+import { ComponentType } from '@angular/cdk/portal';
+import { Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-active-offer-no-proposal',
@@ -41,6 +45,7 @@ export class ActiveOfferNoProposalComponent implements OnInit {
 
   constructor(
     private offersProposalsService: OffersProposalsService,
+    private dialog: MatDialog,
   ) {}
 
   router = inject(Router);
@@ -92,6 +97,13 @@ export class ActiveOfferNoProposalComponent implements OnInit {
     });
   }
 
+  viewProposal(proposal: OfferProposalDto) {
+    this.dialog.open(ProposalDetailDialogComponent, {
+      data: proposal,
+      width: '400px'
+    });
+  }
+
   getBudgetRange(): string {
     if (this.offer.budget.min && this.offer.budget.max) {
       return `S/ ${this.offer.budget.min} - S/ ${this.offer.budget.max}`;
@@ -114,4 +126,37 @@ export class ActiveOfferNoProposalComponent implements OnInit {
       day: 'numeric'
     });
   }
+}
+
+// Componente de diálogo para mostrar el detalle de la propuesta
+@Component({
+  selector: 'app-proposal-detail-dialog',
+  standalone: true,
+  imports: [MatDialogModule, CommonModule],
+  template: `
+    <h2 mat-dialog-title>Detalle de la Propuesta</h2>
+    <mat-dialog-content>
+      <p><strong>Mensaje:</strong> {{ data.message }}</p>
+      <p><strong>Precio:</strong> S/ {{ data.price }}</p>
+      <p><strong>Estado:</strong> {{ data.status || 'N/A' }}</p>
+      <p><strong>Fecha:</strong> {{ data.createdAt | date:'short' }}</p>
+      <p><strong>Técnico:</strong> {{ data.workerName }}</p>
+      <p><strong>Rating:</strong> {{ data.rating || 0 }} ({{ data.reviewCount || 0 }} reseñas)</p>
+      <ng-container *ngIf="data.yapeNumber || data.plinNumber || data.bankAccountNumber">
+        <h4>Métodos de pago:</h4>
+        <ul>
+          <li *ngIf="data.yapeNumber">Yape: {{ data.yapeNumber }}</li>
+          <li *ngIf="data.plinNumber">Plin: {{ data.plinNumber }}</li>
+          <li *ngIf="data.bankAccountNumber">Banco: {{ data.bankAccountNumber }}</li>
+        </ul>
+      </ng-container>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cerrar</button>
+    </mat-dialog-actions>
+  `,
+  providers: [DatePipe]
+})
+export class ProposalDetailDialogComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 } 

@@ -138,6 +138,11 @@ export const routes: Routes = [
         title: 'Mi Reputación - JobConnect Worker'
       },
       {
+        path: 'mis-propuestas',
+        loadComponent: () => import('./users/pages/my-proposals.component').then(m => m.MyProposalsComponent),
+        title: 'Mis Propuestas - JobConnect Worker'
+      },
+      {
         path: 'perfil',
         loadComponent: () => import('./users/components/settings-profile/settings-profile.component').then(m => m.SettingsProfileComponent),
         title: 'Mi Perfil - JobConnect Worker',
