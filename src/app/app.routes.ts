@@ -152,6 +152,11 @@ export const routes: Routes = [
             path: 'preferencias',
             loadComponent: () => import('./users/pages/preferences/preferences.component').then(m => m.PreferencesComponent),
             title: 'Preferencias - JobConnect Worker'
+          },
+          {
+            path: 'datos-trabajador',
+            loadComponent: () => import('./users/pages/worker-data/worker-data.component').then(m => m.WorkerDataComponent),
+            title: 'Datos de Trabajador - JobConnect Worker'
           }
         ]
       }

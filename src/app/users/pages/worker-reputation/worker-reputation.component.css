@@ -69,11 +69,11 @@
   flex: 1;
 }
 
+/* Branding Colors: Azul #0076FF, Naranja #FFA800 */
+
 .rating-number {
-  font-size: 4em;
-  font-weight: bold;
-  color: #28a745;
-  line-height: 1;
+  color: #0076FF;
+  font-size: 4rem;
 }
 
 .rating-stars {
@@ -107,7 +107,7 @@
 
 .stat-number {
   display: block;
-  font-size: 2.5em;
+  font-size: 4rem;
   font-weight: bold;
   color: #333;
 }
@@ -146,7 +146,7 @@
 
 .rating-bar {
   height: 100%;
-  background-color: #28a745;
+  background-color: #0076FF;
   border-radius: 10px;
   transition: width 0.5s ease;
 }
@@ -191,9 +191,20 @@
 }
 
 .filter-btn.active {
-  background-color: #28a745;
+  background-color: #0076FF;
   color: white;
-  border-color: #28a745;
+  border-color: #0076FF;
+}
+
+/* Naranja para acentos, advertencias, badges, etc */
+.badge-warning, .badge-error {
+  background-color: #FFA800;
+  color: #222;
+}
+
+.highlight {
+  color: #FFA800;
+  font-weight: bold;
 }
 
 /* Lista de Reseñas */

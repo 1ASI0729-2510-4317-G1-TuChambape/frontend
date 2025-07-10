@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReviewService } from '../../../offers/services/review.service';
 import { UserSessionService } from '../../services/user-session.service';
-import { WorkerService } from '../../services/worker.service';
 import { Review } from '../../../offers/model/review.entity';
-import { Worker } from '../../model/worker.entity';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-worker-reputation',
@@ -14,7 +13,7 @@ import { Worker } from '../../model/worker.entity';
   styleUrls: ['./worker-reputation.component.css']
 })
 export class WorkerReputationComponent implements OnInit {
-  workerProfile: Worker | null = null;
+  userId: number = 0;
   reviews: Review[] = [];
   isLoading = false;
   error: string | null = null;
@@ -30,8 +29,8 @@ export class WorkerReputationComponent implements OnInit {
 
   constructor(
     private userSessionService: UserSessionService,
-    private workerService: WorkerService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -47,29 +46,22 @@ export class WorkerReputationComponent implements OnInit {
       return;
     }
 
-    // Buscar el worker por email
-    this.workerService.search({ email: currentAccount.email }).subscribe({
-      next: (workers) => {
-        if (workers.length > 0) {
-          this.workerProfile = workers[0];
+    this.userService.search({ accountId: currentAccount.id }).subscribe({
+      next: (users) => {
+        if (users.length > 0) {
+          this.userId = users[0].id;
           this.loadWorkerReviews();
-        } else {
-          this.error = 'No se encontró el perfil de worker.';
         }
-        this.isLoading = false;
-      },
-      error: () => {
-        this.error = 'No se pudo cargar el perfil.';
-        this.isLoading = false;
       }
     });
   }
 
   loadWorkerReviews(): void {
-    if (!this.workerProfile) return;
+    if (!this.userId) return;
 
-    this.reviewService.getReviewsByRevieweeUserId(this.workerProfile.id).subscribe({
+    this.reviewService.getReviewsByReviewerUserId(this.userId).subscribe({
       next: (reviews) => {
+        this.isLoading = false;
         this.reviews = reviews;
         this.filteredReviews = reviews;
         this.calculateReputationStats();
@@ -77,6 +69,7 @@ export class WorkerReputationComponent implements OnInit {
       error: (error) => {
         console.error('Error cargando reseñas:', error);
         this.error = 'Error al cargar las reseñas.';
+        this.isLoading = false;
       }
     });
   }

@@ -7,6 +7,8 @@ import { ReviewService } from '../../../offers/services/review.service';
 import { Worker } from '../../model/worker.entity';
 import { Offer } from '../../../offers/model/offer.entity';
 import { Review } from '../../../offers/model/review.entity';
+import { UserService } from '../../services/user.service';
+import { ProposalService } from '../../../proposals/services/proposal.service';
 
 @Component({
   selector: 'app-worker-dashboard',
@@ -16,27 +18,28 @@ import { Review } from '../../../offers/model/review.entity';
   styleUrls: ['./worker-dashboard.component.css']
 })
 export class WorkerDashboardComponent implements OnInit {
-  workerProfile: Worker | null = null;
+  workerProfileId: number = 0;
+  userId: number = 0;
   isLoading = false;
   error: string | null = null;
 
   // Datos simulados para estadísticas del worker
-  profileCompletion: number = 75;
+  profileCompletion: number = 0;
   totalOffersApplied: number = 12;
   offersWon: number = 8;
   offersInProgress: number = 3;
   pendingOffers: number = 1;
 
   // Estadísticas de ingresos
-  totalEarnings: number = 2500;
-  earningsThisMonth: number = 800;
-  averageRating: number = 4.7;
+  totalEarnings: number = 0;
+  earningsThisMonth: number = 0;
+  averageRating: number = 0;
   totalReviews: number = 15;
 
   // Para el gráfico de ofertas aplicadas
   applicationsData = [
-    { day: 'L', value: 2 }, { day: 'M', value: 1 }, { day: 'M', value: 3 },
-    { day: 'J', value: 0 }, { day: 'V', value: 2 }, { day: 'S', value: 1 }, { day: 'D', value: 1 }
+    { day: 'D', value: 0 }, { day: 'L', value: 0 }, { day: 'Ma', value: 0 }, { day: 'Mi', value: 0 },
+    { day: 'J', value: 0 }, { day: 'V', value: 0 }, { day: 'S', value: 0 }
   ];
   maxApplicationValue = 3;
 
@@ -46,15 +49,35 @@ export class WorkerDashboardComponent implements OnInit {
 
   constructor(
     private userSessionService: UserSessionService,
-    private workerService: WorkerService,
     private offerService: OfferService,
-    private reviewService: ReviewService
-  ) {}
+    private reviewService: ReviewService,
+    private userService: UserService,
+    private proposalService: ProposalService,
+    private workerService: WorkerService
+  ) { }
 
   ngOnInit(): void {
     this.loadWorkerProfile();
     this.loadAvailableOffers();
-    this.loadRecentReviews();
+  }
+
+  loadProposals(): void {
+    this.proposalService.getProposalsByWorker(this.workerProfileId).subscribe({
+      next: (proposals) => {
+        this.totalOffersApplied = proposals.length;
+        this.offersWon = proposals.filter(proposal => proposal.status === 'ACCEPTED').length;
+        this.offersInProgress = proposals.filter(proposal => proposal.status === 'ACCEPTED').length;
+        this.pendingOffers = proposals.filter(proposal => proposal.status === 'PENDING').length;
+        this.totalEarnings = proposals.filter(proposal => proposal.status === 'ACCEPTED').reduce((sum, proposal) => sum + proposal.price, 0);
+        this.earningsThisMonth = proposals.filter(proposal => proposal.status === 'ACCEPTED' && proposal.createdAt >= new Date(new Date().getFullYear(), new Date().getMonth(), 1)).reduce((sum, proposal) => sum + proposal.price, 0);
+        this.applicationsData = this.applicationsData.map((item, i) => ({
+          ...item,
+          value: proposals.filter((proposal) => {
+            return proposal.status === 'ACCEPTED' && new Date(proposal.createdAt).getDay() === i;
+          }).length
+        }));
+      }
+    });
   }
 
   loadWorkerProfile(): void {
@@ -66,20 +89,42 @@ export class WorkerDashboardComponent implements OnInit {
       return;
     }
 
-    // Buscar el worker por email
-    this.workerService.search({ email: currentAccount.email }).subscribe({
-      next: (workers) => {
-        if (workers.length > 0) {
-          this.workerProfile = workers[0];
+    this.userService.search({ accountId: currentAccount.id }).subscribe({
+      next: (users) => {
+        if (users.length > 0) {
+          this.workerProfileId = users[0].workerId!;
+          this.userId = users[0].id;
+          this.loadProfileCompletion();
           this.loadWorkerReviews();
-        } else {
-          this.error = 'No se encontró el perfil de worker.';
+          this.loadProposals();
         }
-        this.isLoading = false;
+      }
+    });
+  }
+
+  loadProfileCompletion(): void {
+    this.workerService.getWorkerById(this.workerProfileId).subscribe({
+      next: (worker) => {
+        // Lista de campos requeridos para el perfil
+        const requiredFields = [
+          worker.firstName,
+          worker.lastName,
+          worker.email,
+          worker.phone,
+          worker.avatar,
+          worker.location,
+          worker.bio,
+          worker.skills && worker.skills.length > 0 ? 'ok' : '',
+          worker.experience !== undefined && worker.experience !== null ? 'ok' : '',
+          worker.certifications && worker.certifications.length > 0 ? 'ok' : '',
+          worker.availability && Object.keys(worker.availability || {}).length > 0 ? 'ok' : '',
+          worker.yapeNumber || worker.plinNumber || worker.bankAccountNumber ? 'ok' : '' 
+        ];
+        const filledFields = requiredFields.filter(f => !!f);
+        this.profileCompletion = Math.round((filledFields.length / requiredFields.length) * 100);
       },
-      error: () => {
-        this.error = 'No se pudo cargar el perfil.';
-        this.isLoading = false;
+      error: (error) => {
+        console.error('Error cargando perfil del worker:', error);
       }
     });
   }
@@ -96,27 +141,15 @@ export class WorkerDashboardComponent implements OnInit {
     });
   }
 
-  loadRecentReviews(): void {
-    if (this.workerProfile) {
-      this.reviewService.getReviewsByRevieweeUserId(this.workerProfile.id).subscribe({
-        next: (reviews) => {
-          this.recentReviews = reviews.slice(0, 3); // Mostrar solo las últimas 3
-        },
-        error: (error) => {
-          console.error('Error cargando reseñas:', error);
-        }
-      });
-    }
-  }
-
   loadWorkerReviews(): void {
-    if (this.workerProfile) {
-      this.reviewService.getReviewsByRevieweeUserId(this.workerProfile.id).subscribe({
+    if (this.userId) {
+      this.reviewService.getReviewsByReviewerUserId(this.userId).subscribe({
         next: (reviews) => {
           this.totalReviews = reviews.length;
           if (reviews.length > 0) {
+            this.recentReviews = reviews.slice(0, 3);
             const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-            this.averageRating = totalRating / reviews.length;
+            this.averageRating = Number((totalRating / reviews.length).toFixed(2));
           }
         },
         error: (error) => {

@@ -27,6 +27,7 @@ export class Worker {
     viernes?: string;
     sabado?: string;
     domingo?: string;
+    [key: string]: string | undefined;
   };
   yapeNumber?: string;
   plinNumber?: string;

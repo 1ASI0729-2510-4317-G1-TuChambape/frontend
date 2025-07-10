@@ -4,6 +4,7 @@ export class Review {
   id: number;
   offerId: number;
   authorUserId: number;
+  reviewerUserId: number;
   authorName: string;
   authorImageUrl: string;
   createdAt: string | Date;
@@ -17,6 +18,7 @@ export class Review {
     this.id = params.id;
     this.offerId = params.offerId;
     this.authorUserId = params.authorUserId;
+    this.reviewerUserId = params.reviewerUserId;
     this.authorName = params.authorName;
     this.authorImageUrl = params.authorImageUrl;
     this.createdAt = params.createdAt;

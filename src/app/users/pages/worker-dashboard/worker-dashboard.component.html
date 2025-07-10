@@ -90,7 +90,7 @@
         <div *ngFor="let offer of availableOffers" class="offer-item">
           <div class="offer-header">
             <h5>{{ offer.title }}</h5>
-            <span class="offer-budget">S/ {{ offer.budget }}</span>
+            <span class="offer-budget">S/ {{ offer.budget.min }} - S/ {{ offer.budget.max }} ({{ offer.budget.currency }})</span>
           </div>
           <p class="offer-description">{{ offer.description | slice:0:100 }}...</p>
           <div class="offer-details">

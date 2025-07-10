@@ -15,6 +15,7 @@ export class ReviewAssembler {
       id: resources.id,
       offerId: resources.offerId,
       authorUserId: resources.authorUserId,
+      reviewerUserId: resources.reviewerUserId,
       authorName: resources.authorName,
       authorImageUrl: resources.authorImageUrl,
       createdAt: resources.createdAt,

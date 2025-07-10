@@ -38,5 +38,6 @@ export interface ReviewResource {
   createdAt: string | Date;
   isVerifiedAuthor: boolean;
   rating: number;
+  reviewerUserId: number;
   comment: string;
 }

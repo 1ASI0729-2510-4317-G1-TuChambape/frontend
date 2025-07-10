@@ -23,7 +23,7 @@ export class OffersProposalsService {
           proposals.map(proposal =>
             this.workerService.getById(proposal.workerId).pipe(
               switchMap(worker =>
-                this.reviewService.getReviewsByRevieweeUserId(worker.id).pipe(
+                this.reviewService.getReviewsByReviewerUserId(worker.id).pipe(
                   map(reviews => {
                     const rating = reviews.length ? reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length : 0;
                     const reviewCount = reviews.length;
@@ -47,7 +47,7 @@ export class OffersProposalsService {
       switchMap(proposal => {
         return this.workerService.getById(proposal.workerId).pipe(
           switchMap(worker =>
-            this.reviewService.getReviewsByRevieweeUserId(worker.id).pipe(
+            this.reviewService.getReviewsByReviewerUserId(worker.id).pipe(
               map(reviews => {
                 const rating = reviews.length ? reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length : 0;
                 const reviewCount = reviews.length;

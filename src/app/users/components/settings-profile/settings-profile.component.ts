@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterModule } from '@angular/router'; // Para router-outlet y routerLink
+import { RouterOutlet, RouterModule } from '@angular/router';
+import { UserSessionService } from '../../services/user-session.service';
 
 @Component({
   selector: 'app-settings-profile',
@@ -11,4 +12,14 @@ import { RouterOutlet, RouterModule } from '@angular/router'; // Para router-out
 })
 export class SettingsProfileComponent {
   constructor() { }
+  role: string = '';
+
+  userSessionService: UserSessionService = inject(UserSessionService);
+
+  ngOnInit(): void {
+    const account = this.userSessionService.getCurrentAccount();
+    if (account) {
+      this.role = account.role;
+    }
+  }
 }

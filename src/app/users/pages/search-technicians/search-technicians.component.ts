@@ -60,6 +60,7 @@ export class SearchTechniciansComponent implements OnInit {
       next: (workers) => {
         this.technicians = workers;
         this.isLoading = false;
+        this.applyFilters();
       },
       error: () => {
         this.error = 'No se pudo cargar la lista de técnicos.';

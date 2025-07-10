@@ -19,8 +19,8 @@ export class ReviewService extends BaseService<ReviewResource> {
     );
   }
 
-  getReviewsByRevieweeUserId(userId: number): Observable<Review[]> {
-    return this.search({ revieweeUserId: userId }).pipe(
+  getReviewsByReviewerUserId(userId: number): Observable<Review[]> {
+    return this.search({ reviewerUserId: userId }).pipe(
       map(reviews => ReviewAssembler.toEntitiesFromResponse(reviews))
     );
   }

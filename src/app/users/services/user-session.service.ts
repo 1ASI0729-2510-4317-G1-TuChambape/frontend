@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../../iam/model/account.entity';
 import { AuthService } from '../../iam/services/auth.service';
-import { User } from '../model/user.entity';
-
 // Interfaz para máxima independencia
 export interface IUserSessionService {
   getCurrentAccount(): Account | null;

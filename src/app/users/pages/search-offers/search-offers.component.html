@@ -1,20 +1,15 @@
 <div class="search-offers-container">
   <h2>Buscar Ofertas</h2>
-  
+
   <!-- Filtros -->
   <div class="filters-section">
     <div class="filters-card">
       <h3>Filtros de Búsqueda</h3>
-      
+
       <div class="filter-group">
         <label for="searchTerm">Buscar por título o descripción:</label>
-        <input 
-          type="text" 
-          id="searchTerm"
-          [(ngModel)]="searchTerm" 
-          placeholder="Ej: plomería, electricidad..."
-          (input)="applyFilters()"
-        >
+        <input type="text" id="searchTerm" [(ngModel)]="searchTerm" placeholder="Ej: plomería, electricidad..."
+          (input)="applyFilters()">
       </div>
 
       <div class="filter-row">
@@ -108,11 +103,36 @@
           <div class="offer-date">
             <span>Publicada: {{ offer.createdAt | date:'short' }}</span>
           </div>
-          <button class="apply-btn" (click)="applyToOffer(offer)">
-            Aplicar Ahora
-          </button>
+
+          @if (proposalsMap.has(offer.id)) {
+          <div>
+            @if(proposalsMap.get(offer.id)?.status === 'PENDING') {
+            <button class="apply-btn apply-btn-pending" (click)="viewProposal(offer.id)">
+              Ver Propuesta
+            </button>
+            } @else if(proposalsMap.get(offer.id)?.status === 'ACCEPTED') {
+            <button class="apply-btn apply-btn-accepted" (click)="viewProposal(offer.id, false)">
+              Propuesta Aceptada
+            </button>
+            } @else if(proposalsMap.get(offer.id)?.status === 'REJECTED') {
+            <button class="apply-btn apply-btn-rejected" (click)="viewProposal(offer.id, false)">
+              Propuesta Rechazada
+            </button>
+            } @else {
+            <button class="apply-btn" (click)="viewProposal(offer.id)">
+              Ver Propuesta
+            </button>
+            }
+          </div>
+          } @else {
+          <div>
+            <button class="apply-btn" (click)="applyToOffer(offer)">
+              Aplicar Ahora
+            </button>
+          </div>
+          }
         </div>
       </div>
     </div>
   </div>
-</div> 
+</div>

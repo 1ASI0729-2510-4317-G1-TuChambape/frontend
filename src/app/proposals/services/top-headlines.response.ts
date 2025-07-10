@@ -4,7 +4,7 @@ export enum ProposalStatus {
   PENDING = 'PENDING',
   ACCEPTED = 'ACCEPTED',
   REJECTED = 'REJECTED',
-  WITHDRAWN = 'WITHDRAWN'
+  FINISHED = 'FINISHED'
 }
 
 export interface ProposalResource {

@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Aplicar a la Oferta</h2>
+<mat-dialog-content>
+  @if (data.proposal && !data.isEdit) {
+  <p>Propuesta: {{ data.proposal.message }}</p>
+  <p>Precio: S/. {{ data.proposal.price }}</p>
+  } @else {
+  <form #applyForm="ngForm">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Mensaje para el cliente</mat-label>
+      <textarea matInput [(ngModel)]="message" name="message" required placeholder="Escribe un mensaje..."
+        rows="3"></textarea>
+    </mat-form-field>
+    <mat-form-field style="width: 100%;">
+      <mat-label>Precio estimado (S/)</mat-label>
+      <input matInput type="number" [(ngModel)]="price" name="price" required min="1" placeholder="Ej: 150" />
+    </mat-form-field>
+  </form>
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close()">Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="!message || !price || !data.isEdit" (click)="submit()">
+    @if (data.proposal) {
+    @if (data.proposal.status === 'ACCEPTED') {
+    Propuesta Aceptada
+    } @else if (data.proposal.status === 'REJECTED') {
+    Propuesta Rechazada
+    } @else {
+    Editar Propuesta
+    }
+    } @else {
+    Enviar Propuesta
+    }
+  </button>
+</mat-dialog-actions>

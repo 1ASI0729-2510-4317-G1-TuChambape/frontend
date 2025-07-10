@@ -54,6 +54,18 @@
   background-color: #fff;
 }
 
+.apply-btn-pending {
+  background-color: #ffc107 !important;
+}
+
+.apply-btn-accepted {
+  background-color: #28a745 !important;
+}
+
+.apply-btn-rejected {
+  background-color: #dc3545 !important;
+}
+
 .filter-group input:focus,
 .filter-group select:focus {
   outline: none;
@@ -190,6 +202,8 @@
   line-height: 1.6;
   margin-bottom: 20px;
   font-size: 0.95em;
+  text-wrap: balance;
+  word-break: break-word;
 }
 
 .offer-requirements {

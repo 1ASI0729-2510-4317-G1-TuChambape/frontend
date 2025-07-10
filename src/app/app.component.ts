@@ -14,12 +14,9 @@ import { PaymentEventHandlerService } from './payments/services/payment-event-ha
 })
 export class AppComponent {
   title = 'jobconnect-frontend';
+  paymentEventHandler = inject(PaymentEventHandlerService);
 
   constructor(private sessionManager: SessionManagerService, private router: Router) {
-    // Initialize the payment event handler service
-    const paymentEventHandler = inject(PaymentEventHandlerService);
-    // The service will be instantiated and event listeners will be set up
-
     // --- Lógica de limpieza y redirección forzada ---
     const sessionData = localStorage.getItem('jobconnect_session');
     const userData = localStorage.getItem('jobconnect_user');

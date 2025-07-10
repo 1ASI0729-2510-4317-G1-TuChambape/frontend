@@ -172,7 +172,8 @@ export class GetOfferIdComponent implements OnInit {
       comment: review.comment,
       rating: review.rating,
       createdAt: new Date().toISOString(),
-      isVerifiedAuthor: this.assignedWorker?.isVerified || false
+      isVerifiedAuthor: this.assignedWorker?.isVerified || false,
+      reviewerUserId: this.assignedWorker?.workerId || 0
     }).subscribe({
       next: (review) => {
         this.reviews.push(review);

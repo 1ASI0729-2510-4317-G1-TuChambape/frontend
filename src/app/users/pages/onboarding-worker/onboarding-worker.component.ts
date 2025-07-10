@@ -68,8 +68,10 @@ export class OnboardingWorkerComponent implements OnInit {
       ...this.form.value,
       accountId: account.id,
       email: account.email,
-      role: 'technician',
+      role: 'WORKER',
       profileType: 'INDIVIDUAL',
+      rating: 0,
+      reviewCount: 0,
       isVerified: false,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()

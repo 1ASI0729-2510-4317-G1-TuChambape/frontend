@@ -4,27 +4,6 @@ import { FormsModule } from '@angular/forms'; // Para los [(ngModel)] de los fil
 import { WorkerService } from '../../services/worker.service';
 import { Worker } from '../../model/worker.entity';
 
-// Interfaz para los detalles de un técnico en la vista de comparación
-interface TechnicianForCompare {
-  id: number;
-  name: string;
-  specialty: string;
-  imageUrl: string;
-  availability: {
-    lunes?: string;
-    martes?: string;
-    miercoles?: string;
-    jueves?: string;
-    viernes?: string;
-    sabado?: string;
-    domingo?: string;
-  };
-  rating: number;
-  reviews: number;
-  certificationType: string;
-  experienceYears: number;
-}
-
 @Component({
   selector: 'app-compare-profiles',
   standalone: true,
@@ -58,7 +37,8 @@ export class CompareProfilesComponent implements OnInit {
 
   loadTechniciansForComparison(): void {
     this.workerService.getAll().subscribe({
-      next: (workers) => {
+      next: (workers) => {  
+        console.log(workers);
         this.allTechnicians = workers;
         this.applyFilters();
       },
@@ -130,8 +110,6 @@ export class CompareProfilesComponent implements OnInit {
   }
 
   getAvailabilityDays(availability: any): string[] {
-    if (Array.isArray(availability)) return availability;
-    if (availability && typeof availability === 'object') return Object.keys(availability);
-    return [];
+    return Object.keys(availability).filter(day => availability[day] !== '') || [];
   }
 }
