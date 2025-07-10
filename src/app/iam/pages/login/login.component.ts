@@ -108,16 +108,28 @@ export class LoginComponent implements OnInit {
     }
 
     // Si las validaciones del frontend pasan, llamar al servicio
-    this.authService.login(this.loginData).subscribe({
-      next: (account: Account | null) => {
+    const loginPayload = {
+      email: this.loginData.email!,
+      password: this.loginData.password!
+    };
+    this.authService.signInReal(loginPayload).subscribe({
+      next: (response) => {
         this.isLoading = false;
-
-        if (account) {
-          this.successMessage = `¡Bienvenido, ${account.email}! Verificando perfil...`;
-          console.log('Usuario autenticado:', account);
-
-          // Verificar si el usuario tiene perfil de customer o worker
-          this.checkUserProfile(account);
+        if (response && response.token) {
+          // Guardar token en localStorage
+          localStorage.setItem('jobconnect_token', response.token);
+          // Obtener los datos reales del usuario
+          this.authService.getAccountMe().subscribe({
+            next: (realAccount) => {
+              this.authService["setCurrentUser"](realAccount);
+              this.authService["saveSessionToLocalStorage"](realAccount);
+              this.successMessage = `¡Bienvenido, ${realAccount.email}! Verificando perfil...`;
+              this.checkUserProfile(realAccount);
+            },
+            error: (err) => {
+              this.generalError = 'No se pudo obtener la información de la cuenta.';
+            }
+          });
         } else {
           this.generalError = 'Correo electrónico o contraseña incorrectos.';
           this.passwordError = null;
@@ -125,8 +137,15 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         this.isLoading = false;
-        console.error('Error en el servicio de login:', err);
-        this.generalError = 'Error de conexión o del servidor. Intente más tarde.';
+        if (err.status === 401) {
+          this.generalError = 'Correo electrónico o contraseña incorrectos.';
+        } else if (err.status === 404) {
+          this.generalError = 'Usuario no encontrado.';
+        } else if (err.status === 0) {
+          this.generalError = 'No se pudo conectar con el servidor. Intenta más tarde.';
+        } else {
+          this.generalError = 'Error de conexión o del servidor. Intente más tarde.';
+        }
       }
     });
   }
@@ -199,15 +218,18 @@ export class LoginComponent implements OnInit {
 
   private redirectToOnboarding(role: string) {
     this.successMessage = '¡Bienvenido! Completa tu perfil para continuar.';
-    
-    if (role === 'customer') {
+    if (!role) {
+      this.router.navigate(['/login']);
+      return of(null);
+    }
+    const normalizedRole = role.toLowerCase();
+    if (normalizedRole === 'customer') {
       this.router.navigate(['/onboarding-customer']);
-    } else if (role === 'worker') {
+    } else if (normalizedRole === 'worker') {
       this.router.navigate(['/onboarding-worker']);
     } else {
       this.router.navigate(['/login']);
     }
-    
     return of(null);
   }
 

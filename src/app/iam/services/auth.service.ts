@@ -8,6 +8,7 @@ import { AccountCredentials, AccountResource } from './top-headlines.response';
 import { environment } from '../../../environments/environment';
 import { EventBusService } from '../../shared/services/event-bus.service';
 import { AccountRegisteredEvent } from '../../shared/events/account-registered.event';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,10 @@ export class AuthService extends BaseService<Account> {
   private readonly SESSION_KEY = 'jobconnect_session';
   private readonly SESSION_EXPIRY_KEY = 'jobconnect_session_expiry';
 
-  constructor(private eventBus: EventBusService) {
+  constructor(private eventBus: EventBusService, private httpClient: HttpClient) {
     super();
+    // Usar la URL del fake API para operaciones CRUD normales
+    this.serverBaseUrl = environment.fakeApiUrl;
     this.resourceEndpoint = environment.accountsResourceEndpointPath;
     // Intentar restaurar la sesión al inicializar el servicio
     this.restoreSession();
@@ -81,6 +84,31 @@ export class AuthService extends BaseService<Account> {
         return entity;
       })
     );
+  }
+
+  // --- Métodos para autenticación REAL (API externa) ---
+  signUpReal(userData: AccountCredentials): Observable<any> {
+    const url = `${environment.apiUrl}${environment.signUpEndpoint}`;
+    // Adaptar el payload para que roles sea un array
+    const payload = {
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+      roles: [userData.role.toUpperCase()]
+    };
+    return this.httpClient.post(url, payload);
+  }
+
+  signInReal(credentials: { email: string; password: string }): Observable<any> {
+    const url = `${environment.apiUrl}${environment.signInEndpoint}`;
+    return this.httpClient.post(url, credentials);
+  }
+
+  getAccountMe(): Observable<any> {
+    const url = `${environment.apiUrl}/accounts/me`;
+    const token = localStorage.getItem('jobconnect_token');
+    const headers = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+    return this.httpClient.get(url, headers);
   }
 
   // --- Métodos de Sesión (para el AuthGuard) ---

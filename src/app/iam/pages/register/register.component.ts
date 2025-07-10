@@ -27,7 +27,7 @@ export class RegisterComponent {
     name: '',
     email: '',
     password: '',
-    role: ''
+    role: '' // Valor inicial vacío, nunca 'string'
   };
   confirmPasswordValue: string = ''; // Propiedad separada para confirmPassword
 
@@ -72,8 +72,8 @@ export class RegisterComponent {
       this.confirmPasswordError = '¡Dato Obligatorio!';
       isValid = false;
     }
-    if (!this.registerData.role) {
-      this.roleError = '¡Dato Obligatorio!';
+    if (!this.registerData.role || this.registerData.role === 'string') {
+      this.roleError = '¡Debes seleccionar un tipo de usuario válido!';
       isValid = false;
     }
 
@@ -97,47 +97,21 @@ export class RegisterComponent {
         role: this.registerData.role
       };
 
-      this.authService.register(credentialsToRegister).subscribe({
+      this.authService.signUpReal(credentialsToRegister).subscribe({
         next: (account) => {
           this.isLoading = false;
-          if (account) {
-            this.successMessage = '¡Registro completado con éxito! Iniciando sesión...';
-            
-            // Hacer login automático después del registro
-            this.authService.login({
-              email: this.registerData.email,
-              password: this.registerData.password
-            }).subscribe({
-              next: (loggedInAccount) => {
-                if (loggedInAccount) {
-                  this.successMessage = '¡Registro completado con éxito! Redirigiendo...';
-                  // Lógica de redirección después del login exitoso
-                  if (account.role === 'customer') {
-                    this.router.navigate(['/onboarding-customer']);
-                  } else if (account.role === 'worker') {
-                    this.router.navigate(['/onboarding-worker']);
-                  } else {
-                    this.router.navigate(['/login']); // Fallback por si acaso
-                  }
-                } else {
-                  this.generalError = 'Error al iniciar sesión automáticamente. Por favor, inicie sesión manualmente.';
-                  this.router.navigate(['/login']);
-                }
-              },
-              error: (loginError) => {
-                console.error('Error en login automático:', loginError);
-                this.generalError = 'Error al iniciar sesión automáticamente. Por favor, inicie sesión manualmente.';
-                this.router.navigate(['/login']);
-              }
-            });
-          } else {
-            this.generalError = 'El correo electrónico ya está registrado.';
-          }
+          this.successMessage = '¡Registro completado con éxito! Inicia sesión para continuar.';
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 1500);
         },
         error: (err) => { // Manejo de errores si el Observable emitiera un error real
           this.isLoading = false; // Termina la carga
-          console.error('Error en el servicio de registro:', err);
-          this.generalError = 'Error de conexión o del servidor. Intente más tarde.';
+          if (err.status === 409) {
+            this.generalError = 'El correo electrónico ya está registrado.';
+          } else {
+            this.generalError = 'Error de conexión o del servidor. Intente más tarde.';
+          }
         }
       });
     } else {
