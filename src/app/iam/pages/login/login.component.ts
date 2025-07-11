@@ -8,12 +8,7 @@ import { Account } from '../../model/account.entity';
 import { UserService } from '../../../users/services/user.service';
 import { CustomerService } from '../../../users/services/customer.service';
 import { WorkerService } from '../../../users/services/worker.service';
-import { forkJoin, of } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
 import { User } from '../../../users/model/user.entity';
-import { Customer } from '../../../users/model/customer.entity';
-import { Worker } from '../../../users/model/worker.entity';
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -41,7 +36,7 @@ export class LoginComponent implements OnInit {
   isLoading: boolean = false; // Para mostrar un indicador de carga
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router,
     private userService: UserService,
     private customerService: CustomerService,
@@ -121,10 +116,16 @@ export class LoginComponent implements OnInit {
           // Obtener los datos reales del usuario
           this.authService.getAccountMe().subscribe({
             next: (realAccount) => {
-              this.authService["setCurrentUser"](realAccount);
-              this.authService["saveSessionToLocalStorage"](realAccount);
+              const accountFomatted: Account = {
+                id: realAccount.id,
+                name: realAccount.name,
+                email: realAccount.email,
+                role: realAccount.roles[0],
+              }
+              this.authService["setCurrentUser"](accountFomatted);
+              this.authService["saveSessionToLocalStorage"](accountFomatted);
               this.successMessage = `¡Bienvenido, ${realAccount.email}! Verificando perfil...`;
-              this.checkUserProfile(realAccount);
+              this.checkUserProfile(accountFomatted);
             },
             error: (err) => {
               this.generalError = 'No se pudo obtener la información de la cuenta.';
@@ -152,75 +153,49 @@ export class LoginComponent implements OnInit {
 
   private checkUserProfile(account: Account) {
     // Buscar el usuario por accountId
-    this.userService.search({ accountId: account.id }).pipe(
-      switchMap((users: User[]) => {
-        if (users.length === 0) {
-          // No hay usuario, redirigir al onboarding según el rol
-          return this.redirectToOnboarding(account.role);
+    this.userService.getUserByAccountId(account.id).subscribe({
+      next: (user: User) => {
+        if (!user) {
+          this.redirectToOnboarding(account.role);
+          return;
         }
-
-        const user = users[0];
         // Guardar el user en localStorage para restauración robusta
         localStorage.setItem('jobconnect_user', JSON.stringify(user));
-        
+
         // Verificar si tiene customerId o workerId
-        if (account.role === 'customer') {
+        if (account.role === 'CUSTOMER') {
           if (user.customerId) {
             // Tiene perfil de customer, verificar que existe
-            return this.customerService.search({ id: user.customerId }).pipe(
-              map((customers: Customer[]) => {
-                if (customers.length > 0) {
-                  // Tiene perfil completo, redirigir al dashboard
-                  this.router.navigate(['/dashboard']);
-                  return null;
-                } else {
-                  // No tiene perfil de customer, redirigir al onboarding
-                  return this.redirectToOnboarding('customer');
-                }
-              })
-            );
+            this.router.navigate(['/dashboard']);
           } else {
             // No tiene customerId, redirigir al onboarding
-            return this.redirectToOnboarding('customer');
+            this.redirectToOnboarding('customer');
           }
-        } else if (account.role === 'worker') {
+        } else if (account.role === 'WORKER') {
           if (user.workerId) {
             // Tiene perfil de worker, verificar que existe
-            return this.workerService.search({ id: user.workerId }).pipe(
-              map((workers: Worker[]) => {
-                if (workers.length > 0) {
-                  // Tiene perfil completo, redirigir al worker dashboard
-                  this.router.navigate(['/worker-dashboard']);
-                  return null;
-                } else {
-                  // No tiene perfil de worker, redirigir al onboarding
-                  return this.redirectToOnboarding('worker');
-                }
-              })
-            );
+            this.router.navigate(['/worker-dashboard']);
           } else {
             // No tiene workerId, redirigir al onboarding
-            return this.redirectToOnboarding('worker');
+            this.redirectToOnboarding('worker');
           }
         } else {
           // Rol no reconocido, redirigir al login
           this.router.navigate(['/login']);
-          return of(null);
         }
-      })
-    ).subscribe({
-      error: (error: any) => {
-        console.error('Error verificando perfil:', error);
-        this.generalError = 'Error verificando perfil. Intente más tarde.';
+      },
+      error: (_error: any) => {
+        this.redirectToOnboarding(account.role);
       }
     });
   }
 
   private redirectToOnboarding(role: string) {
     this.successMessage = '¡Bienvenido! Completa tu perfil para continuar.';
+    console.log(role)
     if (!role) {
       this.router.navigate(['/login']);
-      return of(null);
+      return;
     }
     const normalizedRole = role.toLowerCase();
     if (normalizedRole === 'customer') {
@@ -230,7 +205,6 @@ export class LoginComponent implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
-    return of(null);
   }
 
   private isValidEmail(email: string): boolean {

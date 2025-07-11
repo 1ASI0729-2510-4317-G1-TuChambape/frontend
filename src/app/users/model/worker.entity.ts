@@ -20,13 +20,13 @@ export class Worker {
   createdAt!: string;
   updatedAt!: string;
   availability!: {
-    lunes?: string;
-    martes?: string;
-    miercoles?: string;
-    jueves?: string;
-    viernes?: string;
-    sabado?: string;
-    domingo?: string;
+    monday?: string;
+    tuesday?: string;
+    wednesday?: string;
+    thursday?: string;
+    friday?: string;
+    saturday?: string;
+    sunday?: string;
     [key: string]: string | undefined;
   };
   yapeNumber?: string;

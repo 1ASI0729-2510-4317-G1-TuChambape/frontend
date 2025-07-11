@@ -67,4 +67,13 @@ export class UserService extends BaseService<User> {
     return this.http.get<User>(`${this.resourcePath()}/${id}`, httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  public getUserByAccountId(accountId: number): Observable<User> {
+    const token = localStorage.getItem('jobconnect_token');
+    const httpOptions = token ? {
+      headers: this.httpOptions.headers.set('Authorization', `Bearer ${token}`)
+    } : this.httpOptions;
+    return this.http.get<User>(`${this.resourcePath()}/account/${accountId}`, httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
 } 

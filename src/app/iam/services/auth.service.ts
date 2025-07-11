@@ -49,9 +49,7 @@ export class AuthService extends BaseService<Account> {
           id: 0,
           name: userData.name,
           email: userData.email,
-          passwordHashed: userData.password,
           role: userData.role,
-          createdAt: new Date().toISOString()
         };
         return this.create(newAccount).pipe(
           map(account => {
@@ -74,10 +72,7 @@ export class AuthService extends BaseService<Account> {
         if (!account) {
           return null;
         }
-        if (account.passwordHashed !== credentials.password) {
-          return null;
-        }
-        
+
         const entity = AccountAssembler.toEntityFromResource(account);
         this.setCurrentUser(entity);
         this.saveSessionToLocalStorage(entity);
@@ -140,13 +135,13 @@ export class AuthService extends BaseService<Account> {
         account: account,
         timestamp: Date.now()
       };
-      
+
       // Guardar la sesión por 24 horas
       const expiryTime = Date.now() + (24 * 60 * 60 * 1000); // 24 horas
-      
+
       localStorage.setItem(this.SESSION_KEY, JSON.stringify(sessionData));
       localStorage.setItem(this.SESSION_EXPIRY_KEY, expiryTime.toString());
-      
+
       console.log('AUTH_SERVICE: Sesión guardada en localStorage');
     } catch (error) {
       console.error('AUTH_SERVICE: Error guardando sesión en localStorage:', error);
@@ -157,25 +152,25 @@ export class AuthService extends BaseService<Account> {
     try {
       const sessionData = localStorage.getItem(this.SESSION_KEY);
       const expiryTime = localStorage.getItem(this.SESSION_EXPIRY_KEY);
-      
+
       if (!sessionData || !expiryTime) {
         console.log('AUTH_SERVICE: No hay sesión guardada en localStorage');
         return;
       }
-      
+
       const currentTime = Date.now();
       const sessionExpiry = parseInt(expiryTime);
-      
+
       // Verificar si la sesión ha expirado
       if (currentTime > sessionExpiry) {
         console.log('AUTH_SERVICE: Sesión expirada, limpiando localStorage');
         this.clearSessionFromLocalStorage();
         return;
       }
-      
+
       const parsedSession = JSON.parse(sessionData);
       const account = parsedSession.account as Account;
-      
+
       if (account && account.id && account.email) {
         // Validar si el usuario tiene perfil completo (customerId o workerId)
         // Si no, limpiar sesión para evitar loops de onboarding
@@ -215,14 +210,14 @@ export class AuthService extends BaseService<Account> {
     try {
       const sessionData = localStorage.getItem(this.SESSION_KEY);
       const expiryTime = localStorage.getItem(this.SESSION_EXPIRY_KEY);
-      
+
       if (!sessionData || !expiryTime) {
         return false;
       }
-      
+
       const currentTime = Date.now();
       const sessionExpiry = parseInt(expiryTime);
-      
+
       return currentTime <= sessionExpiry;
     } catch (error) {
       console.error('AUTH_SERVICE: Error verificando sesión válida:', error);
@@ -245,11 +240,11 @@ export class AuthService extends BaseService<Account> {
       if (!expiryTime) {
         return 0;
       }
-      
+
       const currentTime = Date.now();
       const sessionExpiry = parseInt(expiryTime);
       const timeRemaining = sessionExpiry - currentTime;
-      
+
       return Math.max(0, Math.floor(timeRemaining / (1000 * 60))); // Convertir a minutos
     } catch (error) {
       console.error('AUTH_SERVICE: Error obteniendo tiempo restante de sesión:', error);
