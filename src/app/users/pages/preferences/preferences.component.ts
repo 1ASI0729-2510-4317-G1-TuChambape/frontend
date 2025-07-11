@@ -98,17 +98,17 @@ export class PreferencesComponent implements OnInit {
     this.userService.search({ accountId: currentAccount.id }).subscribe({
       next: (users) => {
         const user = users.length > 0 ? users[0] : null;
-        if (!user || !user.customerId) {
+        if (!user || !user.customer) {
           this.generalError = 'No se encontró el perfil de cliente.';
           this.isLoading = false;
           return;
         }
         // 2. Buscar el customer por customerId
-        this.customerService.getById(user.customerId).subscribe({
+        this.customerService.getById(user.customer.id).subscribe({
           next: (customer) => {
             this.customer = customer;
             // 3. Buscar las preferencias por customerId
-            this.preferencesService.search({ customerId: user.customerId }).subscribe({
+            this.preferencesService.search({ customerId: user.customer!.id }).subscribe({
               next: (prefs) => {
                 this.preferences = prefs.length > 0 ? prefs[0] : null;
                 // Inicializar arrays si no existen

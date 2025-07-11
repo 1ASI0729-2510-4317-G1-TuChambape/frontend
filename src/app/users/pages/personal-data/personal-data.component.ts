@@ -81,7 +81,7 @@ export class PersonalDataComponent implements OnInit {
       this.isLoading = false;
       return;
     }
-    this.userProfileService.getUserProfileByEmail(currentAccount.email).subscribe({
+    this.userProfileService.getUserProfile(currentAccount.id).subscribe({
       next: (profile: any) => {
         if (profile) {
           this.userProfile = {

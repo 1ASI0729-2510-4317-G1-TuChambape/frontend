@@ -14,7 +14,8 @@ import { catchError, Observable, retry, throwError } from 'rxjs';
 export abstract class BaseService<T> {
   /** HTTP headers configuration for JSON communication */
   protected httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' }),
+
   };
   /** Base URL for the server API */
   protected serverBaseUrl: string = `${environment.apiUrl}`;
@@ -54,9 +55,12 @@ export abstract class BaseService<T> {
    * @param resource - The resource to create
    * @returns An Observable of the created resource
    */
-  public create(resource: T | Partial<T>): Observable<T> {
+  public create(resource: T | Partial<T>, token?: string): Observable<T> {
+    const httpOptions = token ? {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${token}` })
+    } : this.httpOptions;
     return this.http
-      .post<T>(this.resourcePath(), JSON.stringify(resource), this.httpOptions)
+      .post<T>(this.resourcePath(), JSON.stringify(resource), httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -65,9 +69,12 @@ export abstract class BaseService<T> {
    * @param id - The ID of the resource to delete
    * @returns An Observable of the deletion result
    */
-  public delete(id: unknown): Observable<any> {
+  public delete(id: unknown, token?: string): Observable<any> {
+    const httpOptions = token ? {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${token}` })
+    } : this.httpOptions;
     return this.http
-      .delete(`${this.resourcePath()}/${id}`, this.httpOptions)
+      .delete(`${this.resourcePath()}/${id}`, httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -77,12 +84,15 @@ export abstract class BaseService<T> {
    * @param resource - The updated resource data
    * @returns An Observable of the updated resource
    */
-  public update(id: any, resource: T | Partial<T>): Observable<T> {
+  public update(id: any, resource: T | Partial<T>, token?: string): Observable<T> {
+    const httpOptions = token ? {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${token}` })
+    } : this.httpOptions;
     return this.http
       .put<T>(
         `${this.resourcePath()}/${id}`,
         JSON.stringify(resource),
-        this.httpOptions
+        httpOptions
       )
       .pipe(retry(2), catchError(this.handleError));
   }
@@ -92,12 +102,15 @@ export abstract class BaseService<T> {
    * @param resource - The partial resource data
    * @returns An Observable of the updated resource
    */
-  public patch(id: any, resource: Partial<T>): Observable<T> {
+  public patch(id: any, resource: Partial<T>, token?: string): Observable<T> {
+    const httpOptions = token ? {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${token}` })
+    } : this.httpOptions;
     return this.http
       .patch<T>(
         `${this.resourcePath()}/${id}`,
         JSON.stringify(resource),
-        this.httpOptions
+        httpOptions
       )
       .pipe(retry(2), catchError(this.handleError));
   }
@@ -105,9 +118,12 @@ export abstract class BaseService<T> {
    * Retrieves all resources
    * @returns An Observable array of all resources
    */
-  public getAll(): Observable<Array<T>> {
+  public getAll(token?: string): Observable<Array<T>> {
+    const httpOptions = token ? {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${token}` })
+    } : this.httpOptions;
     return this.http
-      .get<Array<T>>(this.resourcePath(), this.httpOptions)
+      .get<Array<T>>(this.resourcePath(), httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -116,7 +132,10 @@ export abstract class BaseService<T> {
    * @param params - Object containing search parameters as key-value pairs
    * @returns An Observable array of matching resources
    */
-  public search(params: Record<string, any>): Observable<Array<T>> {
+  public search(params: Record<string, any>, token?: string): Observable<Array<T>> {
+    const httpOptions = token ? {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${token}` })
+    } : this.httpOptions;
     // Create URLSearchParams from the object
     const searchParams = new URLSearchParams();
 
@@ -131,7 +150,7 @@ export abstract class BaseService<T> {
     const url = `${this.resourcePath()}?${searchParams.toString()}`;
 
     return this.http
-      .get<Array<T>>(url, this.httpOptions)
+      .get<Array<T>>(url, httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -140,9 +159,12 @@ export abstract class BaseService<T> {
    * @param id - The ID of the resource to retrieve
    * @returns An Observable of the requested resource
    */
-  public getById(id: any): Observable<T> {
+  public getById(id: any, token?: string): Observable<T> {
+    const httpOptions = token ? {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': `Bearer ${token}` })
+    } : this.httpOptions;
     return this.http
-      .get<T>(`${this.resourcePath()}/${id}`, this.httpOptions)
+      .get<T>(`${this.resourcePath()}/${id}`, httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 }

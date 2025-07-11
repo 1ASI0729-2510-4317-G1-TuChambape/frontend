@@ -164,7 +164,7 @@ export class LoginComponent implements OnInit {
 
         // Verificar si tiene customerId o workerId
         if (account.role === 'CUSTOMER') {
-          if (user.customerId) {
+          if (user.customer) {
             // Tiene perfil de customer, verificar que existe
             this.router.navigate(['/dashboard']);
           } else {
@@ -172,7 +172,7 @@ export class LoginComponent implements OnInit {
             this.redirectToOnboarding('customer');
           }
         } else if (account.role === 'WORKER') {
-          if (user.workerId) {
+          if (user.worker) {
             // Tiene perfil de worker, verificar que existe
             this.router.navigate(['/worker-dashboard']);
           } else {
@@ -192,7 +192,6 @@ export class LoginComponent implements OnInit {
 
   private redirectToOnboarding(role: string) {
     this.successMessage = '¡Bienvenido! Completa tu perfil para continuar.';
-    console.log(role)
     if (!role) {
       this.router.navigate(['/login']);
       return;

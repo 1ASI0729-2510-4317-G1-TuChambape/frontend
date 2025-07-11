@@ -59,8 +59,8 @@ export class MyProposalsComponent implements OnInit {
     if (!account) return;
     // Buscar el usuario por accountId para obtener el workerId
     this.userService.search({ accountId: account.id }).subscribe(users => {
-      if (users.length > 0 && users[0].workerId) {
-        this.workerProfileId = users[0].workerId;
+      if (users.length > 0 && users[0].worker) {
+        this.workerProfileId = users[0].worker.id;
         this.loadProposals();
       }
     });

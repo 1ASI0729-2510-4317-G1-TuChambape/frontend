@@ -15,6 +15,7 @@ import { ApplyOfferDialogComponent } from '../../components/apply-offer-dialog/a
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Proposal } from '../../../proposals/model/proposal.entity';
 import { UserService } from '../../services/user.service';
+import { OfferStatus } from '../../../offers/services/top-headlines.response';
 
 @Component({
   selector: 'app-search-offers',
@@ -65,9 +66,9 @@ export class SearchOffersComponent implements OnInit {
   loadWorkerProfile(): void {
     const account = this.userSessionService.getCurrentAccount();
     if (!account) return;
-    this.userService.search({ accountId: account?.id }).subscribe((users) => {
-      if (users.length > 0) {
-        this.workerProfileId = users[0].workerId!;
+    this.userService.getUserByAccountId(account.id).subscribe((user) => {
+      if (user && user.worker) {
+        this.workerProfileId = user.worker.id;
         this.loadMyProposals();
       }
     });
@@ -89,7 +90,7 @@ export class SearchOffersComponent implements OnInit {
     this.error = null;
 
     // Cargar todas las ofertas activas
-    this.offerService.search({ status: 'ACTIVE' }).subscribe({
+    this.offerService.getOffersByOnlyStatus(OfferStatus.ACTIVE).subscribe({
       next: (offers) => {
         this.offers = offers;
         this.filteredOffers = offers;

@@ -35,30 +35,21 @@ export interface WorkerResource {
 
 export interface CustomerResource {
   id: number;
+  accountId: number;
   email: string;
   firstName: string;
   lastName: string;
   phone: string;
-  role: string;
-  profileType: string;
   location: string;
   bio: string;
   isVerified: boolean;
-  preferences: {
-    notifications: { email: boolean; push: boolean; sms: boolean };
-    privacy: { showPhone: boolean; showEmail: boolean; showLocation: boolean };
-    language: string;
-    timezone: string;
-  };
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface UserResource {
   id: number;
   accountId: number;
-  workerId?: number;
-  customerId?: number;
+  worker?: WorkerResource;
+  customer?: CustomerResource;
 }
 
 export enum PreferredAvailability {

@@ -4,6 +4,7 @@ import { ReviewService } from '../../../offers/services/review.service';
 import { UserSessionService } from '../../services/user-session.service';
 import { Review } from '../../../offers/model/review.entity';
 import { UserService } from '../../services/user.service';
+import { User } from '../../model/user.entity';
 
 @Component({
   selector: 'app-worker-reputation',
@@ -46,10 +47,10 @@ export class WorkerReputationComponent implements OnInit {
       return;
     }
 
-    this.userService.search({ accountId: currentAccount.id }).subscribe({
-      next: (users) => {
-        if (users.length > 0) {
-          this.userId = users[0].id;
+    this.userService.getUserByAccountId(currentAccount.id).subscribe({
+      next: (user: User) => {
+        if (user && user.worker) {
+          this.userId = user.id;
           this.loadWorkerReviews();
         }
       }

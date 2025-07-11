@@ -14,14 +14,34 @@ export class ReviewService extends BaseService<ReviewResource> {
   }
 
   getReviewsByOfferId(offerId: number): Observable<Review[]> {
-    return this.search({ offerId }).pipe(
-      map(reviews => ReviewAssembler.toEntitiesFromResponse(reviews))
+    const token = localStorage.getItem('jobconnect_token');
+    if (!token) {
+      throw new Error('No se encontró el token de autenticación');
+    }
+    return this.http.get<ReviewResource[]>(`${this.serverBaseUrl}/reviews`, {
+      headers: this.httpOptions.headers.set('Authorization', `Bearer ${token}`)
+    }).pipe(
+      map((reviews: ReviewResource[]) =>
+        ReviewAssembler.toEntitiesFromResponse(
+          reviews.filter(review => review.offerId === offerId)
+        )
+      )
     );
   }
 
   getReviewsByReviewerUserId(userId: number): Observable<Review[]> {
-    return this.search({ reviewerUserId: userId }).pipe(
-      map(reviews => ReviewAssembler.toEntitiesFromResponse(reviews))
+    const token = localStorage.getItem('jobconnect_token');
+    if (!token) {
+      throw new Error('No se encontró el token de autenticación');
+    }
+    return this.http.get<ReviewResource[]>(`${this.serverBaseUrl}/reviews`, {
+      headers: this.httpOptions.headers.set('Authorization', `Bearer ${token}`)
+    }).pipe(
+      map((reviews: ReviewResource[]) =>
+        ReviewAssembler.toEntitiesFromResponse(
+          reviews.filter(review => review.reviewerUserId === userId)
+        )
+      )
     );
   }
 

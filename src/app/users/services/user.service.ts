@@ -25,10 +25,10 @@ export class UserService extends BaseService<User> {
       if (!event || !event.accountId || !event.role) return;
       const user: Partial<User> = { accountId: event.accountId };
       if (event.role === 'customer') {
-        user.customerId = undefined; // Se creará después en el flujo de customer
+        user.customer = undefined; // Se creará después en el flujo de customer
       } else if (event.role === 'worker') {
-        user.workerId = undefined; // Se creará después en el flujo de worker
-      }
+        user.worker = undefined; // Se creará después en el flujo de worker
+      } 
       this.create(user).subscribe();
     });
   }

@@ -7,6 +7,7 @@ export interface IUserSessionService {
   isLoggedIn(): boolean;
   logout(): void;
   hasValidSession(): boolean;
+  getCurrentToken(): string | null;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -15,6 +16,10 @@ export class UserSessionService implements IUserSessionService {
 
   getCurrentAccount(): Account | null {
     return this.authService.getCurrentAccount();
+  }
+
+  getCurrentToken(): string | null {
+    return localStorage.getItem('jobconnect_token') || null;
   }
 
   isLoggedIn(): boolean {

@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Offer } from '../model/offer.entity';
 import { BaseService } from '../../shared/services/base.service';
-import { OfferStatus } from './top-headlines.response';
+import { OfferResource, OfferStatus } from './top-headlines.response';
 import { OfferAssembler } from './offer.assembler';
 import { environment } from '../../../environments/environment';
 
@@ -14,6 +14,18 @@ export class OfferService extends BaseService<Offer> {
   constructor() {
     super();
     this.resourceEndpoint = environment.offersResourceEndpointPath;
+  }
+
+  getOffersByOnlyStatus(status: OfferStatus): Observable<Offer[]> {
+    const token = localStorage.getItem('jobconnect_token');
+    if (!token) {
+      throw new Error('No se encontró el token de autenticación');
+    }
+    return this.http.get<OfferResource[]>(`${this.serverBaseUrl}/offers/status/${status}`, {
+      headers: this.httpOptions.headers.set('Authorization', `Bearer ${token}`),
+    }).pipe(
+      map((offers: OfferResource[]) => OfferAssembler.toEntitiesFromResponse(offers))
+    );
   }
 
   getOffersByClient(clientId: string): Observable<Offer[]> {

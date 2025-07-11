@@ -20,15 +20,19 @@
       </div>
       <div class="form-group">
         <label for="lastName">Apellido</label>
-        <input id="lastName" formControlName="lastName" placeholder="Ingresa tu apellido">
+        <input id="lastName" type="text" formControlName="lastName" class="form-control">
       </div>
       <div class="form-group">
         <label for="phone">Teléfono</label>
-        <input id="phone" formControlName="phone" placeholder="Ingresa tu teléfono">
+        <input id="phone" type="text" formControlName="phone" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="avatar">Avatar URL</label>
+        <input id="avatar" type="text" formControlName="avatar" class="form-control">
       </div>
       <div class="form-group">
         <label for="location">Ubicación</label>
-        <input id="location" formControlName="location" placeholder="Ingresa tu ubicación">
+        <input id="location" type="text" formControlName="location" class="form-control">
       </div>
       <div class="form-group">
         <label for="bio">Biografía</label>
@@ -44,12 +48,55 @@
       </div>
       <div class="form-group">
         <label for="certifications">Certificaciones (separadas por coma)</label>
-        <input id="certifications" formControlName="certifications" placeholder="Ej: Certificado SEC, Certificado de Gasfitería">
+        <input id="certifications" type="text" formControlName="certifications" class="form-control">
       </div>
 
-      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
-        <span>Guardar Perfil</span>
-      </button>
+      <div formGroupName="availability">
+        <h3>Disponibilidad</h3>
+        <div class="form-group">
+          <label for="monday">Lunes</label>
+          <input id="monday" type="text" formControlName="monday" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="tuesday">Martes</label>
+          <input id="tuesday" type="text" formControlName="tuesday" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="wednesday">Miércoles</label>
+          <input id="wednesday" type="text" formControlName="wednesday" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="thursday">Jueves</label>
+          <input id="thursday" type="text" formControlName="thursday" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="friday">Viernes</label>
+          <input id="friday" type="text" formControlName="friday" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="saturday">Sábado</label>
+          <input id="saturday" type="text" formControlName="saturday" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="sunday">Domingo</label>
+          <input id="sunday" type="text" formControlName="sunday" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="yapeNumber">Número de Yape</label>
+        <input id="yapeNumber" maxlength="9" type="text" formControlName="yapeNumber" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="plinNumber">Número de Plin</label>
+        <input id="plinNumber" maxlength="9" type="text" formControlName="plinNumber" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="bankAccountNumber">Número de Cuenta</label>
+        <input id="bankAccountNumber" maxlength="20" type="text" formControlName="bankAccountNumber" class="form-control">
+      </div>
+
+      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Completar Perfil</button>
     </form>
   </div>
 </div>

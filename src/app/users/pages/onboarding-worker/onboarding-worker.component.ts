@@ -28,11 +28,24 @@ export class OnboardingWorkerComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phone: ['', Validators.required],
+      avatar: [''],
       location: ['', Validators.required],
       bio: [''],
       skills: [''],
       experience: ['', Validators.required],
-      certifications: ['']
+      certifications: [''],
+      availability: this.fb.group({
+        monday: [''],
+        tuesday: [''],
+        wednesday: [''],
+        thursday: [''],
+        friday: [''],
+        saturday: [''],
+        sunday: ['']
+      }),
+      yapeNumber: [''],
+      plinNumber: [''],
+      bankAccountNumber: ['']
     });
   }
 
@@ -49,7 +62,7 @@ export class OnboardingWorkerComponent implements OnInit {
       const nameParts = account.name.trim().split(' ');
       const firstName = nameParts[0] || '';
       const lastName = nameParts.slice(1).join(' ') || '';
-      
+
       this.form.patchValue({
         firstName: firstName,
         lastName: lastName
@@ -64,29 +77,36 @@ export class OnboardingWorkerComponent implements OnInit {
       this.error = 'No session.';
       return;
     }
-    const worker = {
-      ...this.form.value,
+
+    const formValue = this.form.value;
+    const workerPayload = {
       accountId: account.id,
       email: account.email,
-      role: 'WORKER',
-      profileType: 'INDIVIDUAL',
-      rating: 0,
-      reviewCount: 0,
-      isVerified: false,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      firstName: formValue.firstName,
+      lastName: formValue.lastName,
+      phone: formValue.phone,
+      avatar: formValue.avatar,
+      location: formValue.location,
+      bio: formValue.bio,
+      skills: (typeof formValue.skills === 'string' && formValue.skills)
+        ? formValue.skills.split(',').map((s: string) => s.trim())
+        : [],
+      experience: parseInt(formValue.experience, 10) || 0,
+      certifications: (typeof formValue.certifications === 'string' && formValue.certifications)
+        ? formValue.certifications.split(',').map((c: string) => c.trim())
+        : [],
+      availability: formValue.availability,
+      yapeNumber: formValue.yapeNumber,
+      plinNumber: formValue.plinNumber,
+      bankAccountNumber: formValue.bankAccountNumber
     };
-    // skills y certifications como arrays
-    if (typeof worker.skills === 'string') worker.skills = worker.skills.split(',').map((s: string) => s.trim());
-    if (typeof worker.certifications === 'string') worker.certifications = worker.certifications.split(',').map((c: string) => c.trim());
-    worker.experience = parseInt(worker.experience, 10);
-    this.workerService.create(worker).subscribe({
+
+    this.workerService.create(workerPayload, this.userSession.getCurrentToken()!).subscribe({
       next: (createdWorker) => {
-        this.userService.search({ accountId: account.id }).subscribe(users => {
-          const user = users[0];
+        this.userService.getUserByAccountId(account.id).subscribe(user => {
           if (user) {
-            this.userService.update(user.id, { ...user, workerId: createdWorker.id }).subscribe(() => {
-              this.router.navigate(['/dashboard']);
+            this.userService.update(user.id, { ...user, worker: createdWorker }).subscribe(() => {
+              this.router.navigate(['/worker-dashboard']);
             });
           }
         });

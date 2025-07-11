@@ -8,10 +8,11 @@ import { Observable } from 'rxjs';
 export class WorkerService extends BaseService<Worker> {
   constructor() {
     super();
-    this.resourceEndpoint = environment.workersResourceEndpointPath;
+    this.resourceEndpoint = `/users${environment.workersResourceEndpointPath}`;
   }
 
   getWorkerById(id: number): Observable<Worker> {
-    return this.getById(id);
+    const token = localStorage.getItem('jobconnect_token');
+    return this.getById(id, token!);
   }
 } 

@@ -23,18 +23,18 @@ export class UserProfileService {
     return this.userService.getById(userId).pipe(
       switchMap((user: User | null) => {
         if (!user) return of(null);
-        if (user.workerId) return this.workerService.getById(user.workerId);
-        if (user.customerId) return this.customerService.getById(user.customerId);
+        if (user.worker) return this.workerService.getById(user.worker.id);
+        if (user.customer) return this.customerService.getById(user.customer.id);
         return of(null);
       })
     );
   }
 
   getUserByAccountId(accountId: number): Observable<Worker | Customer | null> {
-    return this.userService.search({ accountId }).pipe(
-      switchMap((users: User[]) => {
-        if (users.length === 0) return of(null);
-        return this.getUserProfile(users[0].id);
+    return this.userService.getUserByAccountId(accountId).pipe(
+      switchMap((user: User | null) => {
+        if (!user) return of(null);
+        return this.getUserProfile(user.id);
       })
     );
   }
@@ -57,8 +57,8 @@ export class UserProfileService {
     return this.userService.getById(userId).pipe(
       switchMap((user: User | null) => {
         if (!user) return of(null);
-        if (user.workerId) return this.workerService.update(user.workerId, updateData as Partial<Worker>);
-        if (user.customerId) return this.customerService.update(user.customerId, updateData as Partial<Customer>);
+        if (user.worker) return this.workerService.update(user.worker.id, updateData as Partial<Worker>);
+        if (user.customer) return this.customerService.update(user.customer.id, updateData as Partial<Customer>);
         return of(null);
       })
     );

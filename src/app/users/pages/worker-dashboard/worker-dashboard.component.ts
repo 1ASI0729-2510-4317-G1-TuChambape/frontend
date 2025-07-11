@@ -94,11 +94,11 @@ export class WorkerDashboardComponent implements OnInit {
       return;
     }
 
-    this.userService.search({ accountId: currentAccount.id }).subscribe({
-      next: (users) => {
-        if (users.length > 0) {
-          this.workerProfileId = users[0].workerId!;
-          this.userId = users[0].id;
+    this.userService.getUserByAccountId(currentAccount.id).subscribe({
+      next: (user) => {
+        if (user && user.worker) {
+          this.workerProfileId = user.worker.id;
+          this.userId = user.id;
           this.loadProfileCompletion();
           this.loadWorkerReviews();
           this.loadProposals();
@@ -168,10 +168,10 @@ export class WorkerDashboardComponent implements OnInit {
     // Cargar todas las ofertas finalizadas asociadas al worker
     const currentAccount = this.userSessionService.getCurrentAccount();
     if (!currentAccount) return;
-    this.userService.search({ accountId: currentAccount.id }).subscribe({
-      next: (users) => {
-        if (users.length > 0 && users[0].workerId) {
-          const workerId = users[0].workerId;
+    this.userService.getUserByAccountId(currentAccount.id).subscribe({
+      next: (user) => {
+        if (user.worker) {
+          const workerId = user.worker.id;
           this.proposalService.getProposalsByWorker(workerId).subscribe({
             next: (proposals) => {
               const finishedOfferIds = proposals.map(p => p.offerId);

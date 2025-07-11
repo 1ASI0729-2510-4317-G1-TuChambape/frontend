@@ -17,13 +17,25 @@ export class ProposalService extends BaseService<Proposal> {
   }
 
   getProposalsByOffer(offerId: number): Observable<Proposal[]> {
-    return this.search({ offerId }).pipe(
-      map((resources) => ProposalAssembler.toEntitiesFromResponse(resources))
+    const token = localStorage.getItem('jobconnect_token');
+    if (!token) {
+      throw new Error('No se encontró el token de autenticación');
+    }
+    return this.http.get<ProposalResource[]>(`${this.serverBaseUrl}/proposals/offer/${offerId}`, {
+      headers: this.httpOptions.headers.set('Authorization', `Bearer ${token}`)
+    }).pipe(
+      map((resources: ProposalResource[]) => ProposalAssembler.toEntitiesFromResponse(resources))
     );
   }
 
   getProposalsByWorker(workerId: number): Observable<Proposal[]> {
-    return this.search({ workerId }).pipe(
+    const token = localStorage.getItem('jobconnect_token');
+    if (!token) {
+      throw new Error('No se encontró el token de autenticación');
+    }
+    return this.http.get<ProposalResource[]>(`${this.serverBaseUrl}/proposals/worker/${workerId}`, {
+      headers: this.httpOptions.headers.set('Authorization', `Bearer ${token}`)
+    }).pipe(
       map((resources: ProposalResource[]) => ProposalAssembler.toEntitiesFromResponse(resources))
     );
   }

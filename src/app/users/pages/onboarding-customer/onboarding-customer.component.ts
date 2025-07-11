@@ -47,7 +47,7 @@ export class OnboardingCustomerComponent implements OnInit {
       const nameParts = account.name.trim().split(' ');
       const firstName = nameParts[0] || '';
       const lastName = nameParts.slice(1).join(' ') || '';
-      
+
       this.form.patchValue({
         firstName: firstName,
         lastName: lastName
@@ -62,24 +62,26 @@ export class OnboardingCustomerComponent implements OnInit {
       this.error = 'No session.';
       return;
     }
-    const customer = {
-      ...this.form.value,
+
+    const formValue = this.form.value;
+    const customerPayload = {
       accountId: account.id,
       email: account.email,
-      role: 'client',
-      profileType: 'INDIVIDUAL',
-      isVerified: false,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      firstName: formValue.firstName,
+      lastName: formValue.lastName,
+      phone: formValue.phone,
+      location: formValue.location,
+      bio: formValue.bio,
+      isVerified: false
     };
-    this.customerService.createCustomer(customer).subscribe({
+
+    this.customerService.createCustomer(customerPayload).subscribe({
       next: (createdCustomer) => {
-        this.userService.search({ accountId: account.id }).subscribe(users => {
-          const user = users[0];
+        this.userService.getUserByAccountId(account.id).subscribe(user => {
           if (user) {
-            this.userService.update(user.id, { ...user, customerId: createdCustomer.id }).subscribe(() => {
-              // Guardar el user actualizado en localStorage
-              localStorage.setItem('jobconnect_user', JSON.stringify({ ...user, customerId: createdCustomer.id }));
+            this.userService.update(user.id, { ...user, customer: createdCustomer }).subscribe(() => {
+              // Guardar el user actualizado en localStorage  
+              localStorage.setItem('jobconnect_user', JSON.stringify({ ...user, customer: createdCustomer }));
               this.success = true;
               this.router.navigate(['/dashboard']);
             });
