@@ -13,25 +13,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 
-// Interfaz para la oferta de trabajo
-interface OfferForm {
-  title: string;
-  description: string;
-  category: string;
-  address: string;
-  languagesRequired: string;
-  minExperience: string;
-  certificationsNeeded: string;
-  workHours: string;
-  estimatedBudgetMin: number;
-  estimatedBudgetMax: number;
-  estimatedBudgetCurrency: string;
-  paymentMethod: string;
-  acceptNotifications: boolean;
-  authorizeDataProcessing: boolean;
-  deadline: string;
-}
-
 @Component({
   selector: 'app-create-offer',
   standalone: true,

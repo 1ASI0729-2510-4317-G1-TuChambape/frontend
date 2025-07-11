@@ -20,7 +20,11 @@ export class CustomerService extends BaseService<Customer> {
   }
 
   createCustomer(customerData: Omit<Customer, 'id'>): Observable<Customer> {
-    return this.create(customerData).pipe(
+    const token = localStorage.getItem('jobconnect_token');
+    if (!token) {
+      throw new Error('No se encontró el token de autenticación');
+    }
+    return this.create(customerData, token).pipe(
       switchMap(customer => {
         // Crear preferencias por defecto
         const preferences = new Preferences({
@@ -35,7 +39,7 @@ export class CustomerService extends BaseService<Customer> {
           estimatedBudgetRange: { min: 0, max: 0 },
           languages: ['spanish']
         });
-        return this.preferencesService.create(preferences).pipe(
+        return this.preferencesService.create(preferences, token).pipe(
           map(() => customer)
         );
       })

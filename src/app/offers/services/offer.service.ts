@@ -52,6 +52,10 @@ export class OfferService extends BaseService<Offer> {
   }
 
   createOffer(offerData: Omit<Offer, "id">, clientId: number, clientEmail: string): Observable<Offer> {
+    const token = localStorage.getItem('jobconnect_token');
+    if (!token) {
+      throw new Error('No se encontró el token de autenticación');
+    }
     const newOffer: Offer = {
       id: 0,
       ...offerData,
@@ -62,7 +66,7 @@ export class OfferService extends BaseService<Offer> {
       proposalsCount: 0
     };
 
-    return this.create(newOffer).pipe(
+    return this.create(newOffer, token).pipe(
       map(offer => OfferAssembler.toEntityFromResource(offer))
     );
   }
