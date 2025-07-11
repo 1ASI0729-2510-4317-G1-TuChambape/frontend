@@ -1,0 +1,41 @@
+<h2>Mis Propuestas Pendientes</h2>
+<div *ngIf="isLoading">Cargando...</div>
+<div *ngIf="error">{{ error }}</div>
+<div *ngIf="!isLoading && getPendingProposals().length > 0" style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 24px;">
+  <mat-card *ngFor="let proposal of getPendingProposals()" style="min-width: 320px; max-width: 400px; flex: 1 1 320px; box-shadow: 0 2px 10px rgba(37,99,235,0.10); border-radius: 14px;">
+    <mat-card-header>
+      <mat-icon style="color: #2563eb; margin-right: 8px;">work</mat-icon>
+      <mat-card-title>{{ getOffer(proposal.offerId)?.title || '-' }}</mat-card-title>
+      <mat-card-subtitle>Estado: <strong>{{ getOffer(proposal.offerId)?.status }}</strong></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Mensaje:</strong> {{ proposal.message }}</p>
+      <p><strong>Precio:</strong> S/. {{ proposal.price }}</p>
+      <p><strong>Estado de Pago:</strong> 
+        <mat-icon style="vertical-align: middle; color: green;" *ngIf="getPaymentStatus(proposal.offerId) === 'PAID'">check_circle</mat-icon>
+        <mat-icon style="vertical-align: middle; color: orange;" *ngIf="getPaymentStatus(proposal.offerId) !== 'PAID'">schedule</mat-icon>
+        <span [ngClass]="{'paid': getPaymentStatus(proposal.offerId) === 'PAID', 'pending': getPaymentStatus(proposal.offerId) !== 'PAID'}">
+          {{ getPaymentStatus(proposal.offerId) === 'PAID' ? 'Pagado' : 'Pendiente' }}
+        </span>
+        <span style="font-size: 0.8em; color: #888; margin-left: 8px;">[debug: {{ getPaymentStatus(proposal.offerId) }}]</span>
+      </p>
+      <p><strong>Fecha:</strong> {{ proposal.createdAt | date:'short' }}</p>
+    </mat-card-content>
+    <mat-card-actions style="margin-top: 12px;">
+      <button mat-raised-button color="primary" style="background: #ff9800; color: #fff; font-weight: 600; border-radius: 8px; padding: 10px 24px; font-size: 1.05em;" (click)="finishTask(proposal)" [disabled]="getOffer(proposal.offerId)?.status !== 'PENDING'">
+        <mat-icon style="margin-right: 6px;">check</mat-icon>
+        Terminar Tarea
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div *ngIf="!isLoading && getPendingProposals().length === 0">
+  <p>No tienes propuestas pendientes.</p>
+</div>
+
+<style>
+.paid { color: green; font-weight: bold; }
+.pending { color: orange; font-weight: bold; }
+mat-card { transition: box-shadow 0.2s; }
+mat-card:hover { box-shadow: 0 4px 18px rgba(37,99,235,0.18); }
+</style>

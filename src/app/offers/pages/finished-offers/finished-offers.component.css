@@ -1,0 +1,170 @@
+.finished-offers-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header styles */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.8em;
+}
+
+.table-header .subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 1em;
+}
+
+/* Loading and empty states */
+.loading-indicator {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.loading-indicator p {
+  margin-top: 16px;
+  font-size: 1.1em;
+}
+
+.no-offers {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.no-offers-icon {
+  font-size: 4em;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.no-offers h3 {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.no-offers p {
+  color: #888;
+  margin-bottom: 30px;
+}
+
+/* Table styles */
+.table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.offers-table {
+  width: 100%;
+}
+
+.offers-table th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: 600;
+  padding: 16px 12px;
+}
+
+.offers-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.offers-table tr:hover {
+  background-color: #fafafa;
+}
+
+.offer-title-cell strong {
+  color: #2196f3;
+  font-size: 1.1em;
+}
+
+.offer-description-cell {
+  max-width: 300px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.completed-date-cell {
+  font-size: 0.9em;
+  color: #666;
+  font-weight: 500;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-view-details {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .finished-offers-container {
+    padding: 10px;
+  }
+  
+  .table-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .table-header h2 {
+    text-align: center;
+  }
+  
+  .offers-table {
+    font-size: 0.9em;
+  }
+  
+  .offers-table th,
+  .offers-table td {
+    padding: 12px 8px;
+  }
+  
+  .offer-description-cell {
+    max-width: 200px;
+  }
+  
+  .actions-cell {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .offers-table {
+    font-size: 0.8em;
+  }
+  
+  .offers-table th,
+  .offers-table td {
+    padding: 8px 4px;
+  }
+  
+  .btn-view-details {
+    font-size: 0.8em;
+    padding: 4px 8px;
+  }
+}

@@ -1,0 +1,380 @@
+.no-proposal-card {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 24px 0 16px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.no-proposal-icon {
+  font-size: 2.2em;
+  margin-right: 12px;
+}
+
+.offer-description {
+  color: #555;
+  margin-bottom: 18px;
+  font-size: 1.05em;
+}
+
+.offer-budget {
+  color: #2196f3;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.no-proposal-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f44336;
+  font-size: 1.1em;
+  margin-top: 18px;
+  background: #fff3e0;
+  padding: 10px 14px;
+  border-radius: 6px;
+  justify-content: center;
+}
+
+/* Mobile-first BEM styling for active offer proposals */
+
+.active-offer-container {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.loading-state p {
+  margin-top: 1rem;
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Error State */
+.error-state {
+  margin: 1rem 0;
+}
+
+.error-state mat-card {
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-state mat-icon {
+  font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+}
+
+.error-state h3 {
+  margin: 1rem 0;
+  color: #d32f2f;
+}
+
+.error-state button {
+  margin-top: 1rem;
+}
+
+/* Offer Header Card */
+.offer-header-card {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.offer-header-card__header {
+  padding: 1.5rem 1.5rem 0;
+}
+
+.offer-icon {
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+.offer-header-card__content {
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.offer-description {
+  margin: 1rem 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+.offer-budget {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  color: #1976d2;
+}
+
+.offer-deadline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.offer-deadline mat-icon {
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Proposals Section */
+.proposals-section {
+  margin-top: 2rem;
+}
+
+.proposals-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.proposals-title mat-icon {
+  color: #1976d2;
+}
+
+.proposals-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+/* Proposal Card */
+.proposal-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.proposal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.proposal-card__header {
+  padding: 1.5rem 1.5rem 0;
+}
+
+.worker-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.worker-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.star-icon {
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+  color: #ddd;
+}
+
+.star-icon.filled {
+  color: #ffc107;
+}
+
+.rating-value {
+  font-weight: 600;
+  color: #333;
+  margin-left: 0.5rem;
+}
+
+.review-count {
+  color: #666;
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+}
+
+.proposal-card__content {
+  padding: 1rem 1.5rem;
+}
+
+.proposal-message {
+  margin-bottom: 1rem;
+}
+
+.proposal-message p {
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+  color: #555;
+}
+
+.proposal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.proposal-price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2e7d32;
+}
+
+.proposal-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.proposal-details mat-icon {
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Payment Methods */
+.payment-methods {
+  margin-top: 1rem;
+}
+
+.payment-methods h4 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.payment-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.payment-chips mat-chip {
+  font-size: 0.85rem;
+}
+
+.payment-chips mat-icon {
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+/* Card Actions */
+.proposal-card__actions {
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.select-proposal-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.select-proposal-btn mat-icon {
+  margin-right: 0.5rem;
+}
+
+/* No Proposals State */
+.no-proposals-state {
+  margin: 2rem 0;
+}
+
+.no-proposals-state mat-card {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.no-proposals-icon {
+  font-size: 4rem;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  color: #ff9800;
+}
+
+.no-proposals-state h3 {
+  margin: 1rem 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.no-proposals-state p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .active-offer-container {
+    padding: 2rem;
+  }
+  
+  .proposals-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .proposal-details {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .select-proposal-btn {
+    width: auto;
+    min-width: 200px;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .active-offer-container {
+    padding: 1rem;
+  }
+  
+  .proposals-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .offer-header-card {
+    margin-bottom: 3rem;
+  }
+  
+  .proposals-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+} 

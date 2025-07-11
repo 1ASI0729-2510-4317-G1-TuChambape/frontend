@@ -54,7 +54,7 @@ export abstract class BaseService<T> {
    * @param resource - The resource to create
    * @returns An Observable of the created resource
    */
-  public create(resource: T): Observable<T> {
+  public create(resource: T | Partial<T>): Observable<T> {
     return this.http
       .post<T>(this.resourcePath(), JSON.stringify(resource), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
@@ -65,7 +65,7 @@ export abstract class BaseService<T> {
    * @param id - The ID of the resource to delete
    * @returns An Observable of the deletion result
    */
-  public delete(id: any): Observable<any> {
+  public delete(id: unknown): Observable<any> {
     return this.http
       .delete(`${this.resourcePath()}/${id}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
@@ -77,7 +77,7 @@ export abstract class BaseService<T> {
    * @param resource - The updated resource data
    * @returns An Observable of the updated resource
    */
-  public update(id: any, resource: T): Observable<T> {
+  public update(id: any, resource: T | Partial<T>): Observable<T> {
     return this.http
       .put<T>(
         `${this.resourcePath()}/${id}`,
@@ -86,7 +86,21 @@ export abstract class BaseService<T> {
       )
       .pipe(retry(2), catchError(this.handleError));
   }
-
+  /**
+   * Partially updates an existing resource (PATCH)
+   * @param id - The ID of the resource to update
+   * @param resource - The partial resource data
+   * @returns An Observable of the updated resource
+   */
+  public patch(id: any, resource: Partial<T>): Observable<T> {
+    return this.http
+      .patch<T>(
+        `${this.resourcePath()}/${id}`,
+        JSON.stringify(resource),
+        this.httpOptions
+      )
+      .pipe(retry(2), catchError(this.handleError));
+  }
   /**
    * Retrieves all resources
    * @returns An Observable array of all resources
@@ -120,6 +134,7 @@ export abstract class BaseService<T> {
       .get<Array<T>>(url, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
+
   /**
    * Retrieves a resource by ID
    * @param id - The ID of the resource to retrieve

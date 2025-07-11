@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "untitled3": {
+    "jobconnect-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/untitled3",
+            "outputPath": "dist/jobconnect-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -21,13 +21,12 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
+
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -60,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "untitled3:build:production"
+              "buildTarget": "jobconnect-frontend:build:production"
             },
             "development": {
-              "buildTarget": "untitled3:build:development"
+              "buildTarget": "jobconnect-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,16 +79,12 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-
-              },
               "src/favicon.ico",
               "src/assets"
+
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
+              "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -99,6 +94,6 @@
     }
   },
   "cli": {
-    "analytics": "416f9834-d94a-4e98-8195-fb23caf32719"
+    "analytics": "801e9713-fc15-4c37-a424-f6a61fdaaed8"
   }
 }

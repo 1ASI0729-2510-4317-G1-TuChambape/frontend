@@ -1,0 +1,88 @@
+<div class="search-technicians-page">
+  <aside class="filters-panel">
+    <h3>Filtros de Búsqueda</h3>
+    <div class="filter-group">
+      <label for="category">Categoría del Servicio</label>
+      <select id="category" name="category" [(ngModel)]="filters.category" (change)="applyFilters()">
+        <option value="">Todas</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="district">Ubicación / Distrito</label>
+      <select id="district" name="district" [(ngModel)]="filters.district" (change)="applyFilters()">
+        <option value="">Todos</option>
+        <option *ngFor="let dist of districts" [value]="dist">{{dist}}</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="availability">Disponibilidad</label>
+      <select id="availability" name="availability" [(ngModel)]="filters.availability" (change)="applyFilters()">
+        <option value="">Cualquiera</option>
+        <option value="immediate">Inmediata</option>
+        <option value="next_days">Próximos días</option>
+        <option value="specific_date">Fecha específica</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="minRating">Valoración Mínima: {{ filters.minRating > 0 ? filters.minRating + ' ★' : 'Cualquiera' }}</label>
+      <input type="range" id="minRating" name="minRating" min="0" max="5" step="0.5" [(ngModel)]="filters.minRating" (mouseup)="applyFilters()" (keyup)="applyFilters()">
+    </div>
+
+    <div class="filter-group">
+      <label for="serviceType">Tipo de Servicio Ofrecido</label>
+      <select id="serviceType" name="serviceType" [(ngModel)]="filters.serviceType" (change)="applyFilters()">
+        <option value="">Todos</option>
+        <option value="domicilio">A domicilio</option>
+        <option value="local">En local</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="certificationType">Tipo de Certificación</label>
+      <select id="certificationType" name="certificationType" [(ngModel)]="filters.certificationType" (change)="applyFilters()">
+        <option value="">Cualquiera</option>
+        <option value="tecnico">Técnico certificado</option>
+        <option value="autodidacta">Formación autodidacta</option>
+        <option value="institucion">Institución Técnica</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="experienceYears">Años de experiencia: {{ filters.experienceYears > 0 ? filters.experienceYears + '+' : 'Cualquiera' }}</label>
+      <input type="range" id="experienceYears" name="experienceYears" min="0" max="20" step="1" [(ngModel)]="filters.experienceYears" (mouseup)="applyFilters()" (keyup)="applyFilters()">
+    </div>
+
+    <p class="filter-hint">Los resultados se actualizan al cambiar los filtros.</p>
+
+  </aside>
+
+  <main class="results-panel">
+    <div class="technician-grid" *ngIf="filteredTechnicians.length > 0; else noResults">
+      <div class="technician-card" *ngFor="let tech of filteredTechnicians; trackBy: trackByWorkerId">
+        <img
+          [src]="tech.avatar"
+          [alt]="tech.firstName + ' ' + tech.lastName"
+          class="technician-photo"
+          (error)="handleImageError($event, tech.firstName + ' ' + tech.lastName)"
+        >
+        <div class="technician-info">
+          <h4>{{ tech.firstName }} {{ tech.lastName }} <span *ngIf="tech.isVerified" class="verified-icon" title="Verificado">✔️</span></h4>
+          <p class="specialty">{{ tech.skills && tech.skills.length > 0 ? tech.skills[0] : '' }}</p>
+          <div class="rating">
+            <span class="star-icon">⭐</span> {{ tech.rating }}
+            <span class="reviews">({{ tech.reviewCount }} calificaciones)</span>
+          </div>
+          <div class="location" *ngIf="tech.location">{{ tech.location }}</div>
+        </div>
+        <button class="report-button" (click)="reportProfile(tech)" title="Reportar perfil"> ⋮ </button>
+      </div>
+    </div>
+    <ng-template #noResults>
+      <p class="no-results-message">No se encontraron técnicos que coincidan con tus filtros.</p>
+    </ng-template>
+  </main>
+</div>

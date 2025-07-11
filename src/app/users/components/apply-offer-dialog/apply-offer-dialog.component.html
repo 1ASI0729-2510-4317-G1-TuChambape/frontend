@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Aplicar a la Oferta</h2>
+<mat-dialog-content>
+  <ng-container *ngIf="data.proposal && !data.isEdit; else formTemplate">
+    <h3>Detalle de tu Propuesta</h3>
+    <p><strong>Mensaje:</strong> {{ data.proposal.message }}</p>
+    <p><strong>Precio:</strong> S/. {{ data.proposal.price }}</p>
+    <p><strong>Estado:</strong> {{ data.proposal.status || 'PENDIENTE' }}</p>
+    <p><strong>Fecha de envío:</strong> {{ data.proposal.createdAt | date:'short' }}</p>
+    <p><strong>Oferta:</strong> {{ data.proposal.offerId }}</p>
+    <p><strong>ID Propuesta:</strong> {{ data.proposal.id }}</p>
+  </ng-container>
+  <ng-template #formTemplate>
+    <form #applyForm="ngForm">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Mensaje para el cliente</mat-label>
+        <textarea matInput [(ngModel)]="message" name="message" required placeholder="Escribe un mensaje..."
+          rows="3"></textarea>
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Precio estimado (S/)</mat-label>
+        <input matInput type="number" [(ngModel)]="price" name="price" required min="1" placeholder="Ej: 150" />
+      </mat-form-field>
+    </form>
+  </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close()">Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="!message || !price || !data.isEdit" (click)="submit()">
+    <ng-container *ngIf="data.proposal; else enviarPropuesta">
+      <ng-container *ngIf="data.proposal.status === 'ACCEPTED'; else noAceptada">
+        Propuesta Aceptada
+      </ng-container>
+      <ng-template #noAceptada>
+        <ng-container *ngIf="data.proposal.status === 'REJECTED'; else editarPropuesta">
+          Propuesta Rechazada
+        </ng-container>
+        <ng-template #editarPropuesta>
+          Editar Propuesta
+        </ng-template>
+      </ng-template>
+    </ng-container>
+    <ng-template #enviarPropuesta>
+      Enviar Propuesta
+    </ng-template>
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,147 @@
+<div class="preferences-container">
+  <h3 class="form-title">Elige tus preferencias acerca de los servicios técnicos</h3>
+
+  <form *ngIf="preferences" (ngSubmit)="savePreferences()" #preferencesForm="ngForm" class="preferences-form">
+    <div *ngIf="isLoading" class="loading-indicator">Cargando preferencias...</div>
+
+    <div *ngIf="!isLoading">
+      <div *ngIf="successMessage && !generalError" class="form-message success-message">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="generalError" class="form-message error-message general-error">
+        {{ generalError }}
+      </div>
+
+      <div class="form-columns-wrapper">
+        <div class="form-column">
+          <fieldset>
+            <div class="form-group">
+              <label for="preferredCategory">Categoría del Servicio</label>
+              <select id="preferredCategory" name="preferredCategory" [(ngModel)]="preferences.preferredCategory">
+                <option value="">Cualquiera</option>
+                <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="preferredLocation">Ubicación / Distrito</label>
+              <select id="preferredLocation" name="preferredLocation" [(ngModel)]="preferences.preferredLocation">
+                <option value="">Cualquiera</option>
+                <option *ngFor="let loc of locations" [value]="loc">{{loc}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="preferredServiceType">Tipo de Servicio Ofrecido</label>
+              <select id="preferredServiceType" name="preferredServiceType"
+                [(ngModel)]="preferences.preferredServiceType">
+                <option value="">Cualquiera</option>
+                <option *ngFor="let type of serviceTypes" [value]="type">{{type}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="preferredExperienceYears">Años de Experiencia</label>
+              <div class="multiselect-dropdown">
+                <div class="multiselect-trigger" (click)="toggleExperienceDropdown()">
+                  <span class="selected-text">
+                    {{ getExperienceYearsDisplayText() }}
+                  </span>
+                  <span class="dropdown-arrow">▼</span>
+                </div>
+                <div class="multiselect-options" [class.show]="showExperienceDropdown">
+                  <div class="checkbox-group" *ngFor="let range of experienceRanges">
+                    <input type="checkbox" [id]="getExperienceId(range)" [value]="range"
+                      [checked]="isExperienceYearSelected(range)" (change)="onExperienceYearsChange(range, $event)">
+                    <label [for]="getExperienceId(range)">{{ range }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-column">
+          <fieldset>
+            <div class="form-group">
+              <label for="preferredAvailability">Disponibilidad</label>
+              <select id="preferredAvailability" name="preferredAvailability"
+                [(ngModel)]="preferences.preferredAvailability">
+                <option value="">Cualquiera</option>
+                <option *ngFor="let avail of availabilityOptions" [value]="avail">{{ avail }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="minAcceptableRating">Valoración Mínima</label>
+              <select id="minAcceptableRating" name="minAcceptableRating" [(ngModel)]="preferences.minAcceptableRating">
+                <option *ngFor="let opt of ratingOptions" [value]="opt.value">{{opt.label}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="estimatedBudgetRange">Presupuesto Estimado</label>
+              <div class="budget-container">
+                <div class="budget-inputs">
+                  <div class="budget-input-group">
+                    <label for="budgetMin">Mínimo</label>
+                    <div class="budget-input-container">
+                      <input type="number" id="budgetMin" name="budgetMin" [(ngModel)]="budgetMin"
+                        (input)="onBudgetMinChange($any($event.target).value)" placeholder="0" min="0" max="10000"
+                        [disabled]="!preferences">
+                      <span class="currency-symbol">S/</span>
+                    </div>
+                  </div>
+                  <div class="budget-input-group">
+                    <label for="budgetMax">Máximo</label>
+                    <div class="budget-input-container">
+                      <input type="number" id="budgetMax" name="budgetMax" [(ngModel)]="budgetMax"
+                        (input)="onBudgetMaxChange($any($event.target).value)" placeholder="1000" min="0" max="10000"
+                        [disabled]="!preferences">
+                      <span class="currency-symbol">S/</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="budget-slider-container">
+                  <div class="budget-sliders" [ngStyle]="getBudgetRangeStyles()">
+                    <input type="range" id="budgetSliderMin" class="budget-slider min-slider" [min]="0" [max]="10000"
+                      [value]="budgetMin" (input)="onBudgetSliderChange($event)" [disabled]="!preferences">
+                    <input type="range" id="budgetSliderMax" class="budget-slider max-slider" [min]="0" [max]="10000"
+                      [value]="budgetMax" (input)="onBudgetSliderChange($event)" [disabled]="!preferences">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="languages">Idioma</label>
+              <div class="multiselect-dropdown">
+                <div class="multiselect-trigger" (click)="toggleLanguageDropdown()">
+                  <span class="selected-text">
+                    {{ getLanguagesDisplayText() }}
+                  </span>
+                  <span class="dropdown-arrow">▼</span>
+                </div>
+                <div class="multiselect-options" [class.show]="showLanguageDropdown">
+                  <div class="checkbox-group" *ngFor="let lang of languageOptions">
+                    <input type="checkbox" [id]="'lang' + lang" [value]="lang" [checked]="isLanguageSelected(lang)"
+                      (change)="onLanguageChange(lang, $event)">
+                    <label [for]="'lang' + lang">{{ lang | titlecase }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="form-actions-main">
+        <button class="btn btn-save-changes-prefs" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Guardar cambios</span>
+          <span *ngIf="isLoading">Guardando...</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

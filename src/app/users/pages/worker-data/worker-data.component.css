@@ -1,0 +1,80 @@
+.worker-data-container {
+  max-width: 500px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 32px 28px 24px 28px;
+}
+.worker-data-container h2 {
+  text-align: center;
+  color: #0076FF;
+  margin-bottom: 24px;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+.worker-data-form .form-group {
+  margin-bottom: 18px;
+}
+.worker-data-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #333;
+}
+.worker-data-form input,
+.worker-data-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #cce3ff;
+  border-radius: 6px;
+  font-size: 1em;
+  background: #f7fbff;
+  color: #222;
+  transition: border 0.2s;
+}
+.worker-data-form input:focus,
+.worker-data-form textarea:focus {
+  border-color: #0076FF;
+  outline: none;
+}
+.save-btn {
+  width: 100%;
+  background: #0076FF;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+.save-btn:disabled {
+  background: #b3d6ff;
+  cursor: not-allowed;
+}
+.success-message {
+  background: #eafbe7;
+  color: #1e7e34;
+  border: 1px solid #b7e4c7;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.error-message {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.loading-indicator {
+  text-align: center;
+  color: #0076FF;
+  margin-bottom: 14px;
+} 

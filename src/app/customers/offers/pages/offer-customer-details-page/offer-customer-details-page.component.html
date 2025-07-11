@@ -1,9 +1,0 @@
-@if(offer?.status === 'active') {
-  <app-offer-active-page [offer]="offer"></app-offer-active-page>
-} @else if(offer?.status === 'pending') {
-  <app-offer-pending-page></app-offer-pending-page>
-} @else if(offer?.status === 'pending-pay') {
-  <app-offer-pending-pay-page></app-offer-pending-pay-page>
-} @else if(offer?.status === 'finished') {
-  <app-offer-finished-page></app-offer-finished-page>
-}

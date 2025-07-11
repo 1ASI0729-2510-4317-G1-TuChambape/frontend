@@ -1,0 +1,230 @@
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7f6;
+}
+
+.login-form-section {
+  flex-basis: 45%;
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra sutil para la sección del formulario */
+}
+
+.logo-container {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.logo-container .logo-text {
+  color: #0056b3; /* Un azul más corporativo */
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.login-form-section h1 {
+  font-size: 28px; /* Ligeramente más grande */
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px; /* Más padding */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #007bff; /* Color de borde al enfocar */
+  outline: none; /* Quita el outline por defecto del navegador */
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff8c00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px; /* Espacio antes del botón */
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e07b00; /* Naranja más oscuro al pasar el mouse */
+}
+
+.extra-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.extra-links a {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+.register-link {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 15px; /* Ligeramente más grande */
+}
+
+.register-link span {
+  color: #555;
+}
+
+.register-link a {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para la sección de información */
+.info-section {
+  flex-basis: 55%; /* Ajustado ligeramente */
+  background-color: #007bff; /* Fondo azul principal */
+  color: white;
+  display: flex;
+  flex-direction: column; /* Para centrar verticalmente el contenido */
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  text-align: center;
+}
+
+.info-content {
+  max-width: 450px; /* Ancho máximo para el contenido informativo */
+}
+
+.info-content h2 {
+  font-size: 32px; /* Más grande */
+  font-weight: bold;
+  margin-bottom: 30px;
+  line-height: 1.4;
+}
+
+.oferta-trabajo-preview {
+  background-color: white;
+  color: #333;
+  padding: 25px;
+  border-radius: 8px;
+  text-align: left;
+  width: 100%; /* Ocupa el ancho de info-content */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.oferta-trabajo-preview .oferta-titulo {
+  font-size: 12px;
+  color: #777; /* Más sutil */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.oferta-trabajo-preview .oferta-descripcion {
+  font-size: 16px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.oferta-trabajo-preview .postulantes {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.oferta-trabajo-preview .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Espacio entre tags */
+}
+
+.oferta-trabajo-preview .tag {
+  background-color: #e9ecef;
+  color: #007bff;
+  padding: 6px 12px;
+  border-radius: 20px; /* Más redondeado */
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+.success-message {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+
+.general-error {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.field-error {
+  display: block;
+}
+
+.invalid-input {
+  border-color: #dc3545 !important;
+  background-color: #fff6f6;
+}
+
+.invalid-input:focus {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}

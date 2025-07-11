@@ -1,65 +1,1555 @@
 {
+  "accounts": [
+    {
+      "id": 1,
+      "name": "Carlos Perez",
+      "email": "cliente@example.com",
+      "passwordHashed": "1234",
+      "role": "customer",
+      "createdAt": "2023-11-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Maria Lopez",
+      "email": "maria@example.com",
+      "role": "customer",
+      "passwordHashed": "",
+      "createdAt": "2023-12-10T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Empresa Negocio SAC",
+      "email": "empresa@negocio.com",
+      "role": "customer",
+      "passwordHashed": "",
+      "createdAt": "2023-10-05T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "alejooroncoy2705",
+      "email": "alejooroncoy2705@gmail.com",
+      "passwordHashed": "123456789",
+      "role": "customer",
+      "createdAt": "2025-06-22T20:39:01.265Z"
+    },
+    {
+      "id": 5,
+      "name": "Carlos Pérez",
+      "email": "tecnico1@example.com",
+      "passwordHashed": "1",
+      "role": "worker",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "name": "Ana García",
+      "email": "tecnico2@example.com",
+      "passwordHashed": "",
+      "role": "worker",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "name": "WILMER ORONCOY",
+      "email": "adoa2705@gmail.com",
+      "passwordHashed": "123456789",
+      "role": "customer",
+      "createdAt": "2025-06-23T06:01:25.492Z"
+    },
+    {
+      "id": 8,
+      "name": "WILMER ORONCOY",
+      "email": "hola@gmail.com",
+      "passwordHashed": "1234",
+      "role": "customer",
+      "createdAt": "2025-06-23T06:03:38.266Z"
+    },
+    {
+      "id": 9,
+      "name": "producto-2",
+      "email": "chupetin@trujillo.com",
+      "passwordHashed": "1234",
+      "role": "worker",
+      "createdAt": "2025-06-26T20:13:13.155Z"
+    },
+    {
+      "id": 10,
+      "name": "Wilmer Oroncoy",
+      "email": "alejo@sunsettango.com",
+      "passwordHashed": "123456789",
+      "role": "worker",
+      "createdAt": "2025-07-07T22:46:56.682Z"
+    },
+    {
+      "id": 11,
+      "name": "Oscar Oroncoy",
+      "email": "gabriel@gmail.com",
+      "passwordHashed": "123456789",
+      "role": "customer",
+      "createdAt": "2025-07-07T22:48:08.743Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "accountId": 1,
+      "customerId": 1,
+      "workerId": null
+    },
+    {
+      "id": 2,
+      "accountId": 2,
+      "customerId": 2,
+      "workerId": null
+    },
+    {
+      "id": 3,
+      "accountId": 3,
+      "customerId": 3,
+      "workerId": null
+    },
+    {
+      "id": 4,
+      "accountId": 4,
+      "customerId": 4,
+      "workerId": null
+    },
+    {
+      "accountId": 7,
+      "id": 5,
+      "customerId": 5
+    },
+    {
+      "accountId": 9,
+      "id": 6,
+      "workerId": 3
+    },
+    {
+      "accountId": 10,
+      "id": 7,
+      "workerId": 4
+    },
+    {
+      "accountId": 11,
+      "id": 8,
+      "customerId": 21
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "email": "cliente@example.com",
+      "firstName": "Carlos",
+      "lastName": "Perez",
+      "phone": "+51 999 888 777",
+      "role": "customer",
+      "profileType": "INDIVIDUAL",
+      "location": "Lima, Perú",
+      "bio": "Cliente que busca servicios de calidad",
+      "isVerified": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "email": "maria@example.com",
+      "firstName": "Maria",
+      "lastName": "Lopez",
+      "phone": "+51 999 333 444",
+      "role": "customer",
+      "profileType": "INDIVIDUAL",
+      "location": "Arequipa, Perú",
+      "bio": "Cliente frecuente de servicios de plomería.",
+      "isVerified": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "email": "empresa@negocio.com",
+      "firstName": "Empresa",
+      "lastName": "Negocio SAC",
+      "phone": "+51 999 444 555",
+      "role": "customer",
+      "profileType": "COMPANY",
+      "location": "Cusco, Perú",
+      "bio": "Empresa que requiere servicios de refrigeración.",
+      "isVerified": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "email": "alejooroncoy2705@gmail.com",
+      "firstName": "Alejo",
+      "lastName": "Oroncoy",
+      "phone": "+51 987 654 321",
+      "role": "customer",
+      "profileType": "INDIVIDUAL",
+      "location": "Lima, Perú",
+      "bio": "Nuevo cliente en la plataforma.",
+      "isVerified": false,
+      "createdAt": "2025-06-22T20:39:01.265Z",
+      "updatedAt": "2025-06-22T20:39:01.265Z"
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "946189585",
+      "location": "Av. Los Nogales 251, El Agustino",
+      "bio": "1212e1",
+      "accountId": 7,
+      "email": "adoa2705@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-06-23T12:16:19.226Z",
+      "updatedAt": "2025-06-23T12:16:19.226Z",
+      "id": 5
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "345435345435",
+      "location": "lima",
+      "bio": "fdgdfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:44:05.517Z",
+      "updatedAt": "2025-07-04T01:44:05.517Z",
+      "id": 6
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:46.252Z",
+      "updatedAt": "2025-07-04T01:49:46.252Z",
+      "id": 7
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:47.045Z",
+      "updatedAt": "2025-07-04T01:49:47.045Z",
+      "id": 8
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:47.710Z",
+      "updatedAt": "2025-07-04T01:49:47.710Z",
+      "id": 9
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:47.944Z",
+      "updatedAt": "2025-07-04T01:49:47.944Z",
+      "id": 10
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "45645",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:48.152Z",
+      "updatedAt": "2025-07-04T01:49:48.152Z",
+      "id": 11
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "456454545",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:51.620Z",
+      "updatedAt": "2025-07-04T01:49:51.620Z",
+      "id": 12
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "456454545",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:51.801Z",
+      "updatedAt": "2025-07-04T01:49:51.801Z",
+      "id": 13
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "456454545",
+      "location": "lima",
+      "bio": "dgfg",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:49:51.994Z",
+      "updatedAt": "2025-07-04T01:49:51.994Z",
+      "id": 14
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "dsfsdfsdfsd",
+      "location": "fsdf",
+      "bio": "sdf",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:54:18.460Z",
+      "updatedAt": "2025-07-04T01:54:18.460Z",
+      "id": 15
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:55:59.014Z",
+      "updatedAt": "2025-07-04T01:55:59.014Z",
+      "id": 16
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:55:59.653Z",
+      "updatedAt": "2025-07-04T01:55:59.653Z",
+      "id": 17
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:55:59.838Z",
+      "updatedAt": "2025-07-04T01:55:59.838Z",
+      "id": 18
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:56:00.018Z",
+      "updatedAt": "2025-07-04T01:56:00.018Z",
+      "id": 19
+    },
+    {
+      "firstName": "WILMER",
+      "lastName": "ORONCOY",
+      "phone": "56546456",
+      "location": "56456",
+      "bio": "ghfghfghgfh",
+      "accountId": 8,
+      "email": "hola@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:56:00.190Z",
+      "updatedAt": "2025-07-04T01:56:00.190Z",
+      "id": 20
+    },
+    {
+      "firstName": "Oscar",
+      "lastName": "Oroncoy",
+      "phone": "946189585",
+      "location": "Av. Los Nogales 251, El Agustino",
+      "bio": "guarda info",
+      "accountId": 11,
+      "email": "gabriel@gmail.com",
+      "role": "client",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-07T22:48:35.030Z",
+      "updatedAt": "2025-07-07T22:48:35.030Z",
+      "id": 21
+    }
+  ],
+  "workers": [
+    {
+      "id": 1,
+      "email": "tecnico1@example.com",
+      "firstName": "Carlos",
+      "lastName": "Pérez",
+      "phone": "+51 999 111 222",
+      "avatar": "assets/img/Carlos Perez.png",
+      "role": "worker",
+      "profileType": "INDIVIDUAL",
+      "location": "Lima, Perú",
+      "bio": "Electricista certificado con 5 años de experiencia en instalaciones residenciales y comerciales.",
+      "skills": [
+        "Electricidad",
+        "Instalaciones",
+        "Mantenimiento"
+      ],
+      "experience": 5,
+      "certifications": [
+        "Certificado de Electricista",
+        "Seguridad Industrial"
+      ],
+      "rating": 4.8,
+      "reviewCount": 25,
+      "isVerified": true,
+      "availability": {
+        "lunes": "08:00-17:00",
+        "martes": "08:00-17:00",
+        "miercoles": "08:00-17:00",
+        "jueves": "08:00-17:00",
+        "viernes": "08:00-17:00",
+        "sabado": "09:00-13:00",
+        "domingo": ""
+      },
+      "yapeNumber": "999999999",
+      "plinNumber": "888888888",
+      "bankAccountNumber": "123-456-789",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "email": "tecnico2@example.com",
+      "firstName": "Ana",
+      "lastName": "García",
+      "phone": "+51 999 222 333",
+      "avatar": "assets/img/Claudio Rivera.png",
+      "role": "worker",
+      "profileType": "INDIVIDUAL",
+      "location": "Arequipa, Perú",
+      "bio": "Plomera con experiencia en instalaciones y reparaciones domésticas.",
+      "skills": [
+        "Plomería",
+        "Reparaciones",
+        "Instalaciones"
+      ],
+      "experience": 3,
+      "certifications": [
+        "Certificado de Plomería"
+      ],
+      "rating": 4.6,
+      "reviewCount": 18,
+      "isVerified": true,
+      "availability": {
+        "lunes": "08:00-17:00",
+        "martes": "08:00-17:00",
+        "miercoles": "08:00-17:00",
+        "jueves": "08:00-17:00",
+        "viernes": "08:00-17:00",
+        "sabado": "09:00-13:00",
+        "domingo": ""
+      },
+      "yapeNumber": "999999999",
+      "plinNumber": "888888888",
+      "bankAccountNumber": "123-456-789",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "firstName": "CHUPETIN",
+      "lastName": "TRUJILLO",
+      "phone": "34343434",
+      "location": "LIMA",
+      "bio": "DFGDGD",
+      "skills": [
+        "Carpinteria"
+      ],
+      "experience": 4,
+      "certifications": [
+        "nada"
+      ],
+      "accountId": 9,
+      "email": "chupetin@trujillo.com",
+      "role": "technician",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-04T01:27:53.027Z",
+      "updatedAt": "2025-07-04T01:27:53.027Z",
+      "rating": 0,
+      "reviewCount": 0,
+      "id": 3,
+      "availability": {
+        "lunes": "08:00-17:00",
+        "martes": "08:00-17:00",
+        "miercoles": "08:00-17:00",
+        "jueves": "08:00-17:00",
+        "viernes": "08:00-17:00",
+        "sabado": "09:00-13:00",
+        "domingo": ""
+      }
+    },
+    {
+      "firstName": "Wilmer",
+      "lastName": "Oroncoy",
+      "phone": "946189585",
+      "location": "Av. Los Nogales 251, El Agustino",
+      "bio": "e3mkmekm3km",
+      "skills": [
+        "mkmed"
+      ],
+      "experience": 5,
+      "certifications": [
+        "kmck"
+      ],
+      "accountId": 10,
+      "email": "alejo@sunsettango.com",
+      "role": "technician",
+      "profileType": "INDIVIDUAL",
+      "isVerified": false,
+      "createdAt": "2025-07-09T19:16:00.979Z",
+      "updatedAt": "2025-07-09T19:16:00.979Z",
+      "rating": 0,
+      "reviewCount": 0,
+      "id": 4,
+      "yapeNumber": "231",
+      "plinNumber": "12331",
+      "availability": {
+        "lunes": "08:00-17:00",
+        "martes": "",
+        "miercoles": "08:00-17:00",
+        "jueves": "08:00-17:00",
+        "viernes": "08:00-17:00",
+        "sabado": "09:00-13:00",
+        "domingo": ""
+      }
+    }
+  ],
+  "preferences": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "preferredCategory": "Electricidad",
+      "preferredLocation": "Lima, Perú",
+      "preferredServiceType": "A domicilio",
+      "preferredExperienceYears": "10+",
+      "preferredAvailability": "Mornings",
+      "minAcceptableRating": 4,
+      "estimatedBudgetRange": {
+        "min": 100,
+        "max": 300
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 2,
+      "customerId": 2,
+      "preferredCategory": "Plomería",
+      "preferredLocation": "Arequipa, Perú",
+      "preferredServiceType": "A domicilio",
+      "preferredExperienceYears": "6-10",
+      "preferredAvailability": "Afternoons",
+      "minAcceptableRating": 3,
+      "estimatedBudgetRange": {
+        "min": 50,
+        "max": 150
+      },
+      "languages": [
+        "spanish",
+        "english"
+      ]
+    },
+    {
+      "id": 3,
+      "customerId": 5,
+      "preferredCategory": "Electricista",
+      "preferredLocation": "San Isidro",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        "3-5 años",
+        "0-2 años"
+      ],
+      "preferredAvailability": "Afternoons",
+      "minAcceptableRating": "4",
+      "estimatedBudgetRange": {
+        "min": 1840,
+        "max": 6152
+      },
+      "languages": [
+        "spanish",
+        "english"
+      ]
+    },
+    {
+      "id": 4,
+      "customerId": 6,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 5,
+      "customerId": 7,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 6,
+      "customerId": 8,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 7,
+      "customerId": 9,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 8,
+      "customerId": 10,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 9,
+      "customerId": 11,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 10,
+      "customerId": 12,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 11,
+      "customerId": 13,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 12,
+      "customerId": 14,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 13,
+      "customerId": 15,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 14,
+      "customerId": 16,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 15,
+      "customerId": 17,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 16,
+      "customerId": 18,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 17,
+      "customerId": 19,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 18,
+      "customerId": 20,
+      "preferredCategory": "",
+      "preferredLocation": "",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        ""
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 0,
+        "max": 0
+      },
+      "languages": [
+        "spanish"
+      ]
+    },
+    {
+      "id": 19,
+      "customerId": 21,
+      "preferredCategory": "Gasfitero",
+      "preferredLocation": "Miraflores",
+      "preferredServiceType": "",
+      "preferredExperienceYears": [
+        "",
+        "3-5 años"
+      ],
+      "preferredAvailability": "Immediate",
+      "minAcceptableRating": 0,
+      "estimatedBudgetRange": {
+        "min": 819,
+        "max": 4605
+      },
+      "languages": [
+        "english"
+      ]
+    }
+  ],
   "offers": [
     {
-      "title": "alejo",
-      "description": "adn",
-      "technicalCategory": "frontend",
-      "location": "av. los nogales 241",
-      "requiredExperience": "junior",
-      "workSchedule": "9-18",
-      "estimatedBudget": "12321",
-      "paymentMethod": "fixed",
-      "notificationsAccepted": true,
-      "personalDataConsent": true,
-      "userId": "1",
-      "status": "active",
-      "id": 1
+      "id": 1,
+      "title": "Necesito un electricista para revisar el sistema de iluminación",
+      "description": "Busco un electricista certificado para revisar y reparar el sistema de iluminación de mi casa. El problema es que algunas luces no funcionan correctamente.",
+      "status": "PENDING",
+      "category": "Electricidad",
+      "location": "Lima, Perú",
+      "budget": {
+        "min": 150,
+        "max": 300,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "Certificado",
+        "Con experiencia",
+        "Herramientas propias"
+      ],
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z",
+      "deadline": "2024-02-15T00:00:00.000Z",
+      "proposalsCount": 2,
+      "selectedProposalId": 1,
+      "startAt": "2024-01-15T00:00:00.000Z"
     },
     {
-      "title": "alejo",
-      "description": "adsk",
-      "technicalCategory": "frontend",
-      "location": "asdas",
-      "requiredExperience": "junior",
-      "workSchedule": "shifts",
-      "estimatedBudget": "12321",
-      "paymentMethod": "fixed",
-      "notificationsAccepted": true,
-      "personalDataConsent": true,
-      "userId": "1",
-      "status": "active",
-      "id": 2
+      "id": 2,
+      "title": "Plomero para fuga de agua",
+      "description": "Se requiere plomero urgente para reparar una fuga en el baño principal.",
+      "customerId": 2,
+      "status": "PENDING",
+      "category": "Plomería",
+      "location": "Arequipa, Perú",
+      "budget": {
+        "min": 100,
+        "max": 200,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "Experiencia comprobable"
+      ],
+      "createdAt": "2024-01-20T00:00:00.000Z",
+      "updatedAt": "2024-01-21T00:00:00.000Z",
+      "startAt": "2024-01-20T00:00:00.000Z",
+      "deadline": "2024-02-10T00:00:00.000Z",
+      "proposalsCount": 1,
+      "paymentId": 1,
+      "selectedProposalId": 2
     },
     {
-      "title": "alejo",
-      "description": "12312",
-      "technicalCategory": "frontend",
-      "location": "av. los nogales 251",
-      "requiredExperience": "semi_senior",
-      "workSchedule": "9-18",
-      "estimatedBudget": "12321",
-      "paymentMethod": "fixed",
-      "notificationsAccepted": true,
-      "personalDataConsent": true,
-      "userId": "1",
-      "status": "active",
+      "id": 3,
+      "title": "Técnico en refrigeración para mantenimiento de aire acondicionado",
+      "description": "Mantenimiento preventivo de dos equipos de aire acondicionado en oficina.",
+      "customerId": 3,
+      "status": "FINISHED",
+      "category": "Refrigeración",
+      "location": "Cusco, Perú",
+      "budget": {
+        "min": 200,
+        "max": 400,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "Certificado",
+        "Herramientas propias"
+      ],
+      "createdAt": "2023-12-10T00:00:00.000Z",
+      "updatedAt": "2023-12-15T00:00:00.000Z",
+      "startAt": "2023-12-10T00:00:00.000Z",
+      "deadline": "2023-12-20T00:00:00.000Z",
+      "proposalsCount": 0,
+      "paymentId": 2,
+      "selectedProposalId": 1
+    },
+    {
+      "id": 4,
+      "title": "12323123232321",
+      "description": "12323123232321123231232323211232312323232112323123232321",
+      "clientId": 7,
+      "clientEmail": "adoa2705@gmail.com",
+      "status": "ACTIVE",
+      "category": "Electricista",
+      "location": "13123",
+      "budget": {
+        "min": 200,
+        "max": 300,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "ALEJO",
+        "Menos de 1 año",
+        "12312",
+        "Medio Tiempo (Tarde)"
+      ],
+      "createdAt": "2025-06-27T00:41:15.423Z",
+      "updatedAt": "2025-06-27T00:41:15.423Z",
+      "deadline": "",
+      "proposalsCount": 0
+    },
+    {
+      "id": 5,
+      "title": "alejoalejoalejoalejo",
+      "description": "alejoalejoalejoalejoalejoalejoalejoalejoalejoalejoalejoalejoalejoalejoalejoalejoalejoalejo",
+      "clientId": 7,
+      "clientEmail": "adoa2705@gmail.com",
+      "status": "PENDING",
+      "category": "Electricista",
+      "location": "13123",
+      "budget": {
+        "min": 200,
+        "max": 200,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "23123",
+        "Sin experiencia",
+        "12312",
+        "Medio Tiempo (Mañana)"
+      ],
+      "createdAt": "2025-06-27T00:46:45.960Z",
+      "updatedAt": "2025-06-27T00:46:45.960Z",
+      "deadline": "2025-06-27T12:00",
+      "proposalsCount": 0,
+      "selectedProposalId": 1
+    },
+    {
+      "id": 6,
+      "title": "Se busca electricisita",
+      "description": "Loremp ipsumLoremp ipsumLoremp ipsumLoremp ipsumLoremp ipsumLoremp ipsumLoremp ipsumLoremp ipsumLoremp ipsumLoremp ipsumLoremp ipsum",
+      "clientId": 11,
+      "clientEmail": "gabriel@gmail.com",
+      "status": "ACTIVE",
+      "category": "Electricista",
+      "location": "Av. Los Nogales 251, El Agustino",
+      "budget": {
+        "min": 1200,
+        "max": 2000,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "ALEJO",
+        "Menos de 1 año",
+        "certificado",
+        "Medio Tiempo (Mañana)"
+      ],
+      "createdAt": "2025-07-07T22:50:03.002Z",
+      "updatedAt": "2025-07-07T22:50:03.002Z",
+      "deadline": "2025-07-10T09:00",
+      "proposalsCount": 0
+    },
+    {
+      "id": 7,
+      "title": "123213123123131",
+      "description": "LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum",
+      "clientId": 11,
+      "clientEmail": "gabriel@gmail.com",
+      "status": "ACTIVE",
+      "category": "Electricista",
+      "location": "Av. Los Nogales 251, El Agustino",
+      "budget": {
+        "min": 591,
+        "max": 2553,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "ALEJO",
+        "Sin experiencia",
+        "12312",
+        "Medio Tiempo (Mañana)"
+      ],
+      "createdAt": "2025-07-10T00:03:12.914Z",
+      "updatedAt": "2025-07-10T00:03:12.914Z",
+      "deadline": "2025-08-10T10:00",
+      "proposalsCount": 0
+    },
+    {
+      "id": 8,
+      "title": "Se necesita Profesor",
+      "description": "Loremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isumaLoremp isuma",
+      "clientId": 11,
+      "clientEmail": "gabriel@gmail.com",
+      "status": "PENDING",
+      "category": "Plomero",
+      "location": "Av. Los Nogales 251, El Agustino",
+      "budget": {
+        "min": 1121,
+        "max": 2693,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "ALEJO",
+        "Sin experiencia",
+        "certificado",
+        "Medio Tiempo (Mañana)"
+      ],
+      "createdAt": "2025-07-10T00:13:25.905Z",
+      "updatedAt": "2025-07-10T00:13:25.905Z",
+      "deadline": "2025-09-10T10:00",
+      "proposalsCount": 0,
+      "selectedProposalId": 5
+    },
+    {
+      "id": 9,
+      "title": "hola ya now",
+      "description": "hola yahola yahola yahola yahola yahola yahola yahola yahola yahola yahola yahola yahola yahola yahola ya",
+      "clientId": 1,
+      "clientEmail": "cliente@example.com",
+      "status": "FINISHED",
+      "category": "Electricista",
+      "location": "surco 123",
+      "budget": {
+        "min": 0,
+        "max": 1300,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "nada",
+        "Sin experiencia",
+        "nada",
+        "Medio Tiempo (Mañana)"
+      ],
+      "createdAt": "2025-07-10T17:50:19.875Z",
+      "updatedAt": "2025-07-10T17:50:19.875Z",
+      "deadline": "2025-07-10T12:50",
+      "proposalsCount": 0,
+      "selectedProposalId": 6
+    },
+    {
+      "id": 10,
+      "title": "probar now",
+      "description": "probar nowprobar nowprobar nowprobar nowprobar nowprobar nowprobar now",
+      "clientId": 1,
+      "clientEmail": "cliente@example.com",
+      "status": "FINISHED",
+      "category": "Electricista",
+      "location": "surco 12",
+      "budget": {
+        "min": 0,
+        "max": 10000,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "nada",
+        "Sin experiencia",
+        "nada",
+        "Medio Tiempo (Mañana)"
+      ],
+      "createdAt": "2025-07-10T18:30:55.205Z",
+      "updatedAt": "2025-07-10T18:30:55.205Z",
+      "deadline": "2025-07-11T13:30",
+      "proposalsCount": 0,
+      "selectedProposalId": 8
+    },
+    {
+      "id": 11,
+      "title": "Cambiar focos",
+      "description": "Cambiar focosCambiar focosCambiar focosCambiar focosCambiar focos",
+      "clientId": 1,
+      "clientEmail": "cliente@example.com",
+      "status": "FINISHED",
+      "category": "Electricista",
+      "location": "sani",
+      "budget": {
+        "min": 2197,
+        "max": 8587,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "nada",
+        "Sin experiencia",
+        "nada",
+        "Medio Tiempo (Mañana)"
+      ],
+      "createdAt": "2025-07-10T18:54:27.215Z",
+      "updatedAt": "2025-07-10T18:54:27.215Z",
+      "deadline": "2025-07-10T13:54",
+      "proposalsCount": 0,
+      "selectedProposalId": 9
+    },
+    {
+      "id": 12,
+      "title": "Cambiar los todo",
+      "description": "Cambiar los todoCambiar los todoCambiar los todoCambiar los todoCambiar los todo",
+      "clientId": 1,
+      "clientEmail": "cliente@example.com",
+      "status": "FINISHED",
+      "category": "Electricista",
+      "location": "sani 123",
+      "budget": {
+        "min": 0,
+        "max": 3094,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "nada",
+        "Sin experiencia",
+        "nada",
+        "Medio Tiempo (Tarde)"
+      ],
+      "createdAt": "2025-07-10T19:00:30.990Z",
+      "updatedAt": "2025-07-10T19:00:30.990Z",
+      "deadline": "2025-07-10T14:00",
+      "proposalsCount": 0,
+      "selectedProposalId": 10
+    },
+    {
+      "id": 13,
+      "title": "ya ahora now go",
+      "description": "ya ahora now goya ahora now goya ahora now goya ahora now goya ahora now goya ahora now goya ahora now goya ahora now goya ahora now goya ahora now goya ahora now go",
+      "clientId": 1,
+      "clientEmail": "cliente@example.com",
+      "status": "FINISHED",
+      "category": "Electricista",
+      "location": "san micki",
+      "budget": {
+        "min": 0,
+        "max": 3565,
+        "currency": "PEN"
+      },
+      "requirements": [
+        "nada",
+        "Sin experiencia",
+        "nada",
+        "Medio Tiempo (Mañana)"
+      ],
+      "createdAt": "2025-07-10T19:02:54.859Z",
+      "updatedAt": "2025-07-10T19:02:54.859Z",
+      "deadline": "2025-07-10T14:02",
+      "proposalsCount": 0,
+      "selectedProposalId": 11
+    }
+  ],
+  "proposals": [
+    {
+      "id": 1,
+      "offerId": 5,
+      "workerId": 1,
+      "message": "Puedo hacerlo en 2 días.",
+      "price": 250,
+      "createdAt": "2024-01-16T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "offerId": 1,
+      "workerId": 2,
+      "message": "Tengo experiencia en este tipo de trabajos.",
+      "price": 280,
+      "createdAt": "2024-01-16T12:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "offerId": 2,
+      "workerId": 1,
+      "message": "Disponible para hoy mismo.",
+      "price": 150,
+      "createdAt": "2024-01-21T09:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "offerId": 4,
+      "workerId": 4,
+      "message": "mano, da",
+      "price": 123,
+      "createdAt": "2025-07-09T21:58:19.316Z",
+      "status": "ACCEPTED"
+    },
+    {
+      "id": 5,
+      "offerId": 8,
+      "workerId": 4,
+      "message": "soy bueno en matemáticass",
+      "price": 1200,
+      "createdAt": "2025-07-10T00:15:04.242Z",
+      "status": "PENDING"
+    },
+    {
+      "id": 6,
+      "offerId": 9,
+      "workerId": 3,
+      "status": "PENDING",
+      "createdAt": "2025-07-10T17:50:41.040Z",
+      "message": "hola",
+      "price": 120
+    },
+    {
+      "id": 7,
+      "offerId": 6,
+      "workerId": 3,
+      "status": "PENDING",
+      "createdAt": "2025-07-10T18:00:53.037Z",
+      "message": "df",
+      "price": 10
+    },
+    {
+      "id": 8,
+      "offerId": 10,
+      "workerId": 3,
+      "status": "PENDING",
+      "createdAt": "2025-07-10T18:31:25.083Z",
+      "message": "holla",
+      "price": 150
+    },
+    {
+      "id": 9,
+      "offerId": 11,
+      "workerId": 3,
+      "status": "PENDING",
+      "createdAt": "2025-07-10T18:54:52.872Z",
+      "message": "ya llego",
+      "price": 300
+    },
+    {
+      "id": 10,
+      "offerId": 12,
+      "workerId": 3,
+      "status": "PENDING",
+      "createdAt": "2025-07-10T19:00:46.114Z",
+      "message": "hola yo",
+      "price": 200
+    },
+    {
+      "id": 11,
+      "offerId": 13,
+      "workerId": 3,
+      "status": "PENDING",
+      "createdAt": "2025-07-10T19:03:23.244Z",
+      "message": "yaaa",
+      "price": 200
+    }
+  ],
+  "payments": [
+    {
+      "id": 1,
+      "offerId": 1,
+      "amount": 250,
+      "currency": "PEN",
+      "status": "PAID",
+      "createdAt": "2024-01-17T10:00:00.000Z",
+      "updatedAt": "2025-06-27T00:39:30.207Z",
+      "workerVerified": false,
+      "customerVerified": true
+    },
+    {
+      "id": 2,
+      "offerId": 3,
+      "amount": 400,
+      "currency": "PEN",
+      "status": "PENDING",
+      "workerVerified": true,
+      "customerVerified": true,
+      "createdAt": "2024-01-18T12:00:00.000Z",
+      "updatedAt": "2024-01-18T12:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "offerId": 5,
+      "amount": 250,
+      "currency": "PEN",
+      "status": "PAID",
+      "createdAt": "2025-06-27T00:54:01.980Z",
+      "updatedAt": "2025-06-27T01:11:58.623Z",
+      "workerVerified": false,
+      "customerVerified": true
+    },
+    {
+      "id": 4,
+      "offerId": 8,
+      "amount": 1200,
+      "currency": "PEN",
+      "status": "PAID",
+      "createdAt": "2025-07-10T00:16:33.514Z",
+      "updatedAt": "2025-07-10T00:17:05.480Z",
+      "workerVerified": false,
+      "customerVerified": true
+    },
+    {
+      "offerId": 9,
+      "amount": 120,
+      "currency": "PEN",
+      "status": "PENDING",
+      "workerVerified": false,
+      "customerVerified": false,
+      "createdAt": "2025-07-10T18:17:45.429Z",
+      "updatedAt": "2025-07-10T18:17:45.429Z",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "offerId": 10,
+      "amount": 150,
+      "currency": "PEN",
+      "status": "PAID",
+      "createdAt": "2025-07-10T18:31:39.704Z",
+      "updatedAt": "2025-07-10T18:31:45.214Z",
+      "workerVerified": false,
+      "customerVerified": true
+    },
+    {
+      "offerId": 11,
+      "amount": 300,
+      "currency": "PEN",
+      "status": "PENDING",
+      "workerVerified": false,
+      "customerVerified": false,
+      "createdAt": "2025-07-10T18:55:06.123Z",
+      "updatedAt": "2025-07-10T18:55:06.123Z",
+      "id": 7
+    },
+    {
+      "status": "PAID",
+      "id": 8
+    },
+    {
+      "status": "PAID",
+      "id": 9
+    },
+    {
+      "status": "PAID",
+      "id": 10
+    },
+    {
+      "status": "PAID",
+      "id": 11
+    },
+    {
+      "status": "PAID",
+      "id": 12
+    },
+    {
+      "status": "PAID",
+      "id": 13
+    },
+    {
+      "offerId": 13,
+      "amount": 200,
+      "currency": "PEN",
+      "status": "PAID",
+      "workerVerified": false,
+      "customerVerified": false,
+      "createdAt": "2025-07-10T19:10:42.958Z",
+      "updatedAt": "2025-07-10T19:10:42.958Z",
+      "id": 14
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "offerId": 1,
+      "authorUserId": 1,
+      "reviewerUserId": 7,
+      "authorName": "Carlos Perez",
+      "authorImageUrl": "assets/img/Carlos Perez.png",
+      "date": "2024-01-20T10:00:00.000Z",
+      "isVerifiedAuthor": true,
+      "rating": 5,
+      "comment": "Excelente trabajo, muy profesional y puntual."
+    },
+    {
+      "id": 2,
+      "offerId": 2,
+      "authorUserId": 2,
+      "reviewerUserId": 7,
+      "authorName": "Maria Lopez",
+      "authorImageUrl": "assets/img/Claudio Rivera.png",
+      "date": "2024-01-22T15:30:00.000Z",
+      "isVerifiedAuthor": true,
+      "rating": 4,
+      "comment": "Buen servicio, aunque llegó un poco tarde."
+    },
+    {
+      "offerId": 3,
+      "authorUserId": 7,
+      "reviewerUserId": 7,
+      "authorName": "Carlos Pérez",
+      "authorImageUrl": "assets/img/Carlos Perez.png",
+      "createdAt": "2025-06-27T00:28:03.788Z",
+      "isVerifiedAuthor": false,
+      "rating": 5,
+      "comment": "alejo",
       "id": 3
     },
     {
-      "userId": "1",
-      "status": "active",
-      "title": "alejo",
-      "description": "adoa",
-      "technicalCategory": "frontend",
-      "location": "123",
-      "estimatedBudget": "123",
-      "paymentMethod": "fixed",
-      "requiredExperience": "semi_senior",
-      "workSchedule": "9-18",
-      "notificationsAccepted": true,
-      "personalDataConsent": true,
-      "createdAt": "2025-05-17T19:49:06.305Z",
-      "updatedAt": "2025-05-17T19:49:06.305Z",
+      "offerId": 9,
+      "authorUserId": 1,
+      "reviewerUserId": 3,
+      "authorName": "CHUPETIN TRUJILLO",
+      "authorImageUrl": "assets/img/default-tech.png",
+      "createdAt": "2025-07-10T18:28:00.728Z",
+      "isVerifiedAuthor": false,
+      "rating": 3,
+      "comment": "bien bro",
+      "reviewerName": "CHUPETIN TRUJILLO",
       "id": 4
     }
   ]

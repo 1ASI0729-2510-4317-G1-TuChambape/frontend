@@ -1,0 +1,75 @@
+<!-- Vista de confirmación -->
+<div *ngIf="!isSuccess">
+  <h2 mat-dialog-title>Confirmar Pago</h2>
+  <mat-dialog-content>
+    <div class="confirmation-content">
+      <div class="amount-section">
+        <div class="amount-label">Monto a pagar:</div>
+        <div class="amount-value">PEN {{ data.amount | number:'1.2-2' }}</div>
+      </div>
+      
+      <div class="worker-section">
+        <div class="worker-label">Trabajador:</div>
+        <div class="worker-info">
+          <div class="worker-name">{{ data.worker.workerName }}</div>
+          <div class="worker-rating" *ngIf="data.worker.rating">
+            ⭐ {{ data.worker.rating | number:'1.1-1' }} ({{ data.worker.reviewCount || 0 }} reseñas)
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-methods">
+        <div class="payment-label">Métodos de pago disponibles:</div>
+        <div class="payment-list">
+          <div *ngIf="data.worker.bankAccountNumber" class="payment-method">
+            <mat-icon>account_balance</mat-icon>
+            <span>Cuenta bancaria: {{ data.worker.bankAccountNumber }}</span>
+          </div>
+          <div *ngIf="data.worker.yapeNumber" class="payment-method">
+            <mat-icon>smartphone</mat-icon>
+            <span>Yape: {{ data.worker.yapeNumber }}</span>
+          </div>
+          <div *ngIf="data.worker.plinNumber" class="payment-method">
+            <mat-icon>smartphone</mat-icon>
+            <span>Plin: {{ data.worker.plinNumber }}</span>
+          </div>
+          <div *ngIf="!data.worker.bankAccountNumber && !data.worker.yapeNumber && !data.worker.plinNumber" class="payment-method">
+            <mat-icon>warning</mat-icon>
+            <span>No hay métodos de pago disponibles</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warning-section">
+        <mat-icon class="warning-icon">info</mat-icon>
+        <div class="warning-text">
+          Al confirmar, aceptas realizar el pago directamente al trabajador usando uno de los métodos mostrados arriba.
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" (click)="confirm()">Confirmar Pago</button>
+  </mat-dialog-actions>
+</div>
+
+<!-- Vista de éxito -->
+<div *ngIf="isSuccess">
+  <mat-dialog-content>
+    <div class="success-content">
+      <div class="success-icon">
+        <mat-icon>check_circle</mat-icon>
+      </div>
+      <div class="success-title">¡Se realizó el pago de forma exitosa!</div>
+      <div class="success-amount">PEN {{ data.amount | number:'1.2-2' }}</div>
+      <div class="success-worker">{{ data.worker.workerName }}</div>
+      <div class="success-message">
+        El pago ha sido procesado correctamente. El trabajador ha sido notificado y tiene que confirmar el pago.
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" (click)="close()">Continuar</button>
+  </mat-dialog-actions>
+</div> 

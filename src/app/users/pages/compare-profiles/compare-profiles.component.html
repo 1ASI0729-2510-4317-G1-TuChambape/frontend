@@ -1,0 +1,71 @@
+<div class="compare-profiles-page">
+  <div class="compare-filters-bar">
+    <div class="filter-item checkbox-filter">
+      <input type="checkbox" id="onlyFavorites" name="onlyFavorites" [(ngModel)]="filters.onlyFavorites" (change)="applyFilters()">
+      <label for="onlyFavorites">Solo Favoritos</label>
+    </div>
+    <div class="filter-item">
+      <label for="availabilityFilter">Disponibilidad</label>
+      <select id="availabilityFilter" name="availabilityFilter" [(ngModel)]="filters.availability" (change)="applyFilters()">
+        <option value="">Cualquiera</option>
+        <option *ngFor="let day of availabilityOptions" [value]="day.toLowerCase()">{{day}}</option>
+      </select>
+    </div>
+    <div class="filter-item">
+      <label for="minRatingFilter">Valoración Mínima</label>
+      <select id="minRatingFilter" name="minRatingFilter" [(ngModel)]="filters.minRating" (change)="applyFilters()">
+        <option value="0">Cualquiera</option>
+        <option value="3">3 ★ o más</option>
+        <option value="4">4 ★ o más</option>
+        <option value="4.5">4.5 ★ o más</option>
+        <option value="5">5 ★</option>
+      </select>
+    </div>
+    <div class="filter-item">
+      <label for="certificationFilter">Tipo de Certificación</label>
+      <select id="certificationFilter" name="certificationFilter" [(ngModel)]="filters.certificationType" (change)="applyFilters()">
+        <option value="">Cualquiera</option>
+        <option *ngFor="let cert of certificationTypes" [value]="cert">{{cert}}</option>
+      </select>
+    </div>
+    <div class="filter-actions">
+      <button class="btn btn-primary-orange" (click)="applyFilters()">Aplicar</button>
+      <button class="btn btn-link-blue" (click)="resetFilters()">Reestablecer filtros</button>
+    </div>
+  </div>
+
+  <div class="comparison-area" *ngIf="techniciansToCompare.length > 0; else noTechnicians">
+    <div class="technician-compare-card" *ngFor="let tech of techniciansToCompare">
+      <div class="tech-header">
+        <img [src]="tech.avatar" [alt]="tech.firstName + ' ' + tech.lastName" class="tech-photo" (error)="handleImageError($event, tech.firstName + ' ' + tech.lastName)">
+        <h3>{{ tech.firstName }} {{ tech.lastName }}</h3>
+        <p class="tech-specialty">{{ tech.skills && tech.skills.length > 0 ? tech.skills[0] : '' }}</p>
+      </div>
+      <div class="tech-detail-section">
+        <strong class="detail-title">Disponibilidad:</strong>
+        <div class="availability-list">
+          <span *ngFor="let day of getAvailabilityDays(tech.availability)">{{ day | titlecase }}</span>
+        </div>
+      </div>
+      <div class="tech-detail-section">
+        <strong class="detail-title">Valoración mínima:</strong>
+        <div class="rating-display">
+          <span *ngFor="let i of getStars(tech.rating)" class="star filled">★</span>
+          <span *ngFor="let i of getEmptyStars(tech.rating)" class="star">☆</span>
+          <span class="rating-text">{{ tech.rating.toFixed(1) }} ({{ tech.reviewCount }} calific.)</span>
+        </div>
+      </div>
+      <div class="tech-detail-section">
+        <strong class="detail-title">Tipo de certificación:</strong>
+        <p>{{ tech.certifications && tech.certifications.length > 0 ? tech.certifications[0] : '' }}</p>
+      </div>
+      <div class="tech-detail-section">
+        <strong class="detail-title">Años de experiencia:</strong>
+        <p class="experience-badge">{{ tech.experience }} años</p>
+      </div>
+    </div>
+  </div>
+  <ng-template #noTechnicians>
+    <p class="no-results-message">No hay técnicos seleccionados para comparar.</p>
+  </ng-template>
+</div>

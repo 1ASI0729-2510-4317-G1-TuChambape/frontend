@@ -1,0 +1,75 @@
+<div class="worker-data-container">
+  <h2>Actualizar Datos de Trabajador</h2>
+  <form *ngIf="workerProfile" (ngSubmit)="saveChanges()" #workerForm="ngForm" class="worker-data-form">
+    <div *ngIf="isLoading" class="loading-indicator">Cargando datos...</div>
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="generalError" class="error-message">{{ generalError }}</div>
+
+    <div class="form-group">
+      <label for="firstName">Nombre</label>
+      <input id="firstName" name="firstName" [(ngModel)]="workerProfile.firstName" required />
+    </div>
+    <div class="form-group">
+      <label for="lastName">Apellido</label>
+      <input id="lastName" name="lastName" [(ngModel)]="workerProfile.lastName" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" name="email" [(ngModel)]="workerProfile.email" required type="email" />
+    </div>
+    <div class="form-group">
+      <label for="phone">Teléfono</label>
+      <input id="phone" name="phone" [(ngModel)]="workerProfile.phone" required />
+    </div>
+    <div class="form-group">
+      <label for="location">Ubicación</label>
+      <input id="location" name="location" [(ngModel)]="workerProfile.location" />
+    </div>
+    <div class="form-group">
+      <label for="bio">Biografía</label>
+      <textarea id="bio" name="bio" [(ngModel)]="workerProfile.bio" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="skills">Habilidades (separadas por coma)</label>
+      <input id="skills" name="skills" [(ngModel)]="skillsString" />
+    </div>
+    <div class="form-group">
+      <label for="experience">Años de experiencia</label>
+      <input id="experience" name="experience" type="number" [(ngModel)]="workerProfile.experience" min="0" />
+    </div>
+    <div class="form-group">
+      <label for="certifications">Certificaciones (separadas por coma)</label>
+      <input id="certifications" name="certifications" [(ngModel)]="certificationsString" />
+    </div>
+    <div class="form-group">
+      <label for="avatar">Avatar (URL de imagen)</label>
+      <input id="avatar" name="avatar" [(ngModel)]="workerProfile.avatar" placeholder="https://..." />
+    </div>
+    <div class="form-group">
+      <label for="yapeNumber">Yape</label>
+      <input id="yapeNumber" name="yapeNumber" [(ngModel)]="workerProfile.yapeNumber" placeholder="Número Yape" />
+    </div>
+    <div class="form-group">
+      <label for="plinNumber">Plin</label>
+      <input id="plinNumber" name="plinNumber" [(ngModel)]="workerProfile.plinNumber" placeholder="Número Plin" />
+    </div>
+    <div class="form-group">
+      <label for="bankAccountNumber">Cuenta Bancaria</label>
+      <input id="bankAccountNumber" name="bankAccountNumber" [(ngModel)]="workerProfile.bankAccountNumber" placeholder="Cuenta bancaria" />
+    </div>
+    <div class="form-group">
+      <label>Disponibilidad</label>
+      <div class="availability-fields">
+        <div *ngFor="let day of daysOfWeek">
+          <label [for]="'avail-' + day" class="day-label">{{ day | titlecase }}</label>
+          <input [id]="'avail-' + day"
+                 [ngModel]="getAvailability(day)"
+                 (ngModelChange)="setAvailability(day, $event)"
+                 name="availability_{{day}}"
+                 placeholder="Ej: 08:00-17:00" />
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="isLoading" class="save-btn">Guardar Cambios</button>
+  </form>
+</div> 

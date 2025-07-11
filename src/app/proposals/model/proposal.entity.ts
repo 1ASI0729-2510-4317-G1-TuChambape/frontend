@@ -1,54 +1,21 @@
-export interface ProposalPrimitives {
-  uid: string;
-  offerUid: string;
-  userUid: string;
-  coverLetter: string;
-  estimatedBudget: number;
-  estimatedTimeframe: string;
-  portfolioLinks?: string[];
-  attachments?: string[];
-  status: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
+import { ProposalResource, ProposalStatus } from "../services/top-headlines.response";
 
 export class Proposal {
-  uid: string;
-  offerUid: string;
-  userUid: string;
-  coverLetter: string;
-  estimatedBudget: number;
-  estimatedTimeframe: string;
-  portfolioLinks?: string[];
-  attachments?: string[];
-  status: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  id: number;
+  offerId: number;
+  workerId: number;
+  message: string;
+  price: number;
+  createdAt: Date;
+  status: ProposalStatus;
 
-  constructor({
-    uid,
-    offerUid,
-    userUid,
-    coverLetter,
-    estimatedBudget,
-    estimatedTimeframe,
-    portfolioLinks,
-    attachments,
-    status,
-    createdAt,
-    updatedAt,
-  }: ProposalPrimitives) {
-    this.uid = uid;
-    this.offerUid = offerUid;
-    this.userUid = userUid;
-    this.coverLetter = coverLetter;
-    this.estimatedBudget = estimatedBudget;
-    this.estimatedTimeframe = estimatedTimeframe;
-    this.portfolioLinks = portfolioLinks;
-    this.attachments = attachments;
-    this.status = status;
-    this.createdAt = createdAt ? new Date(createdAt) : undefined;
-    this.updatedAt = updatedAt ? new Date(updatedAt) : undefined;
+  constructor(params: ProposalResource) {
+    this.id = params.id;
+    this.offerId = params.offerId;
+    this.workerId = params.workerId;
+    this.message = params.message;
+    this.price = params.price;
+    this.createdAt = new Date(params.createdAt);
+    this.status = params.status;
   }
-
-}
+} 

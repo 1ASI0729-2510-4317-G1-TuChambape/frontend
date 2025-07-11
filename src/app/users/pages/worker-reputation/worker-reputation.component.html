@@ -1,0 +1,111 @@
+<div class="reputation-container">
+  <h2>Mi Reputación</h2>
+  
+  <div *ngIf="isLoading" class="loading">
+    <p>Cargando reputación...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !error" class="reputation-content">
+    <!-- Resumen de Reputación -->
+    <section class="reputation-summary">
+      <div class="card overall-rating-card">
+        <h3>Calificación General</h3>
+        <div class="rating-display">
+          <div class="main-rating">
+            <div class="rating-number">{{ averageRating.toFixed(1) }}</div>
+            <div class="rating-stars">
+              <span *ngFor="let star of getStarsArray(averageRating)" 
+                    [class.filled]="star <= averageRating">⭐</span>
+            </div>
+            <div class="rating-label">{{ getOverallRatingLabel() }}</div>
+          </div>
+          <div class="rating-stats">
+            <div class="total-reviews">
+              <span class="stat-number">{{ totalReviews }}</span>
+              <span class="stat-label">Reseñas totales</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card rating-distribution-card">
+        <h3>Distribución de Calificaciones</h3>
+        <div class="rating-bars">
+          <div *ngFor="let rating of [5,4,3,2,1]" class="rating-bar-item">
+            <div class="rating-label">{{ rating }} ⭐</div>
+            <div class="rating-bar-container">
+              <div class="rating-bar" [style.width.%]="getRatingPercentage(rating)"></div>
+            </div>
+            <div class="rating-count">{{ ratingDistribution[rating] }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtros de Reseñas -->
+    <section class="reviews-filters">
+      <div class="card filters-card">
+        <h3>Filtrar Reseñas</h3>
+        <div class="filter-buttons">
+          <button 
+            class="filter-btn" 
+            [class.active]="selectedRating === 0"
+            (click)="filterByRating(0)">
+            Todas ({{ totalReviews }})
+          </button>
+          <button 
+            *ngFor="let rating of [5,4,3,2,1]" 
+            class="filter-btn" 
+            [class.active]="selectedRating === rating"
+            (click)="filterByRating(rating)">
+            {{ rating }} ⭐ ({{ ratingDistribution[rating] }})
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lista de Reseñas -->
+    <section class="reviews-section">
+      <div class="card reviews-list-card">
+        <h3>Reseñas de Clientes</h3>
+        
+        <div *ngIf="filteredReviews.length === 0" class="no-reviews">
+          <p *ngIf="selectedRating === 0">Aún no tienes reseñas de clientes.</p>
+          <p *ngIf="selectedRating > 0">No hay reseñas con {{ selectedRating }} estrellas.</p>
+        </div>
+
+        <div *ngIf="filteredReviews.length > 0" class="reviews-list">
+          <div *ngFor="let review of filteredReviews" class="review-item">
+            <div class="review-header">
+              <div class="review-rating">
+                <span *ngFor="let star of getStarsArray(review.rating)" 
+                      [class.filled]="star <= review.rating">⭐</span>
+                <span class="rating-text">{{ getRatingLabel(review.rating) }}</span>
+              </div>
+              <div class="review-date">
+                {{ review.createdAt | date:'longDate' }}
+              </div>
+            </div>
+            
+            <div class="review-content">
+              <p class="review-comment">{{ review.comment }}</p>
+            </div>
+
+            <div class="review-footer">
+              <div class="reviewer-info">
+                <span class="reviewer-name">{{ review.reviewerName || 'Cliente' }}</span>
+                <span class="reviewer-location" *ngIf="review.reviewerLocation">
+                  📍 {{ review.reviewerLocation }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div> 

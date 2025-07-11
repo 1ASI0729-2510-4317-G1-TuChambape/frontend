@@ -1,6 +1,15 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api',  // igual que dev, o cambia si tienes otro endpoint
-  offersResourceEndpointPath: '/offers', // igual que dev, o cambia si tienes otro endpoint
-  proposalsResourceEndpointPath: '/offers', // igual que dev, o cambia si tienes otro endpoint
+  apiUrl: 'https://backend-tuchamba.onrender.com/api/v1', // Backend real correcto
+  fakeApiUrl: 'http://localhost:3000',
+  offersResourceEndpointPath: '/offers',
+  proposalsResourceEndpointPath: '/proposals',
+  accountsResourceEndpointPath: '/accounts',
+  workersResourceEndpointPath: '/workers',
+  customersResourceEndpointPath: '/customers',
+  usersResourceEndpointPath: '/users',
+  paymentsResourceEndpointPath: '/payments',
+  reviewsResourceEndpointPath: '/reviews',
+  signUpEndpoint: '/iam/sign-up',
+  signInEndpoint: '/iam/sign-in',
 };

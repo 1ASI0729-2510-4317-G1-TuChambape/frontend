@@ -1,0 +1,143 @@
+.confirmation-content {
+  padding: 16px 0;
+}
+
+.amount-section {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.amount-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.amount-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.worker-section {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.worker-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.worker-name {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.worker-rating {
+  font-size: 14px;
+  color: #666;
+}
+
+.payment-methods {
+  margin-bottom: 20px;
+}
+
+.payment-label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.payment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #e3f2fd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.payment-method mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #1976d2;
+}
+
+.warning-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  background: #fff3e0;
+  border-radius: 6px;
+  border-left: 4px solid #ff9800;
+}
+
+.warning-icon {
+  color: #ff9800;
+  margin-top: 2px;
+}
+
+.warning-text {
+  font-size: 14px;
+  color: #e65100;
+  line-height: 1.4;
+}
+
+/* Estilos para la vista de éxito */
+.success-content {
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.success-icon {
+  margin-bottom: 24px;
+}
+
+.success-icon mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #4caf50;
+}
+
+.success-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #4caf50;
+  margin-bottom: 16px;
+}
+
+.success-amount {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1976d2;
+  margin-bottom: 12px;
+}
+
+.success-worker {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.success-message {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  max-width: 300px;
+  margin: 0 auto;
+} 

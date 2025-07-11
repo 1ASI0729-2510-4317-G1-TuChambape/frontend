@@ -1,0 +1,15 @@
+<div class="settings-profile-section">
+  <nav class="settings-navigation">
+    <a routerLink="datos-personales" routerLinkActive="active-sublink">Datos Personales</a>
+    @if (role !== 'worker') {
+      <a routerLink="preferencias" routerLinkActive="active-sublink">Preferencias</a>
+    }
+    @if (role === 'worker') {
+      <a routerLink="datos-trabajador" routerLinkActive="active-sublink">Datos de Trabajador</a>
+    }
+  </nav>
+
+  <div class="settings-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

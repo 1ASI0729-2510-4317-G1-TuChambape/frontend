@@ -1,0 +1,55 @@
+<div class="form-container">
+  <div class="form-box">
+    <div class="logo-container">
+      <h2 class="logo-text">JobConnect</h2>
+    </div>
+    <h3>Ingresa el código de verificación</h3>
+    <p *ngIf="emailForVerification" class="instructions">
+      Se envió un código de 4 dígitos a <strong>{{ emailForVerification }}</strong>.
+    </p>
+    <p *ngIf="!emailForVerification && !generalError" class="instructions">
+      Cargando información del correo...
+    </p>
+
+    <div *ngIf="successMessage && !generalError" class="success-message">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="generalError" class="error-message general-error">
+      {{ generalError }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #verifyCodeForm="ngForm" *ngIf="emailForVerification">
+      <div class="form-group code-input-group">
+        <label for="verificationCode">Código de Verificación</label>
+        <input
+          type="text"
+          id="verificationCode"
+          name="verificationCode"
+          placeholder="----"
+          [(ngModel)]="verificationCode"
+          required
+          minlength="4"
+          maxlength="4"
+          #codeInput="ngModel"
+          [class.invalid-input]="(codeInput.invalid && codeInput.touched) || codeError"
+          [disabled]="isLoading"
+          class="code-input"
+        >
+        <div *ngIf="codeError" class="error-message field-error">
+          {{ codeError }}
+        </div>
+        <div *ngIf="codeInput.invalid && codeInput.touched && !codeError" class="error-message field-error">
+          El código es requerido y debe tener 4 dígitos.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading || !verifyCodeForm.form.valid">
+        <span *ngIf="!isLoading">Verificar Código</span> <span *ngIf="isLoading">Verificando...</span>
+      </button>
+    </form>
+
+    <div class="back-link" *ngIf="emailForVerification">
+      <a routerLink="/forgot-password">Volver a la vista anterior</a>
+    </div>
+  </div>
+</div>
